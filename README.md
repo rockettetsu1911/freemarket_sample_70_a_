@@ -109,7 +109,7 @@
 has_many: :items
 has_ancestry
 
-## items_tagsテーブル
+## item_tagsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null:false, unique:true|
@@ -127,7 +127,7 @@ has_ancestry
 |name|string|null:false,unique:true||
 
 ### Asociation
-- has_many :items , through: :item_tag
+- has_many :items , through: :item_tags
 
 
 ## cardsテーブル
