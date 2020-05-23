@@ -1,1 +1,24 @@
-hello world
+%header
+  = render 'layouts/global-header'
+.topMain
+  %section.topVisual
+    = render 'top_visual'
+  %section.topReason
+    = render 'top_reason'
+  %section.subVisual
+    = render 'top_visual-sub'
+  %section.topFeature
+    = render 'top_feature'
+  // ToDo: カテゴリー等の実装後にViewを作成
+  %section.topCategory
+    = render 'top_category'
+  %section.topBrand
+    = render 'top_brand'
+  // カテゴリー等の代替View
+  %section.topIndex
+    = render 'top_index'
+%aside
+  = render 'layouts/global-aside'
+%footer
+  = render 'layouts/global-footer'
+= render 'layouts/global-sellBtn'
