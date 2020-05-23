@@ -1,0 +1,28 @@
+.wrapper
+  .wrapper__top
+    = link_to '#', class: 'wrapper__top__icon' do 
+      = image_tag 'logo.png', width: '140', alt: 'FURIMAロゴ'
+    .wrapper__top__searchBox
+      %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
+      = link_to '#', class: 'wrapper__top__searchBox__icon' do
+        = image_tag 'icon-search 1.png', alt: '検索ボタン'
+
+  .wrapper__bottom
+    %ul
+      -# ToDo カテゴリー機能の実装後に使用する
+      -# %li
+      -#   = link_to '#', class: 'wrapper__bottom--left', id: 'category-search-btn' do
+      -#     カテゴリー
+      -# %li
+      -#   = link_to '#', class: 'wrapper__bottom--left', id: 'brand-search-btn' do
+      -#     ブランド
+      %li.wrapper__bottom--left
+        = link_to '#', id: 'brand-search-btn' do
+          商品一覧
+    %ul
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'login-btn' do
+          ログイン
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'signup-btn' do
+          新規会員登録

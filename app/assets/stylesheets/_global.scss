@@ -1,0 +1,99 @@
+/********************
+ * 変数定義
+********************/
+// Background color
+$icon_bg-color: #3CCACE;
+$section_bg-color: #F8F8F8;
+$footer_bg-color: #272727;
+
+// Font color
+$bg_font-color: #FFFFFF;
+$bg_border-color: #D6D5D9;
+$highlight-color: #3CCACE;
+$text_shadow-color: rgb(183, 190, 183);
+
+// Font size
+$searchBox_font-size: 14px;
+$headerList_font-size: 14px;
+$itemIndex_font-size: 16px;
+$tax_font-size: 10px;
+$footerList_font-size: 12px;
+$main_contents_font-size:14px;
+$main_title_font-size:16px;
+                
+// Font family
+@font-face {
+  font-family: "Furima";
+  src: asset_url("NotoSansJP-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/********************
+ * MIXIN
+********************/
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+@mixin bg_text-shadow ($size, $color:$text_shadow-color) {
+  text-shadow: 1px 1px $size $color,
+              -1px 1px $size $color,
+              1px -1px $size $color,
+              -1px -1px $size $color;
+}
+@mixin title-underline ($color:$icon_bg_color) {
+  content: '';
+        display: inline-block;
+        margin-top: 10px;
+        width: 70px;
+        height: 4px;
+        background-color: $color;
+        margin-bottom: 20px;
+}
+@mixin dl_bannar ($sizeL:0, $sizeR:0) {
+  margin-left: $sizeL;
+  margin-right: $sizeR;
+  width: 372px;        
+  display: flex;
+  justify-content: space-between;
+}
+
+/********************
+ * FURIMAのデフォルト設定
+********************/
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #333333;
+}
+
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+}
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+}
+
+body {
+  font-family: 'Furima';
+}
+
+strong {
+  color: $highlight-color;
+  font-weight: bold;
+}

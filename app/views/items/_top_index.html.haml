@@ -1,0 +1,36 @@
+.topIndex__title
+  %h2 ピックアップアイテムズ
+  = link_to '#' do
+    %h3 <strong>全ての商品一覧へ</strong>
+
+.topIndex__contents
+  = link_to '#', class: 'topIndex__contents__itemBox' do 
+    = image_tag 'curry.png', class: 'topIndex__contents__itemBox--image', alt: '商品サンプル1'
+    .topIndex__contents__itemBox--summary
+      %name item1
+      .itemDetails
+        .itemDetails__price 10000円
+        .itemDetails__fav
+          .itemDetails__fav--mark ★
+          .itemDetails__fav--count 0
+      %p (税込)
+  = link_to '#', class: 'topIndex__contents__itemBox' do 
+    = image_tag 'meat.png', class: 'topIndex__contents__itemBox--image', alt: '商品サンプル2'
+    .topIndex__contents__itemBox--summary
+      %name item2
+      .itemDetails
+        .itemDetails__price 20000円
+        .itemDetails__fav
+          .itemDetails__fav--mark ★
+          .itemDetails__fav--count 0
+      %p (税込)
+  = link_to '#', class: 'topIndex__contents__itemBox' do 
+    = image_tag 'fish.png', class: 'topIndex__contents__itemBox--image', alt: '商品サンプル３'
+    .topIndex__contents__itemBox--summary
+      %name item3
+      .itemDetails
+        .itemDetails__price 30000円
+        .itemDetails__fav
+          .itemDetails__fav--mark ★
+          .itemDetails__fav--count 0
+      %p (税込)
