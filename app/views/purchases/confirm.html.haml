@@ -1,1 +1,55 @@
-%h1 商品購入確認ページ
+.purchaseBackground
+  %header.purchaseHeader
+    = link_to '#' do
+      = image_tag asset_path('logo.png'), width: 185, alt: 'FURIMAロゴ'
+
+  %main.purchaseMain
+    %h2.purchaseMain__content.purchaseTitle 購入内容の確認
+    -# ToDo: 商品登録機能実装後にform_withでパラメータを読み込む
+    = form_with model: @item, local: true do |f|
+      .purchaseMain__content.purchaseItem
+        .purchaseItem__imageArea
+          = image_tag asset_path('curry.png'), class: 'purchaseItem__imageArea--image', alt: '購入アイテム画像'
+        .purchaseItem__box
+          %p 我が家のカレーライス size L
+          .purchaseItem__box--price
+            %span ¥1,100
+            %span.shipping-fee （税込） 送料込み
+      %section.purchaseMain__content
+        .purchaseMain__content__wrapper
+          .purchaseMain__content__wrapper__price
+            .purchaseMain__content__wrapper__price--label 支払い金額
+            .purchaseMain__content__wrapper__price--value ¥1,100
+          %label ポイントを使用
+        .purchaseMain__content__wrapper
+          .purchaseMain__content__wrapper__payMethod
+            .purchaseMain__content__wrapper__payMethod--label 支払い方法
+            %span 変更する
+          %p.user-card-info
+            クレジットカード<br>
+            ************9999<br>
+            有効期限 01/24<br>
+          %figure.user-card-logo
+        .purchaseMain__content__wrapper
+          .purchaseMain__content__wrapper__delivery
+            .purchaseMain__content__wrapper__delivery--label 配送先
+            %span 変更する
+          %p.user-address-info
+            〒113-0034<br>
+            東京都文京区湯島６−７−２<br>
+            清水 健
+        .purchaseMain__content__wrapper
+          %p.purchase-info
+            郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
+          .btn-enter
+            %button.purchase-btn 購入する
+          
+  %footer.purchaseFooter
+    %ul.purchaseFooter__list
+      %li プライバシーポリシー
+      %li FURIMA利用規約
+      %li 特定商取引に関する表記
+    .purchaseFooter__logo
+      = link_to '#' do
+        = image_tag asset_path('logo.png'), width: '120', alt: 'FURIMAロゴ'
+    %p © FURIMA
