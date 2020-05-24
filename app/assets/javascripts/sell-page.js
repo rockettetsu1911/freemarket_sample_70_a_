@@ -3,7 +3,7 @@ $(function() {
     let price = $('#sell-price').val();
     if(price >= 300 && price <= 9999999) {
       $('#fee').text('¥' + localStr(Math.ceil(price * 0.03)));
-      $('#profit').text('¥' + localStr(Math.ceil(price * 0.97)));
+      $('#profit').text('¥' + localStr(Math.floor(price * 0.97)));
       $('#sell-price-alert').text('');
     } else {
       $('#fee').text('-');
