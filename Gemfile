@@ -84,3 +84,4 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'ancestry'
 gem 'rubocop', require: false
+gem 'font-awesome-sass', '~> 5.12.0'
