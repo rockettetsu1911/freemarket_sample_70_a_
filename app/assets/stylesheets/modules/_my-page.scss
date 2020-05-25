@@ -207,11 +207,12 @@
         .tab__container{
           margin:40px 0 0;
           &__title{
+            padding-left:16px;
             font-size:16px;
             line-height:72px;
             background-color: #fff;
             h3{
-            font-size:$main_title_font-size;
+              font-size:$main_title_font-size;
             }
           }
           &__header{
