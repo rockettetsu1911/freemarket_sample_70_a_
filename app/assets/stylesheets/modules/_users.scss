@@ -1,16 +1,4 @@
 .login {
-  &__top-logo {
-    text-align: center;
-    margin: auto;
-    padding: 60px;
-  }
-  &__title{
-    width: 300px;
-    text-align: center;
-    margin: auto;
-    padding-bottom: 30px;
-    font-size: $main_title_font-size;
-  }
   &__to-signup {
     width: 300px;
     text-align: center;
@@ -20,27 +8,9 @@
   &__to-signup__action-button {
     @include action-button(300px, dodgerblue);
   }
-  &__input-info {
-    font-size: $main_contents_font-size;
-    &__label {
-      width: 300px;
-      text-align: start;
-      margin: 5px auto;
-    }
-    &__field {
-      width: 300px;
-      height: 30px;
-      text-align: start;
-      margin: 0 auto 30px;
-      display: block;
-    }
-    &__action-button {
-      @include action-button(300px, red);
-    }
-  }
 }
 
-.signup{
+.signup, .login {
   &__top-logo {
     text-align: center;
     margin: auto;
