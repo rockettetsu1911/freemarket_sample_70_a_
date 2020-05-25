@@ -1,21 +1,79 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+.signup
+  .signup__top-logo
+    = link_to image_tag('logo.png', width:'200', alt: 'トップロゴ'), root_path
+  %h3.signup__title
+    新規会員登録
+  .signup__input-info
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .signup__input-info__label
+        .signup__input-info__label__set
+          ニックネーム
+        .signup__input-info__label--required
+          必須
+      = f.text_field :nickname, placeholder: "ニックネーム", class: 'signup__input-info__field'
+      .signup__input-name
+        .signup__input-name__set
+          .signup__input-name__set__child
+            .signup__input-name__set__child--title
+              姓
+            .signup__input-name__set__child--required
+              必須
+          = f.text_field :last_name, placeholder: "付利間", class: 'signup__input-name__set__field'
+        .signup__input-name__set
+          .signup__input-name__set__child
+            .signup__input-name__set__child--title
+              名
+            .signup__input-name__set__child--required
+              必須
+          = f.text_field :first_name, placeholder: "太郎", class: 'signup__input-name__set__field'
+      .signup__input-name
+        .signup__input-name__set
+          .signup__input-name__set__child
+            .signup__input-name__set__child--title
+              セイ
+            .signup__input-name__set__child--required
+              必須
+          = f.text_field :last_name_kana, placeholder: "フリマ", class: 'signup__input-name__set__field'
+        .signup__input-name__set
+          .signup__input-name__set__child
+            .signup__input-name__set__child--title
+              メイ
+            .signup__input-name__set__child--required
+              必須
+          = f.text_field :first_name_kana, placeholder: "タロウ", class: 'signup__input-name__set__field'
+      .signup__input-info__label
+        .signup__input-info__label__set
+          メールアドレス
+        .signup__input-info__label--required
+          必須
+      = f.email_field :email, placeholder: "メールアドレス", class: 'signup__input-info__field'
+      .signup__input-info__label
+        .signup__input-info__label__set
+          誕生日
+        .signup__input-info__label--required
+          必須
+      = f.text_field :birthday, placeholder: "年 / 月 / 日", class: 'signup__input-info__field'
+      .signup__input-info__label
+        .signup__input-info__label__set
+          電話番号（ハイフンなし）
+        .signup__input-info__label--required
+          必須
+      = f.text_field :telephone, placeholder: "09012345678", class: 'signup__input-info__field'
+      .signup__input-info__label
+        自己紹介
+      = f.text_area :introduction, placeholder: "初めまして。エンジニア関連の本を中心に出品しています！", class: 'signup__input-info__area'
+      .signup__input-info__label
+        .signup__input-info__label__set
+          パスワード
+        .signup__input-info__label--required
+          必須
+      = f.password_field :password, placeholder: "パスワード", class: 'signup__input-info__field'
+      .signup__input-info__label
+        .signup__input-info__label__set
+          パスワードの再確認
+        .signup__input-info__label--required
+          必須
+      = f.password_field :password_confirmation, placeholder: "パスワードの再確認", class: 'signup__input-info__field'
+      = f.submit "登録する", class: 'signup__input-info__action-button'
+  %footer
+    = render 'layouts/global-footer'
