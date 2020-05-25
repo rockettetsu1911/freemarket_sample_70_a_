@@ -1,0 +1,118 @@
+.login {
+  &__top-logo {
+    text-align: center;
+    margin: auto;
+    padding: 60px;
+  }
+  &__title{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 30px;
+    font-size: $main_title_font-size;
+  }
+  &__to-signup {
+    width: 300px;
+    text-align: center;
+    margin: 5px auto;
+    font-size: $main_title_font-size;
+  }
+  &__to-signup__action-button {
+    @include action-button(300px, dodgerblue);
+  }
+  &__input-info {
+    font-size: $main_contents_font-size;
+    &__label {
+      width: 300px;
+      text-align: start;
+      margin: 5px auto;
+    }
+    &__field {
+      width: 300px;
+      height: 30px;
+      text-align: start;
+      margin: 0 auto 30px;
+      display: block;
+    }
+    &__action-button {
+      @include action-button(300px, red);
+    }
+  }
+}
+
+.signup{
+  &__top-logo {
+    text-align: center;
+    margin: auto;
+    padding: 60px;
+  }
+  &__title{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 30px;
+    font-size: $main_title_font-size;
+  }
+  &__input-info {
+    font-size: $main_contents_font-size;
+    &__label {
+      width: 300px;
+      margin: 5px auto;
+      display: flex;
+      justify-content: start;
+      &__set {
+        text-align: start;
+      }
+      &--required {
+        @include required(12px, 22px);
+      }
+    }
+    &__field {
+      width: 300px;
+      height: 30px;
+      text-align: start;
+      margin: 0 auto 30px;
+      display: block;
+    }
+    &__area {
+      width: 300px;
+      height: 150px;
+      text-align: start;
+      margin: 0 auto 30px;
+      display: block;
+      overflow: scroll;
+      resize: none;
+    }
+    &__action-button {
+      @include action-button(300px, red);
+    }
+  }
+  &__input-name {
+    width: 300px;
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-between;
+    &__set {
+      width: 140px;
+      display: block;
+      &__child {
+        width: 140px;
+        text-align: start;
+        margin: 5px auto;
+        line-height: 24px;
+        display: flex;
+        justify-content: start;
+        &--required {
+          @include required(12px, 22px);
+        }
+      }
+      &__field {
+        width: 140px;
+        height: 30px;
+        text-align: start;
+        margin: 0 auto 30px;
+        display: block;
+      }
+    }
+  }
+}

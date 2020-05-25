@@ -64,6 +64,7 @@ $main_title_font-size:16px;
   justify-content: space-between;
 }
 @mixin action-button($width, $bg-color) {
+  font-size: $main_title_font-size;
   line-height: 40px;
   width: $width;
   background-color: $bg-color;
@@ -73,6 +74,17 @@ $main_title_font-size:16px;
   border: none;
   display: block;
   cursor: pointer;
+}
+
+@mixin required ($font-size, $line-height) {
+  display: inline-block;
+  background-color: #FF0110;
+  color: #ffffff;
+  font-size: $font-size;
+  margin-left: 5px;
+  padding: 0 3px;
+  border-radius: 2px;
+  line-height: $line-height;
 }
 
 /********************
