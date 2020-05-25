@@ -1,0 +1,155 @@
+.my__page__contents__box
+  .my__page__contents__box--select
+    .contents__nav
+      %ul
+        .active
+          = link_to '#', class: 'list__btn' do
+            マイページ
+        %li
+          = link_to '#', class: 'list__btn' do
+            お知らせ
+        %li
+          = link_to '#', class: 'list__btn' do
+            やることリスト
+        %li
+          = link_to '#', class: 'list__btn' do
+            いいね！一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品する
+        %li
+          = link_to '#', class: 'list__btn' do
+            下書き一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-出品中
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-取引中
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-売却済み
+        %li
+          = link_to '#', class: 'list__btn' do
+            購入した商品-取引中
+        %li
+          = link_to '#', class: 'list__btn' do
+            購入した商品-過去の取引
+        %li
+          = link_to '#', class: 'list__btn' do
+            ニュース一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            評価一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            ガイド
+        %li
+          = link_to '#', class: 'list__btn' do
+            お問い合わせ
+        
+      %h1 メルペイ
+      %ul
+        %li
+          = link_to '#', class: 'list__btn' do 
+            売上・振込申請
+        %li 
+          = link_to '#', class: 'list__btn' do
+            ポイント
+
+      %h1 設定
+      %ul
+        %li
+          = link_to '#', class: 'list__btn' do
+            プロフィール
+        %li 
+          = link_to '#', class: 'list__btn' do
+            発送元・お届け先住所変更
+        %li
+          = link_to '#', class: 'list__btn' do 
+            支払い方法
+        %li 
+          = link_to '#', class: 'list__btn' do
+            メール/パスワード
+        %li 
+          = link_to '#', class: 'list__btn' do
+            本人情報
+        %li 
+          = link_to '#', class: 'list__btn' do
+            電話番号の確認
+        %li 
+          = link_to '#', class: 'list__btn' do
+            ログアウト
+
+
+      
+  .my__page__contents__box--allert
+    %section.user__icon
+      = link_to '#' do
+        = image_tag 'user__icon.jpg', width:'700',height: '180', alt: 'user-back'
+      .user__icon__box
+        .user__icon__smile
+          = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
+        .user__name
+          ユーザー名
+        .user__information
+          .review__count
+            評価:0
+          .items__count
+            出品数:0
+    %section.user__tabs
+      %ul.user__tabs__header
+        %li.notice
+          %h2 お知らせ
+        %li.do__list 
+          %h2 やることリスト
+    %section.tab__content
+      %ul.tab__contentn__ul
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page' do
+            .content__icon
+              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
+            .content__text
+              %p メルペイ支払いでスマートに！
+              %p 〜時間前
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page' do
+            .content__icon
+              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
+            .content__text
+              %p いいね！した商品にコメントがつきました。
+              %p 〜時間前
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page' do
+            .content__icon
+              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
+            .content__text
+              %p 商品を出品しましょう。
+              %p 〜時間前
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page' do
+            .content__icon
+              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
+            .content__text
+              %p 今なら50Pプレゼント
+              %p 〜時間前
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page' do
+            .content__icon
+              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
+            .content__text
+              %p 友達をメルカリに招待しよう！
+              %p 〜時間前
+        %li.tab__content__li
+          = link_to '#',class: 'tab__content__page--secret' do
+            一覧を見る
+
+    %section.tab__container 
+      .tab__container__title
+        %h3 購入した商品
+      %ul.tab__container__header
+        %li.transaction
+          %h3 取引中
+        %li.past__transactions
+          %h3 過去の取引
+      .tab__container__main
