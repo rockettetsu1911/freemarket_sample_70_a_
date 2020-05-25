@@ -1,7 +1,5 @@
 .purchaseBackground
-  %header.purchaseHeader
-    = link_to '#' do
-      = image_tag asset_path('logo.png'), width: 185, alt: 'FURIMAロゴ'
+  = render 'layouts/global-header-simple'
 
   %main.purchaseMain
     %h2.purchaseMain__content.purchaseTitle 購入内容の確認
@@ -45,13 +43,5 @@
             郵便局/コンビニ受取をご希望の方は、購入後に<strong>取引画面</strong>から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
           .btn-enter
             %button.purchase-btn 購入する
-          
-  %footer.purchaseFooter
-    %ul.purchaseFooter__list
-      %li プライバシーポリシー
-      %li FURIMA利用規約
-      %li 特定商取引に関する表記
-    .purchaseFooter__logo
-      = link_to '#' do
-        = image_tag asset_path('logo.png'), width: '120', alt: 'FURIMAロゴ'
-    %p © FURIMA
+
+  = render 'layouts/global-footer-simple'

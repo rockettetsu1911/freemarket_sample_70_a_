@@ -1,7 +1,5 @@
 .sellBackground
-  %header.sellHeader
-    = link_to '#' do
-      = image_tag asset_path('logo.png'), width: 185, alt: 'FURIMAロゴ'
+  = render 'layouts/global-header-simple'
 
   = form_with model: @item, local: true do |f|
     %section.sellFillOut.sellImage
@@ -110,12 +108,4 @@
         .sellFillOut__submit__caution
           %p 禁止されている<a href='#'>行為</a>および<a href='#'>出品物</a>を必ずご確認ください。<a href='#'>偽ブランド品</a>や<a href='#'>盗品物</a>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<a href='#'>加盟店規約</a>に同意したことになります。
 
-  %footer.sellFooter
-    %ul.sellFooter__list
-      %li プライバシーポリシー
-      %li FURIMA利用規約
-      %li 特定商取引に関する表記
-    .sellFooter__logo
-      = link_to '#' do
-        = image_tag asset_path('logo.png'), width: '120', alt: 'FURIMAロゴ'
-    %p © FURIMA
+  = render 'layouts/global-footer-simple'
