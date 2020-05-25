@@ -1,6 +1,6 @@
 ja:
   enums:
-    items:
+    item:
       condition:
         '---':         "---"
         unused:        "新品、未使用"
@@ -73,7 +73,7 @@ ja:
         kagoshima: "鹿児島県"
         okinawa:   "沖縄県"
     
-    categories:
+    category:
       name:
         '---':                  "---"
         ladies:                 "レディース" 
