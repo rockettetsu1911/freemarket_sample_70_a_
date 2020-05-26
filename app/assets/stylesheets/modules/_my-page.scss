@@ -1,5 +1,5 @@
 //グローバルヘッダー
-.my__page__header {
+.my--page__header {
   width: 100%;
   height: 100%;
 
@@ -27,7 +27,7 @@
         &__input {
           height: 36px;
           padding-left: 5px;
-          width: calc(100% - 26px)
+          width: calc(100% - 26px);
         }
         &__icon {
           background-color: $icon_bg-color;
@@ -59,7 +59,7 @@
       }
     }
   }
-  .my__page__nav{
+  .my--page__nav{
     border-top: 1px solid #eee;
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
     &__guide{
@@ -84,7 +84,7 @@
   
 
   //メインコンテンツ
-  .my__page__contents{
+  .my--page__contents{
     width:100vw;
     height:100%;
     background-color: #f5f5f5;
@@ -251,7 +251,7 @@
   }
 
   //フッター
-  .my__page__footer{
+  .my--page__footer{
     width:100vw;
     &__banner{
       height:260px;
