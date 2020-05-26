@@ -5,6 +5,8 @@
 $icon_bg-color: #3CCACE;
 $section_bg-color: #F8F8F8;
 $footer_bg-color: #272727;
+$upload_bg-color: #F5F5F5;
+$option_bg-color: #999999;
 
 // Font color
 $bg_font-color: #FFFFFF;
@@ -61,6 +63,17 @@ $main_title_font-size:16px;
   display: flex;
   justify-content: space-between;
 }
+@mixin action-button($width, $bg-color) {
+  line-height: 40px;
+  width: $width;
+  background-color: $bg-color;
+  color: white;
+  text-align: center;
+  margin: 0 auto 80px auto;
+  border: none;
+  display: block;
+  cursor: pointer;
+}
 
 /********************
  * FURIMAのデフォルト設定
@@ -96,4 +109,8 @@ body {
 strong {
   color: $highlight-color;
   font-weight: bold;
+}
+
+::placeholder {
+  color: lightgray;
 }
