@@ -1,0 +1,46 @@
+.wrapper
+  .wrapper__top
+    = link_to '#', class: 'wrapper__top__icon' do 
+      = image_tag 'logo.png', width: '140', alt: 'FURIMAロゴ'
+    .wrapper__top__searchBox
+      %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
+      = link_to '#', class: 'wrapper__top__searchBox__icon' do
+        = image_tag 'icon-search 1.png', alt: '検索ボタン'
+  .wrapper__bottom
+    %ul
+      %li.wrapper__bottom--left
+        = link_to '#', id: 'brand-search-btn' do
+          カテゴリーから探す
+      %li.wrapper__bottom--left
+        = link_to '#', id: 'brand-search-btn' do
+          ブランドから探す
+
+    %ul
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'likes-btn' do
+          いいね一覧
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'allert-btn' do
+          お知らせ
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'action-btn' do
+          やることリスト
+      %li.wrapper__bottom--right
+        = link_to '#', id: 'mypage-btn' do
+          マイページ
+
+.my--page__nav
+  .my--page__nav__guide
+    .my--page__nav__guide--menu
+      %ul
+        %li.my--page__nav__guide--menu__btn
+          = link_to '#', id: 'toppage-btn' do
+            メルカリ
+        %li.my--page__nav__guide--menu__btn
+          >
+        %li.my--page__nav__guide--menu__btn
+          マイページ
+
+
+  
+      
