@@ -1,12 +1,12 @@
 .login {
   &__to-signup {
-    width: 300px;
+    width: 350px;
     text-align: center;
     margin: 5px auto;
     font-size: $main_title_font-size;
   }
   &__to-signup__action-button {
-    @include action-button(300px, dodgerblue);
+    @include action-button(350px, dodgerblue);
   }
 }
 
@@ -17,7 +17,7 @@
     padding: 60px;
   }
   &__title{
-    width: 300px;
+    width: 350px;
     text-align: center;
     margin: auto;
     padding-bottom: 30px;
@@ -26,7 +26,7 @@
   &__input-info {
     font-size: $main_contents_font-size;
     &__label {
-      width: 300px;
+      width: 350px;
       margin: 5px auto;
       display: flex;
       justify-content: start;
@@ -38,14 +38,14 @@
       }
     }
     &__field {
-      width: 300px;
+      width: 350px;
       height: 30px;
       text-align: start;
       margin: 0 auto 30px;
       display: block;
     }
     &__area {
-      width: 300px;
+      width: 350px;
       height: 150px;
       text-align: start;
       margin: 0 auto 30px;
@@ -54,19 +54,19 @@
       resize: none;
     }
     &__action-button {
-      @include action-button(300px, red);
+      @include action-button(350px, red);
     }
   }
   &__input-name {
-    width: 300px;
+    width: 350px;
     margin: 5px auto;
     display: flex;
     justify-content: space-between;
     &__set {
-      width: 140px;
+      width: 165px;
       display: block;
       &__child {
-        width: 140px;
+        width: 165px;
         text-align: start;
         margin: 5px auto;
         line-height: 24px;
@@ -77,7 +77,7 @@
         }
       }
       &__field {
-        width: 140px;
+        width: 170px;
         height: 30px;
         text-align: start;
         margin: 0 auto 30px;

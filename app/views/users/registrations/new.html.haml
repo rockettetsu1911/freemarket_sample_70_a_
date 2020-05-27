@@ -7,10 +7,10 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       .signup__input-info__label
         .signup__input-info__label__set
-          ニックネーム
+          ニックネーム（20文字以下）
         .signup__input-info__label--required
           必須
-      = f.text_field :nickname, placeholder: "ニックネーム", class: 'signup__input-info__field'
+      = f.text_field :nickname, placeholder: "例）フリマくん", class: 'signup__input-info__field'
       .signup__input-name
         .signup__input-name__set
           .signup__input-name__set__child
@@ -18,62 +18,65 @@
               姓
             .signup__input-name__set__child--required
               必須
-          = f.text_field :last_name, placeholder: "付利間", class: 'signup__input-name__set__field'
+          = f.text_field :last_name, placeholder: "例）付利間", class: 'signup__input-name__set__field'
         .signup__input-name__set
           .signup__input-name__set__child
             .signup__input-name__set__child--title
               名
             .signup__input-name__set__child--required
               必須
-          = f.text_field :first_name, placeholder: "太郎", class: 'signup__input-name__set__field'
+          = f.text_field :first_name, placeholder: "例）太郎", class: 'signup__input-name__set__field'
       .signup__input-name
         .signup__input-name__set
           .signup__input-name__set__child
             .signup__input-name__set__child--title
-              セイ
+              セイ（全角カナ）
             .signup__input-name__set__child--required
               必須
-          = f.text_field :last_name_kana, placeholder: "フリマ", class: 'signup__input-name__set__field'
+          = f.text_field :last_name_kana, placeholder: "例）フリマ", class: 'signup__input-name__set__field'
         .signup__input-name__set
           .signup__input-name__set__child
             .signup__input-name__set__child--title
-              メイ
+              メイ（全角カナ）
             .signup__input-name__set__child--required
               必須
-          = f.text_field :first_name_kana, placeholder: "タロウ", class: 'signup__input-name__set__field'
+          = f.text_field :first_name_kana, placeholder: "例）タロウ", class: 'signup__input-name__set__field'
       .signup__input-info__label
         .signup__input-info__label__set
           メールアドレス
         .signup__input-info__label--required
           必須
-      = f.email_field :email, placeholder: "メールアドレス", class: 'signup__input-info__field'
+      = f.email_field :email, placeholder: "例）freema@example.com", class: 'signup__input-info__field'
       .signup__input-info__label
         .signup__input-info__label__set
           誕生日
         .signup__input-info__label--required
           必須
-      = f.text_field :birthday, placeholder: "年 / 月 / 日", class: 'signup__input-info__field'
+      = f.text_field :birthday, placeholder: "例）1990 / 5 / 27", class: 'signup__input-info__field'
       .signup__input-info__label
         .signup__input-info__label__set
           電話番号（ハイフンなし）
         .signup__input-info__label--required
           必須
-      = f.text_field :telephone, placeholder: "09012345678", class: 'signup__input-info__field'
+      = f.text_field :telephone, placeholder: "例）09012345678", class: 'signup__input-info__field'
       .signup__input-info__label
-        自己紹介
-      = f.text_area :introduction, placeholder: "初めまして。エンジニア関連の本を中心に出品しています！", class: 'signup__input-info__area'
+        .signup__input-info__label__set
+          自己紹介（300文字以下）
+        .signup__input-info__label--required
+          必須
+      = f.text_area :introduction, placeholder: "例）初めまして。エンジニア関連の本を中心に出品しています！", class: 'signup__input-info__area'
       .signup__input-info__label
         .signup__input-info__label__set
           パスワード
         .signup__input-info__label--required
           必須
-      = f.password_field :password, placeholder: "パスワード", class: 'signup__input-info__field'
+      = f.password_field :password, placeholder: "パスワードを入力してください", class: 'signup__input-info__field'
       .signup__input-info__label
         .signup__input-info__label__set
           パスワードの再確認
         .signup__input-info__label--required
           必須
-      = f.password_field :password_confirmation, placeholder: "パスワードの再確認", class: 'signup__input-info__field'
+      = f.password_field :password_confirmation, placeholder: "確認のためもう一度入力してください", class: 'signup__input-info__field'
       = f.submit "登録する", class: 'signup__input-info__action-button'
   %footer
     = render 'layouts/global-footer'

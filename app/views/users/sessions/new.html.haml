@@ -10,11 +10,11 @@
   .login__input-info
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .login__input-info__label
-        Eメールアドレス
-      = f.email_field :email, placeholder: 'Eメールアドレス', class: 'login__input-info__field'
+        メールアドレス
+      = f.email_field :email, placeholder: '例）freema@example.com', class: 'login__input-info__field'
       .login__input-info__label
         パスワード
-      = f.password_field :password, placeholder: 'パスワード', class: 'login__input-info__field'
+      = f.password_field :password, placeholder: 'パスワードを入力してください', class: 'login__input-info__field'
       = f.submit "ログイン", class: 'login__input-info__action-button'
   %footer
     = render 'layouts/global-footer'
