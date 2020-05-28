@@ -1,0 +1,20 @@
+.login
+  .login__top-logo
+    = link_to image_tag('logo.png', width:'200', alt: 'トップロゴ'), root_path , class: 'login__top-logo__image'
+
+  .login__to-signup
+    アカウントをお持ちでない方はこちら
+  = link_to new_user_registration_path, class: 'login__to-signup__action-button' do
+    新規会員登録
+
+  .login__input-info
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .login__input-info__label
+        メールアドレス
+      = f.email_field :email, placeholder: '例）freema@example.com', class: 'login__input-info__field'
+      .login__input-info__label
+        パスワード
+      = f.password_field :password, placeholder: 'パスワードを入力してください', class: 'login__input-info__field'
+      = f.submit "ログイン", class: 'login__input-info__action-button'
+  %footer
+    = render 'layouts/global-footer'
