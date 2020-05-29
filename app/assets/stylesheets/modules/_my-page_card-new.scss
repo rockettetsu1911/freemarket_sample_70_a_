@@ -1,0 +1,104 @@
+.my--page__contents__box--allert{
+  background-color: #fff;
+  height:100%;
+  .card__information{
+    &--header{
+      border-bottom:1px solid #f5f5f5;
+      text-align:center;
+      h1{
+        font-size:24px;
+        padding:8px 24px;
+      }
+    }
+    &--form{
+      margin:0 auto;
+      padding-top:40px;
+      padding-bottom:64px;
+      max-width:343px;
+      .top{
+        label{
+          font-size:14px;
+        }
+        span{
+          font-size:12px;
+          background-color: #EA352D;
+          color:#FFFFFF;
+          padding:2px 4px;
+          margin-left:8px;
+        }
+      }
+      .card__number{
+        height:48px;
+        border-radius:4px;
+        border:1px solid #ccc;
+        background-color: #fff;
+        font-size:16px;
+        line-height:1.5;
+        width:100%;
+        margin-top:8px;
+        padding:10px 16px 8px;
+      }
+      .middle{
+        margin-top:32px;
+        label{
+          font-size:14px;
+        }
+        span{
+          font-size:12px;
+          background-color: #EA352D;
+          color:#FFFFFF;
+          padding:2px 4px;
+          margin-left:8px;
+        }
+      }
+      .bottom{
+        margin-top:32px;
+        label{
+          font-size:14px;
+        }
+        span{
+          font-size:12px;
+          background-color: #EA352D;
+          color:#FFFFFF;
+          padding:2px 4px;
+          margin-left:8px;
+        }
+      }
+      .action{
+        text-align:right;
+        .question__mark{
+          display:inline-block;
+          background-color: #0099e8;
+          width:14px;
+          height:14px;
+          border-radius:50%;
+          color:#fff;
+          line-height:14px;
+          font-size:12px;
+          text-align:center;
+        }
+        a{
+          font-size:14px;
+          color:#0099e8;
+        }
+      }
+      .link__btn{
+        margin-top:32px;
+        .add__card__btn{
+          display:block;
+          width:100%;
+          line-height:48px;
+          font-size:14px;
+          text-align:center;
+          cursor:pointer;
+          background-color: #ea352d;
+          border:1px solid #ea352d;
+          color:#fff;
+          display:flex;
+          width:100%;
+          justify-content:center;
+        }
+      }
+    }
+  }
+}
