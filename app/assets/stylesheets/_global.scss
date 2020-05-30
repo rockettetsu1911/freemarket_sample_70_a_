@@ -64,6 +64,7 @@ $main_title_font-size:16px;
   justify-content: space-between;
 }
 @mixin action-button($width, $bg-color) {
+  font-size: $main_title_font-size;
   line-height: 40px;
   width: $width;
   background-color: $bg-color;
@@ -73,6 +74,17 @@ $main_title_font-size:16px;
   border: none;
   display: block;
   cursor: pointer;
+}
+
+@mixin required ($font-size, $line-height) {
+  display: inline-block;
+  background-color: #FF0110;
+  color: #ffffff;
+  font-size: $font-size;
+  margin-left: 5px;
+  padding: 0 3px;
+  border-radius: 2px;
+  line-height: $line-height;
 }
 
 /********************
@@ -113,4 +125,42 @@ strong {
 
 ::placeholder {
   color: lightgray;
+}
+
+/********************
+ * Partial Template
+********************/
+.header-simple {
+  height: 128px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-simple {
+  background-color: $upload_bg-color;
+  color: #222;
+  font-size: 12px;
+  padding: 30px 0 40px 0;
+  text-align: center;
+  &__list {
+    text-align: center;
+    @media (min-width: 760px) {
+      display: flex;
+      justify-content: center;
+    }
+
+    li {
+      margin-left: 15px;
+      margin-top: 10px;
+    }
+  }
+  &__logo {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 14px;
+  }
 }
