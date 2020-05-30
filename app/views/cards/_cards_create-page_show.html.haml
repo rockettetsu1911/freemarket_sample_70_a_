@@ -1,0 +1,104 @@
+.my--page__contents__box
+  .my--page__contents__box--select
+    .contents__nav
+      %ul
+        .active
+          = link_to '#', class: 'list__btn' do
+            マイページ
+        %li
+          = link_to '#', class: 'list__btn' do
+            お知らせ
+        %li
+          = link_to '#', class: 'list__btn' do
+            やることリスト
+        %li
+          = link_to '#', class: 'list__btn' do
+            いいね！一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品する
+        %li
+          = link_to '#', class: 'list__btn' do
+            下書き一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-出品中
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-取引中
+        %li
+          = link_to '#', class: 'list__btn' do
+            出品した商品-売却済み
+        %li
+          = link_to '#', class: 'list__btn' do
+            購入した商品-取引中
+        %li
+          = link_to '#', class: 'list__btn' do
+            購入した商品-過去の取引
+        %li
+          = link_to '#', class: 'list__btn' do
+            ニュース一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            評価一覧
+        %li
+          = link_to '#', class: 'list__btn' do
+            ガイド
+        %li
+          = link_to '#', class: 'list__btn' do
+            お問い合わせ
+        
+      %h1 メルペイ
+      %ul
+        %li
+          = link_to '#', class: 'list__btn' do 
+            売上・振込申請
+        %li 
+          = link_to '#', class: 'list__btn' do
+            ポイント
+
+      %h1 設定
+      %ul
+        %li
+          = link_to '#', class: 'list__btn' do
+            プロフィール
+        %li 
+          = link_to '#', class: 'list__btn' do
+            発送元・お届け先住所変更
+        %li
+          = link_to '#', class: 'list__btn' do 
+            支払い方法
+        %li 
+          = link_to '#', class: 'list__btn' do
+            メール/パスワード
+        %li 
+          = link_to '#', class: 'list__btn' do
+            本人情報
+        %li 
+          = link_to '#', class: 'list__btn' do
+            電話番号の確認
+        %li 
+          = link_to '#', class: 'list__btn' do
+            ログアウト
+
+
+      
+  .my--page__contents__box--allert
+    %section.method__of__payment
+      .method__of__payment--header
+        %h1 支払い方法
+      .credit__card__box
+        %section.credit__card__box--text
+          %h2 クレジットカード一覧
+        %section.credit__card__box--btn
+          .link__btn
+            = link_to '#',class: 'add__card__btn' do
+              .icon__card--before
+                = icon('far', 'credit-card')
+              %span クレジットカードを追加する
+        %section.credit__card__box--announcement
+          = link_to '#',class: 'announcement__pay' do
+            %span 支払い方法について
+            .icon__arrow--right
+              >
+      
