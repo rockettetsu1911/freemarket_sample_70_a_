@@ -1,0 +1,15 @@
+.notification {
+  .notice {
+    font-size: $main_title_font-size;
+    background-color: $highlight-color;
+    color: white;
+    text-align: center;
+  }
+
+  .alert {
+    font-size: $main_title_font-size;
+    background-color: darkorange;
+    color: white;
+    text-align: center;
+  }
+}
