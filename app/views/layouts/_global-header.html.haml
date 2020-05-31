@@ -20,9 +20,16 @@
         = link_to '#', id: 'brand-search-btn' do
           商品一覧
     %ul
-      %li.wrapper__bottom--right
-        = link_to new_user_session_path, id: 'login-btn' do
-          ログイン
-      %li.wrapper__bottom--right
-        = link_to new_user_registration_path, id: 'signup-btn' do
-          新規会員登録
+      -if user_signed_in? #ログインしているかどうかわかりやすくするために追加しました
+        %li.wrapper__bottom--right
+          = link_to destroy_user_session_path, method: :delete, id: 'logout-btn' do
+            ログアウト
+        %li.wrapper__bottom--right
+          = current_user.nickname
+      -else
+        %li.wrapper__bottom--right
+          = link_to new_user_session_path, id: 'login-btn' do
+            ログイン
+        %li.wrapper__bottom--right
+          = link_to new_user_registration_path, id: 'signup-btn' do
+            新規会員登録
