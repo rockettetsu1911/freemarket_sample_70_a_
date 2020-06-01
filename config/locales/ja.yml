@@ -10,7 +10,7 @@ ja:
         injured:       "傷や汚れあり"
         bad:           "全体的に状態が悪い"
     
-    addresses:
+    address:
       prefecture:
         '---': "---"
         #東北地方
