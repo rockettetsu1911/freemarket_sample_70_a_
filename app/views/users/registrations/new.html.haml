@@ -4,7 +4,7 @@
   %h3.signup__title
     新規会員登録
   .signup__input-info
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = form_for(resource, url: user_registration_path) do |f|
       .signup__input-info__label
         .signup__input-info__label__set
           ニックネーム（20文字以下）
@@ -46,13 +46,13 @@
           メールアドレス
         .signup__input-info__label--required
           必須
-      = f.email_field :email, placeholder: "例）freema@example.com", class: 'signup__input-info__field'
+      = f.text_field :email, placeholder: "例）freema@example.com", class: 'signup__input-info__field'
       .signup__input-info__label
         .signup__input-info__label__set
           誕生日
         .signup__input-info__label--required
           必須
-      = f.text_field :birthday, placeholder: "例）1990 / 5 / 27", class: 'signup__input-info__field'
+      = f.text_field :birthday, placeholder: "例）1990/5/27", class: 'signup__input-info__field'
       .signup__input-info__label
         .signup__input-info__label__set
           電話番号（ハイフンなし）
@@ -67,7 +67,7 @@
       = f.text_area :introduction, placeholder: "例）初めまして。エンジニア関連の本を中心に出品しています！", class: 'signup__input-info__area'
       .signup__input-info__label
         .signup__input-info__label__set
-          パスワード
+          パスワード（7文字以上）
         .signup__input-info__label--required
           必須
       = f.password_field :password, placeholder: "パスワードを入力してください", class: 'signup__input-info__field'
