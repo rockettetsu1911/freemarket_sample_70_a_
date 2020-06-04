@@ -7,11 +7,14 @@
         %label.sellFillOut__label--title 出品画像
         %span.sellFillOut__label--required 必須
       %p.sellFillOut__text 最大10枚までアップロードできます
-      = link_to '#' do
-        .sellFillOut__uploadBox
-          .sellFillOut__uploadBox__itemPhotos
+      = f.fields_for :images do |image|
+        .sellFillOut__uploadBox{"data-index": "<%= image.index %>"}
+          %label.sellFillOut__uploadBox__itemPhotos
+            =image.file_field :src, class: 'uploadBox-file'
+            %br
             %i.fas.fa-camera.uploadBox-icon
-            %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+            = fa_icon("camera")
+          %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
     %section.sellFillOut.sellItem
       .sellFillOut__label
         %label.sellFillOut__label--title 商品名
