@@ -17,7 +17,8 @@
           .itemDetails__price 
             #{item.price}円
           .itemDetails__fav
-            .itemDetails__fav--mark ★
+            .itemDetails__fav--mark
+              = icon('fa','star')
             .itemDetails__fav--count 
               = item.view_count
         %p (税込)
