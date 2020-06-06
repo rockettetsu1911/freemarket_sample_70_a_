@@ -5,7 +5,7 @@
 
 .topIndex__contents
   - @items.each do |item|
-    = link_to '#', class: 'topIndex__contents__itemBox' do 
+    = link_to item_path(item.id), class: 'topIndex__contents__itemBox' do 
       = image_tag item.pictures.first.image, class: 'topIndex__contents__itemBox--image', alt: '商品画像'
       - unless item.bought_at == nil
         .topIndex__contents__itemBox--triangle
