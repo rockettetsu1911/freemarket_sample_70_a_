@@ -20,5 +20,5 @@
             .itemDetails__fav--mark
               = icon('fa','star')
             .itemDetails__fav--count 
-              = item.view_count
+              = @likes[item.id]
         %p (税込)
