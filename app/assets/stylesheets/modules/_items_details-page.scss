@@ -234,12 +234,16 @@
               }
               .notice{
                 padding:8px;
-                font-size:14px;
                 background-color: #f8f8f8;
                 margin:10px 0;
                 text-align:left;
+                padding-bottom:10px;
+                p{
+                  font-size:14px;
+                }
               }
               .submit__btn{
+                margin-top:10px;
                 line-height:48px;
                 font-size:18px;
                 background-color: $highlight-color;
