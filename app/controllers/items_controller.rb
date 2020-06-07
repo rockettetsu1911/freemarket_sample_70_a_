@@ -120,7 +120,7 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, images_attributes: [:image, :_destroy, :id])
+    params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image, :_destroy, :id])
                          .merge(user_id: current_user.id, category_id: params[:item][:category_id])
   end
 
