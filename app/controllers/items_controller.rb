@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @item.pictures.new
     set_categories
   end
 
@@ -28,6 +29,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      @item.pictures.new
       set_categories
       render :new
     end
@@ -116,8 +118,9 @@ end
 >>>>>>> 1ec57c5... Add create action to save new item
 
   private
+
   def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, images_attributes: [:image])
+    params.require(:item).permit(:name, :price, :condition, :explanation, images_attributes: [:image, :_destroy, :id])
                          .merge(user_id: current_user.id, category_id: params[:item][:category_id])
   end
 
