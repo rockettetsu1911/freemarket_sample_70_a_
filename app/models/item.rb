@@ -16,6 +16,9 @@ class Item < ApplicationRecord
   validates :condition,   presence: { message: "状態を選択してください" }
   validates :explanation, presence: { message: "商品内容を入力してください" }
 
+  accepts_nested_attributes_for :pictures, allow_destroy: true
+  validates_associated :pictures
+  
   enum condition:{
     '---':         0,
     unused:        1, 
