@@ -1,7 +1,6 @@
 .topIndex__title
   %h2 ピックアップアイテムズ
-  = link_to '#' do
-    %h3 <strong>新規投稿商品</strong>
+  %h3 <strong>新規投稿商品</strong>
 
 .topIndex__contents
   - @items.each do |item|
@@ -19,6 +18,9 @@
           .itemDetails__fav
             .itemDetails__fav--mark
               = icon('fa','star')
-            .itemDetails__fav--count 
-              = @likes[item.id]
+            .itemDetails__fav--count
+              - if @likes[item.id] == nil
+                0
+              - else
+                = @likes[item.id]
         %p (税込)
