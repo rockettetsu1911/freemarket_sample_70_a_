@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :item_look_for, only: :purchase
   require 'payjp'
+  before_action :item_look_for, only: :purchase
 
   def index
     @items = Item.all.last(3)
@@ -20,7 +20,17 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category_parent_array = @item.set_ancestry('parent', nil)
+    set_categories
+  end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      set_categories
+      render :new
+    end
   end
 
   def get_category_children
@@ -33,6 +43,7 @@ class ItemsController < ApplicationController
     @category_grandchildren_array = @item.set_ancestry('grandchildren', params[:child_id])
   end
 
+<<<<<<< HEAD
   def show
     @item = Item.find(params[:id])
   end
@@ -98,4 +109,16 @@ class ItemsController < ApplicationController
   end
 
 end
+=======
+  def set_categories
+    @category_parent_array = @item.set_ancestry('parent', nil)
+  end
+>>>>>>> 1ec57c5... Add create action to save new item
 
+  private
+  def item_params
+    params.require(:item).permit(:name, :price, :condition, :explanation, images_attributes: [:image])
+                         .merge(user_id: current_user.id, category_id: params[:item][:category_id])
+  end
+
+end

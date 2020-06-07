@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   } 
 
   root 'items#index'
-  resources :items, only: [:index, :new, :show] do
+
+  resources :items, only: [:index, :new, :show, :create] do
     member do
       get  'purchase'=>  'items#purchase', as: 'purchase'
       patch 'pay'=>   'items#pay', as: 'pay'
