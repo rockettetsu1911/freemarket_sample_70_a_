@@ -25,4 +25,21 @@ class Item < ApplicationRecord
     injured:       5,
     bad:           6
   }
+
+  def set_ancestry(relation, key)
+    array = ["---"]
+
+    case relation
+    when 'parent'
+      Category.where(ancestry: nil).each do |parent|
+        array << parent.name
+      end
+      return array
+    when 'children'
+      return Category.find_by(name: key).children
+    when 'grandchildren'
+      return Category.find(key).children
+    end
+  end
+
 end

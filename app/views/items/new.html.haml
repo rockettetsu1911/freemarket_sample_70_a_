@@ -13,7 +13,6 @@
             =image.file_field :src, class: 'uploadBox-file'
             %br
             %i.fas.fa-camera.uploadBox-icon
-            = fa_icon("camera")
           %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
     %section.sellFillOut.sellItem
       .sellFillOut__label
@@ -37,13 +36,19 @@
 
     %section.sellFillOut.sellDetail
       %p.sellFillOut__text 商品の詳細
-      = form_with model: @category, local: true do |f|
-        .sellFillOut__label
-          %label.sellFillOut__label--title カテゴリー
-          %span.sellFillOut__label--required 必須
-        .sellFillOut__selectWrapper
+      .sellFillOut__label
+        %label.sellFillOut__label--title カテゴリー
+        %span.sellFillOut__label--required 必須
+      .sellFillOut__selectWrapper.category-wrapper
+        .sellFillOut__selectWrapper__box.category-parent
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
-          = f.select :name, Category.names_i18n.invert, {}, {class: 'select-form'}
+          = f.select :category, @category_parent_array, {}, class: 'select-form', id: 'category_parent'
+        -#     %option{value: 0} ---
+        -#     - @parent.each do |parent|
+        -#       %option{value: "#{parent.id}"} #{parent.name}
+        -#   = f.select :name, Category.names_i18n.invert, {}, {class: 'select-form'}
+        -# .sellFillOut__selectWrapper.category-children
+        -# .sellFillOut__selectWrapper.category-grand-children
         -# Todo: ブランドの追加実装をしたら表示
         -# .sellFillOut__label
         -#   %label.sellFillOut__label--title ブランド
@@ -53,9 +58,10 @@
       .sellFillOut__label
         %label.sellFillOut__label--title 商品の状態
         %span.sellFillOut__label--required 必須
-      .sellFillOut__selectWrapper
-        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
-        = f.select :condition, Item.conditions_i18n.invert, {}, {class: 'select-form'}
+      .sellFillOut_selectWrapper
+        .sellFillOut__selectWrapper__box
+          = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+          = f.select :condition, Item.conditions_i18n.invert, {}, {class: 'select-form'}
     -# Todo: 配送オプションの追加実装をしたら表示
     -# %section.sellFillOut.sellDelivery
     -#   .section.sellFillOut--wrapper

@@ -20,6 +20,17 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @category_parent_array = @item.set_ancestry('parent', nil)
+  end
+
+  def get_category_children
+    @item = Item.new
+    @category_children_array = @item.set_ancestry('children', params[:parent_name])
+  end
+
+  def get_category_grandchildren
+    @item = Item.new
+    @category_grandchildren_array = @item.set_ancestry('grandchildren', params[:child_id])
   end
 
   def show

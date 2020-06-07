@@ -11,6 +11,10 @@ Rails.application.routes.draw do
       patch 'pay'=>   'items#pay', as: 'pay'
       get 'done'=>  'items#done', as: 'done'
     end
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
   end
   resources :users, only: :show
   resources :cards, only: [:new, :create, :show, :destroy] 
