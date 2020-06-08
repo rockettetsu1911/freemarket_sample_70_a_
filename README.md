@@ -50,7 +50,7 @@
 |price|integer|null:false|
 |condition|select|null:false| 
 |explanation|text|null:false,index:true| 
-|view_count|integer|integer|null:false|
+|view_count|integer|integer||
 |user_id|references |null: false, foreign_key:true|
 |buyer|user_id|
 |bought_at|datetime|null:false|  
