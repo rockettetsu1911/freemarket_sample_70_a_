@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_172345) do
     t.integer "price", null: false
     t.integer "condition", null: false
     t.string "explanation", null: false
-    t.integer "view_count", null: false
+    t.integer "view_count"
     t.integer "buyer"
     t.datetime "bought_at"
     t.bigint "user_id", null: false

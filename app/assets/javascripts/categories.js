@@ -7,7 +7,7 @@ $(function() {
   function appendChildrenBox(insertHtml) {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-children' id= 'children_wrapper'>
-              <select class='select-form' id='category_child' name='category_id'>
+              <select class='select-form' id='category_child' name='item[category_id]'>
                 <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
@@ -19,7 +19,7 @@ $(function() {
   function appendGrandchildrenBox(insertHtml) {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-grandchildren' id= 'grandchildren_wrapper'>
-              <select class='select-form' id='category_grandchildren' name='category_id'>
+              <select class='select-form' id='category_grandchildren' name='item[category_id]'>
                 <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
@@ -55,7 +55,7 @@ $(function() {
       $('#grandchildren_wrapper').remove();
       var isAttr = document.getElementById('category_parent').hasAttribute('name');
       if (!isAttr) {
-        document.getElementById('category_parent').setAttribute('name', 'category_id');
+        document.getElementById('category_parent').setAttribute('name', 'item[category_id]');
       }
     }
   });
