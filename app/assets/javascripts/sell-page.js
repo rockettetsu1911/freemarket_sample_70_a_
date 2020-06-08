@@ -43,8 +43,8 @@ $(document).on('turbolinks:load', ()=> {
     const html = `<div data-index="${num}" class="sellFillOut__uploadBox">
                     <label class='sellFillOut__uploadBox__itemPhotos'>
                       <input class="uploadBox-file" type="file"
-                      name="item[pictures_attributes][${num}][src]"
-                      id="item_pictures_attributes_${num}_src"><br>
+                      name="item[pictures_attributes][${num}][image]"
+                      id="item_pictures_attributes_${num}_image"><br>
                       <i class='fas fa-camera uploadBox-icon'></i>
                       <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
                     </label>
