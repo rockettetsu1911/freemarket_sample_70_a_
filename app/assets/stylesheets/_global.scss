@@ -87,6 +87,28 @@ $main_title_font-size:16px;
   line-height: $line-height;
 }
 
+@mixin sold-triangle ($length, $top, $left) {
+  border-right: $length solid transparent;
+  border-bottom: $length solid red;
+  border-left: $length solid transparent;
+  position: absolute;
+  top: $top;
+  left: $left;
+  z-index: 3;
+  transform:rotate(-45deg);
+}
+
+@mixin sold-message ($font-size, $top, $left) {
+  font-size: $font-size;
+  color: $bg_font-color;
+  font-weight: bold;
+  position: absolute;
+  top: $top;
+  left: $left;
+  z-index: 5;
+  transform:rotate(-45deg);
+}
+
 /********************
  * FURIMAのデフォルト設定
 ********************/
