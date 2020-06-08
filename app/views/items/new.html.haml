@@ -1,19 +1,6 @@
 .sellBackground
   = render 'layouts/global-header-simple'
 
-  -# = form_with model: @item, local: true do |f|
-  -#   %section.sellFillOut.sellImage
-  -#     .sellFillOut__label
-  -#       %label.sellFillOut__label--title 出品画像
-  -#       %span.sellFillOut__label--required 必須
-  -#     %p.sellFillOut__text 最大10枚までアップロードできます
-  -#     = f.fields_for :images do |image|
-  -#       .sellFillOut__uploadBox{"data-index": "<%= image.index %>"}
-  -#         %label.sellFillOut__uploadBox__itemPhotos
-  -#           =image.file_field :src, class: 'uploadBox-file'
-  -#           %br
-  -#           %i.fas.fa-camera.uploadBox-icon
-  -#           %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
   = form_with model: @item, local: true do |f|
     %section.sellFillOut.sellImage
       .sellFillOut__label
@@ -23,23 +10,23 @@
       #image-box
         -# #previews
         -#   - if @item.persisted?
-        -#     - @item.images.each_with_index do |image, i|
-        -#       = image_tag image.src.url, data: {index: i}, width: 100, height: 100
+        -#     - @item.pictures.each_with_index do |picture, i|
+        -#       = image_tag picture.image.url, data: {index: i}, width: '100', height: '100'
         = f.fields_for :pictures do |picture|
-          .sellFillOut__uploadBox{"data-index": "<%= image.index %>"}
+          .sellFillOut__uploadBox{ data: {index: picture.index}}
             %label.sellFillOut__uploadBox__itemPhotos
-              =picture.file_field :image, class: 'uploadBox-file'
+              = picture.file_field :image, class: 'uploadBox-file'
               %br
               %i.fas.fa-camera.uploadBox-icon
               %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
             .uploadBox-remove 削除
-          - if @item.persisted?
-            .checkBox
-              = picture.check_box :_destroy, data: {index: picture.index}, class: 'hidden-destroy'
-        - if @item.persisted? 
-          .sellFillOut__uploadBox{"data-index": "<%= @item.images.count %>"}
-            = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'uploadBox-file' 
-            .uploadBox-remove 削除
+          -# - if @item.persisted?
+          -#   .checkBox
+          -#     = picture.check_box :_destroy, data: {index: picture.index}, class: 'hidden-destroy'
+        -# - if @item.persisted? 
+        -#   .sellFillOut__uploadBox{"data-index": "<%= @item.images.count %>"}
+        -#     = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'uploadBox-file' 
+        -#     .uploadBox-remove 削除
 
     %section.sellFillOut.sellItem
       .sellFillOut__label

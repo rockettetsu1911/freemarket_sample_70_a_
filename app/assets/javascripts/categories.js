@@ -1,6 +1,6 @@
 $(function() {
   function appendOption(category) {
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
 
@@ -8,7 +8,7 @@ $(function() {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-children' id= 'children_wrapper'>
               <select class='select-form' id='category_child' name='category_id'>
-                <option value='---' data-category=0> --- </option>
+                <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" class="select-arrow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg>
@@ -20,7 +20,7 @@ $(function() {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-grandchildren' id= 'grandchildren_wrapper'>
               <select class='select-form' id='category_grandchildren' name='category_id'>
-                <option value='---' data-category=0> --- </option>
+                <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" class="select-arrow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg>
@@ -30,7 +30,7 @@ $(function() {
 
   $('#category_parent').on('change', function() {
     var parentName = document.getElementById('category_parent').value;
-    if (!(parentName == '---' || parentName == 'その他')) { 
+    if (!(parentName == '---' || parentName == 'チケット' || parentName == 'その他')) { 
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
@@ -40,6 +40,7 @@ $(function() {
       .done(function(children) {
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
+        document.getElementById('category_parent').removeAttribute('name');
         var addOptions = '';
         children.forEach(function(child){
           addOptions += appendOption(child);
@@ -52,6 +53,10 @@ $(function() {
     }else {
       $('#children_wrapper').remove();
       $('#grandchildren_wrapper').remove();
+      var isAttr = document.getElementById('category_parent').hasAttribute('name');
+      if (!isAttr) {
+        document.getElementById('category_parent').setAttribute('name', 'category_id');
+      }
     }
   });
 
@@ -67,6 +72,7 @@ $(function() {
       .done(function(grandchildren) {
         if (grandchildren.length != 0) {
           $('#grandchildren_wrapper').remove();
+          document.getElementById('category_child').removeAttribute('name');
           var addOptions = '';
           grandchildren.forEach(function(grandchild) {
             addOptions += appendOption(grandchild);
