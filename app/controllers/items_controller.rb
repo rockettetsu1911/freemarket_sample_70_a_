@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.last(3)
-    @likes = Like.group(:item_id).count
+    @likes_count = Like.group(:item_id).count
 
     ctgry_ids = Category.roots.pluck(:id)
     items_by_category = {}

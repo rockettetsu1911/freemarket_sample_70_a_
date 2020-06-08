@@ -19,8 +19,8 @@
             .itemDetails__fav--mark
               = icon('fa','star')
             .itemDetails__fav--count 
-              - if @likes[item.id] == nil
+              - if @likes_count[item.id] == nil
                 0
               - else
-                = @likes[item.id]
+                = @likes_count[item.id]
         %p (税込)
