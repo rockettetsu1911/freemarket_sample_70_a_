@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :item_look_for, only: :purchase
   before_action :move_to_login, only: [:new]
-  
+
   def index
     @items = Item.all.last(3)
     @likes_count = Like.group(:item_id).count
@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.pictures.new
-    set_categories
   end
 
   def create
@@ -33,7 +32,6 @@ class ItemsController < ApplicationController
     else
       # renderだとurlバーに/items/newではなくて/itemsと表示されるためredirectを使用
       # @item.pictures.new
-      # set_categories
       # render :new
       redirect_to new_item_path
     end
@@ -41,16 +39,14 @@ class ItemsController < ApplicationController
 
   def get_category_children
     @item = Item.new
-    @category_children_array = @item.set_ancestry('children', params[:parent_name])
+    @category_children_array = @item.set_ancestry(params[:parent_id])
   end
 
   def get_category_grandchildren
     @item = Item.new
-    @category_grandchildren_array = @item.set_ancestry('grandchildren', params[:child_id])
+    @category_grandchildren_array = @item.set_ancestry(params[:child_id])
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   def show
     @item = Item.find(params[:id])
   end
@@ -107,33 +103,27 @@ class ItemsController < ApplicationController
 
   private
 
+  def item_params
+    params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image])
+    .merge(user_id: current_user.id, category_id: params[:item][:category_id])
+  end
+  
+  def set_categories
+    @category_parent_array = @item.set_ancestry('parent', nil)
+    params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
+    .merge(user_id: current_user.id)
+  end
+  
+  def move_to_login
+    redirect_to user_session_path unless user_signed_in?
+  end
+  
   def item_look_for
     @item = Item.find(params[:id])
     unless @item.bought_at == nil
       redirect_to item_path(@item.id)
       flash[:notice] = "この商品は売り切れです。"
     end
-  end
-
-end
-=======
-=======
-  
-  private
-  
-  def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image])
-    .merge(user_id: current_user.id, category_id: params[:item][:category_id])
-  end
-  
->>>>>>> ecb61b3... Add before_action to avoid selling by not_login_user
-  def set_categories
-    @category_parent_array = @item.set_ancestry('parent', nil)
-  end
->>>>>>> 1ec57c5... Add create action to save new item
-
-  def move_to_login
-    redirect_to user_session_path unless user_signed_in?
   end
 
 end

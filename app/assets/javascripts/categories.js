@@ -29,12 +29,12 @@ $(document).on('turbolinks:load', function() {
   }
 
   $('#category_parent').on('change', function() {
-    var parentName = document.getElementById('category_parent').value;
-    if (!(parentName == '---' || parentName == 'チケット' || parentName == 'その他')) { 
+    var parentId = document.getElementById('category_parent').value;
+    if ((parentId != 0)) { 
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
-        data: { parent_name: parentName },
+        data: { parent_id: parentId },
         dataType: 'json'
       })
       .done(function(children) {
