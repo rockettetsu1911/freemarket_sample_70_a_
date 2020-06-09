@@ -1,0 +1,92 @@
+.my--page__contents__box
+  .my--page__contents__box--select
+    = render 'users/my-page_side-menu'
+
+
+      
+  .my--page__contents__box--allert
+    %section.user__icon
+      = link_to '#' do
+        = image_tag 'user__icon.jpg', width:'700',height: '180', alt: 'user-back'
+      .user__icon__box
+        .user__icon__smile
+          = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
+        .user__name
+          ユーザー名
+        .user__information
+          .review__count
+            評価:0
+          .items__count
+            出品数:0
+    .address-form
+      %h3.address-form__title
+        発送元住所登録
+      .address-form__input-info
+        = form_with url: user_addresses_path do |f|
+          .address-form__input-name
+            .address-form__input-name__set
+              .address-form__input-name__set__child
+                .address-form__input-name__set__child--title
+                  姓
+                .address-form__input-name__set__child--required
+                  必須
+              = f.text_field :dist_last_name, placeholder: "例）付利間", class: 'address-form__input-name__set__field'
+            .address-form__input-name__set
+              .address-form__input-name__set__child
+                .address-form__input-name__set__child--title
+                  名
+                .address-form__input-name__set__child--required
+                  必須
+              = f.text_field :dist_first_name, placeholder: "例）太郎", class: 'address-form__input-name__set__field'
+          .address-form__input-name
+            .address-form__input-name__set
+              .address-form__input-name__set__child
+                .address-form__input-name__set__child--title
+                  セイ（全角カナ）
+                .address-form__input-name__set__child--required
+                  必須
+              = f.text_field :dist_last_name_kana, placeholder: "例）フリマ", class: 'address-form__input-name__set__field'
+            .address-form__input-name__set
+              .address-form__input-name__set__child
+                .address-form__input-name__set__child--title
+                  メイ（全角カナ）
+                .address-form__input-name__set__child--required
+                  必須
+              = f.text_field :dist_first_name_kana, placeholder: "例）タロウ", class: 'address-form__input-name__set__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              〒郵便番号
+            .address-form__input-info__label--required
+              必須
+          = f.text_field :zip_code, placeholder: "例）1500041", class: 'address-form__input-info__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              都道府県
+            .address-form__input-info__label--required
+              必須
+          = f.select :prefecture, Address.prefectures.keys.to_a, {}, class: 'address-form__input-info__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              市区町村
+            .address-form__input-info__label--required
+              必須
+          = f.text_field :city, placeholder: "例）渋谷区", class: 'address-form__input-info__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              番地
+            .address-form__input-info__label--required
+              必須
+          = f.text_field :block_number, placeholder: "例）渋谷５丁目６−１", class: 'address-form__input-info__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              建物名・部屋
+            .address-form__input-info__label--unrequired
+              任意
+          = f.text_field :building, placeholder: "例）フリマビル　２０１号室", class: 'address-form__input-info__field'
+          .address-form__input-info__label
+            .address-form__input-info__label__set
+              電話番号（ハイフンなし）
+            .address-form__input-info__label--required
+              必須
+          = f.text_field :telephone, placeholder: "例）0312345678", class: 'address-form__input-info__field'
+          = f.submit "登録する", class: 'address-form__input-info__action-button'
