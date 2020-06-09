@@ -29,9 +29,4 @@ class Item < ApplicationRecord
     bad:           6
   }
 
-  def set_ancestry(key)
-    array = ["---"]
-    return Category.find(key).children
-  end
-
 end

@@ -38,13 +38,11 @@ class ItemsController < ApplicationController
   end
 
   def get_category_children
-    @item = Item.new
-    @category_children_array = @item.set_ancestry(params[:parent_id])
+    @category_children_array = set_ancestry(params[:parent_id])
   end
 
   def get_category_grandchildren
-    @item = Item.new
-    @category_grandchildren_array = @item.set_ancestry(params[:child_id])
+    @category_grandchildren_array = set_ancestry(params[:child_id])
   end
 
   def show
@@ -113,7 +111,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
     .merge(user_id: current_user.id)
   end
-  
+
+  def set_ancestry(key)
+    return Category.find(key).children
+  end
+
   def move_to_login
     redirect_to user_session_path unless user_signed_in?
   end
