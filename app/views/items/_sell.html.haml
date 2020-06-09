@@ -57,7 +57,8 @@
         %span.sellFillOut__label--required 必須
       .sellFillOut__selectWrapper.category-wrapper
         .sellFillOut__selectWrapper__box.category-parent
-          = f.select :category_id, @category_parent_array, {}, class: 'select-form', id: 'category_parent'
+          -# = f.select :category_id, @category_parent_array(1), {}, class: 'select-form', id: 'category_parent'
+          = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
       -# Todo: ブランドの追加実装をしたら表示
