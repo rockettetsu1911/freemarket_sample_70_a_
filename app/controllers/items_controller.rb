@@ -31,9 +31,11 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      @item.pictures.new
-      set_categories
-      render :new
+      # renderだとurlバーに/items/newではなくて/itemsと表示されるためredirectを使用
+      # @item.pictures.new
+      # set_categories
+      # render :new
+      redirect_to new_item_path
     end
   end
 
