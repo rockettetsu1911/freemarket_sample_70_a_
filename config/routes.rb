@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :cards, only: [:new, :show]
 
+  resources :users do
+    resources :addresses, only: [:new, :create]
+  end
   resources :purchases, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do
       get 'confirm'
