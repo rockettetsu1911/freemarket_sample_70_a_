@@ -5,19 +5,7 @@
 
       
   .my--page__contents__box--allert
-    %section.user__icon
-      = link_to '#' do
-        = image_tag 'user__icon.jpg', width:'700',height: '180', alt: 'user-back'
-      .user__icon__box
-        .user__icon__smile
-          = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
-        .user__name
-          ユーザー名
-        .user__information
-          .review__count
-            評価:0
-          .items__count
-            出品数:0
+    = render 'my-page_user-icon'
     %section.user__tabs
       %ul.user__tabs__header
         %li.notice
