@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer     :view_count,  null:false
       t.integer     :buyer
       t.datetime    :bought_at
-      t.bigint      :user_id,                      foreign_key: true
+      t.bigint      :user_id,                   foreign_key: true
       t.references  :category,    null:false,   foreign_key: true
       t.timestamps
     end
