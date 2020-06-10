@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :cards, only: [:new, :show]
 
   resources :users do
-    resources :addresses, only: [:new, :create]
+    resources :addresses, only: [:new, :create, :show, :edit]
   end
   resources :purchases, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do

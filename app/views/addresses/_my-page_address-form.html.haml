@@ -6,7 +6,7 @@
       
   .my--page__contents__box--allert
     = render 'users/my-page_user-icon'
-    
+
     .address-form
       %h3.address-form__title
         発送元・お届け先 住所登録
@@ -19,14 +19,14 @@
                   姓
                 .address-form__input-name__set__child--required
                   必須
-              = f.text_field :dist_last_name, placeholder: "例）付利間", class: 'address-form__input-name__set__field'
+              = f.text_field :dest_last_name, placeholder: "例）付利間", class: 'address-form__input-name__set__field'
             .address-form__input-name__set
               .address-form__input-name__set__child
                 .address-form__input-name__set__child--title
                   名
                 .address-form__input-name__set__child--required
                   必須
-              = f.text_field :dist_first_name, placeholder: "例）太郎", class: 'address-form__input-name__set__field'
+              = f.text_field :dest_first_name, placeholder: "例）太郎", class: 'address-form__input-name__set__field'
           .address-form__input-name
             .address-form__input-name__set
               .address-form__input-name__set__child
@@ -34,14 +34,14 @@
                   セイ（全角カナ）
                 .address-form__input-name__set__child--required
                   必須
-              = f.text_field :dist_last_name_kana, placeholder: "例）フリマ", class: 'address-form__input-name__set__field'
+              = f.text_field :dest_last_name_kana, placeholder: "例）フリマ", class: 'address-form__input-name__set__field'
             .address-form__input-name__set
               .address-form__input-name__set__child
                 .address-form__input-name__set__child--title
                   メイ（全角カナ）
                 .address-form__input-name__set__child--required
                   必須
-              = f.text_field :dist_first_name_kana, placeholder: "例）タロウ", class: 'address-form__input-name__set__field'
+              = f.text_field :dest_first_name_kana, placeholder: "例）タロウ", class: 'address-form__input-name__set__field'
           .address-form__input-info__label
             .address-form__input-info__label__set
               〒郵便番号
