@@ -11,7 +11,7 @@
       %h3.address-form__title
         発送元・お届け先 住所登録
       .address-form__input-info
-        = form_with url: user_addresses_path do |f|
+        = form_with url: user_addresses_path, local: true do |f|
           .address-form__input-name
             .address-form__input-name__set
               .address-form__input-name__set__child
@@ -53,7 +53,8 @@
               都道府県
             .address-form__input-info__label--required
               必須
-          = f.select :prefecture, Address.prefectures.keys.to_a, {}, class: 'address-form__input-info__field'
+          .address-form__input-info__field
+            = f.select :prefecture, Address.prefectures.keys.map{|k| [I18n.t("enums.address.prefecture.#{k}"), k]}
           .address-form__input-info__label
             .address-form__input-info__label__set
               市区町村
@@ -75,7 +76,7 @@
           .address-form__input-info__label
             .address-form__input-info__label__set
               電話番号（ハイフンなし）
-            .address-form__input-info__label--required
-              必須
+            .address-form__input-info__label--unrequired
+              任意
           = f.text_field :telephone, placeholder: "例）0312345678", class: 'address-form__input-info__field'
           = f.submit "登録する", class: 'address-form__input-info__action-button'

@@ -4,16 +4,16 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-    binding.pry 
     if @address.save
       redirect_to user_path(current_user.id), notice: '発送元・送付先住所を登録しました'
     else
-      render :new
+      flash.now[:alert] = @address.errors.full_messages
+      render :new and return
     end
   end
   
   def show
-    @address = Address.user_id(current_user.id)
+    @address = Address.find_by(user_id: current_user.id)
   end
 
   def edit
