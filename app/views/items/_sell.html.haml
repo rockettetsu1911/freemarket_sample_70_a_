@@ -9,25 +9,15 @@
         %span.sellFillOut__label--required 必須
       %p.sellFillOut__text 最大10枚までアップロードできます
       #image-box
-        -# #previews
-        -#   - if @item.persisted?
-        -#     - @item.pictures.each_with_index do |picture, i|
-        -#       = image_tag picture.image.url, data: {index: i}, width: '100', height: '100'
         = f.fields_for :pictures do |picture|
-          .sellFillOut__uploadBox{ data: {index: picture.index}}
-            %label.sellFillOut__uploadBox__itemPhotos
-              = picture.file_field :image, class: 'uploadBox-file'
-              %br
-              %i.fas.fa-camera.uploadBox-icon
-              %p ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
-            .uploadBox-remove 削除
-          -# - if @item.persisted?
-          -#   .checkBox
-          -#     = picture.check_box :_destroy, data: {index: picture.index}, class: 'hidden-destroy'
-        -# - if @item.persisted? 
-        -#   .sellFillOut__uploadBox{"data-index": "<%= @item.images.count %>"}
-        -#     = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'uploadBox-file' 
-        -#     .uploadBox-remove 削除
+          %ul#picturePreviews
+            %li.pictureInput
+              %label.pictureInput__uploadLabel
+                .pictureInput__uploadLabel__box
+                  %i.fas.fa-camera.uploadBox-icon
+                  %p クリックしてファイルをアップロード
+                  .pictureInput__uploadLabel__box--input
+                    = picture.file_field :image, class: 'picture-upload hidden'
 
     %section.sellFillOut.sellItem
       .sellFillOut__label
