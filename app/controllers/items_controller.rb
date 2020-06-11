@@ -31,9 +31,9 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       # renderだとurlバーに/items/newではなくて/itemsと表示されるためredirectを使用
-      # @item.pictures.new
-      # render :new
-      redirect_to new_item_path
+      @item.pictures.new
+      render :new
+      # redirect_to new_item_path
     end
   end
 
