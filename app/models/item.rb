@@ -7,18 +7,19 @@ class Item < ApplicationRecord
   has_many   :comments,             dependent: :destroy
   has_many   :pictures,             dependent: :destroy
   has_many   :likes,                dependent: :destroy         
-
-  validates :name, :price, :condition, :explanation, :user_id, :category_id,
-            presence: true
-
-  validates :name,        presence: { message: "商品名を入力してください" }
-  validates :price,       presence: { message: "金額を入力してください" }
-  validates :condition,   presence: { message: "状態を選択してください" }
-  validates :explanation, presence: { message: "商品内容を入力してください" }
-
-  accepts_nested_attributes_for :pictures, allow_destroy: true
   validates_associated :pictures
-  
+  accepts_nested_attributes_for :pictures, allow_destroy: true
+
+  with_options presence: true do
+    validates :pictures
+    validates :name,        length: { maximum: 40 }
+    validates :explanation, length: { maximum: 1000 }
+    validates :condition,   exclusion: { in: %w(---), message: 'を入力してください' }
+    validates :price,       numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    validates :user_id
+    validates :category_id
+  end
+
   enum condition:{
     '---':         0,
     unused:        1, 
