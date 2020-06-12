@@ -12,11 +12,19 @@ class AddressesController < ApplicationController
     end
   end
   
-  def show
+  def edit
+    @user = User.find(current_user.id)
     @address = Address.find_by(user_id: current_user.id)
   end
 
-  def edit
+  def update
+    @address = Address.update(address_params)
+    if @address
+      redirect_to user_path(current_user.id), notice: '発送元・送付先住所を変更しました'
+    else
+      flash.now[:alert] = @address.errors.full_messages
+      render :edit and return
+    end
   end
 
   private

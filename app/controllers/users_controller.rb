@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
   def show
-    @user_address = User.find(current_user.id).address
+    @user = User.find(current_user.id)
   end
 end
