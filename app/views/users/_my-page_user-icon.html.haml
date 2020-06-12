@@ -5,7 +5,7 @@
     .user__icon__smile
       = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
     .user__name
-      ユーザ名
+      = @user.nickname
     .user__information
       .review__count
         評価:0

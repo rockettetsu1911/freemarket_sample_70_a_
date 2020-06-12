@@ -1,6 +1,6 @@
 .wrapper
   .wrapper__top
-    = link_to '#', class: 'wrapper__top__icon' do 
+    = link_to root_path, class: 'wrapper__top__icon' do 
       = image_tag 'logo.png', width: '140', alt: 'FURIMAロゴ'
     .wrapper__top__searchBox
       %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
@@ -26,7 +26,7 @@
         = link_to '#', id: 'action-btn' do
           やることリスト
       %li.wrapper__bottom--right
-        = link_to '#', id: 'mypage-btn' do
+        = link_to user_path(@user.id), id: 'mypage-btn' do
           マイページ
 
 .my--page__nav
@@ -39,7 +39,8 @@
         %li.my--page__nav__guide--menu__btn
           >
         %li.my--page__nav__guide--menu__btn
-          マイページ
+          = link_to user_path(@user.id), id: 'mypage-btn' do
+            マイページ
 
 
   
