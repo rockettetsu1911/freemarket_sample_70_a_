@@ -26,7 +26,7 @@
         = link_to '#', id: 'action-btn' do
           やることリスト
       %li.wrapper__bottom--right
-        = link_to user_path(@user.id), id: 'mypage-btn' do
+        = link_to user_path(current_user.id), id: 'mypage-btn' do
           マイページ
 
 .my--page__nav
@@ -39,7 +39,7 @@
         %li.my--page__nav__guide--menu__btn
           >
         %li.my--page__nav__guide--menu__btn
-          = link_to user_path(@user.id), id: 'mypage-btn' do
+          = link_to user_path(current_user.id), id: 'mypage-btn' do
             マイページ
 
 

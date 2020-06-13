@@ -11,7 +11,7 @@
       %h3.address-form__title
         発送元・お届け先 住所登録
       .address-form__input-info
-        = form_with url: user_addresses_path, method: :GET, local: true do |f|
+        = form_with url: user_addresses_path, method: :POST, local: true do |f|
           .address-form__input-name
             .address-form__input-name__set
               .address-form__input-name__set__child
