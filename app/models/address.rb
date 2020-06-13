@@ -3,10 +3,14 @@ class Address < ApplicationRecord
 
   VALID_ZIP_CODE_REGEX = /\A\d{7}\z/
   # ハイフンなし、7桁
+  VALID_PREFECTURE_REGEX = /[a-z+]/
+  # アルファベットのみ
+
   validates :dest_first_name, :dest_last_name, :dest_first_name_kana, :dest_last_name_kana,
-            :prefecture, :city, :block_number,  
+            :city, :block_number,  
             presence: true
   validates :zip_code, presence: true, format: { with: VALID_ZIP_CODE_REGEX }
+  validates :prefecture, presence: true, format: { with: VALID_PREFECTURE_REGEX }
 
   enum prefecture:{
     '---':         0,
