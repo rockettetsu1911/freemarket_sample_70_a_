@@ -61,12 +61,8 @@
       = link_to '#', class: 'list__btn' do
         プロフィール
     %li 
-      - if current_user.address == nil
-        = link_to new_user_address_path(current_user.id), class: 'list__btn' do
-          発送元・お届け先住所登録
-      - else
-        = link_to edit_user_address_path(current_user.id, current_user.address.id), class: 'list__btn' do
-          発送元・お届け先住所変更
+      = link_to edit_user_address_path(current_user.id, current_user.address.id), class: 'list__btn' do
+        発送元・お届け先住所変更
     %li
       = link_to '#', class: 'list__btn' do 
         支払い方法
