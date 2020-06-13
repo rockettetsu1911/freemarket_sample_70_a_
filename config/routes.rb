@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
-  
+
   devise_scope :user do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :cards, only: [:new, :show]
 
   resources :users do
-    resources :addresses, only: [:new, :create, :edit, :update]
+    resources :addresses, only: [:edit, :update]
   end
   resources :purchases, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do
