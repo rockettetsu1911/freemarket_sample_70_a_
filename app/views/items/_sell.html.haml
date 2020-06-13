@@ -1,4 +1,4 @@
-= form_with model: @item, local: true do |f|
+= form_with model: @item, url: '/items/new', local: true do |f|
   -# - if @item.errors.any?
   -# - binding.pry
   = render 'users/shared/error_messages', resource: f.object
@@ -14,7 +14,7 @@
     %p.sellFillOut__text 最大10枚までアップロードできます
     #image-box
       = f.fields_for :pictures do |picture|
-        %ul#picturePreviews
+        %ul.picturePreviews
           %li.pictureInput
             %label.pictureInput__uploadLabel
               .pictureInput__uploadLabel__box
