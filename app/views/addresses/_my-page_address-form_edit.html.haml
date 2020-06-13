@@ -9,7 +9,7 @@
       %h3.address-form__title
         発送元・お届け先 住所変更
       .address-form__input-info
-        = form_with url: user_address_path, method: :PATCH, local: true do |f|
+        = form_with model: [@user, @address], url: user_address_path, local: true do |f|
           .address-form__input-name
             .address-form__input-name__set
               .address-form__input-name__set__child
@@ -77,4 +77,4 @@
             .address-form__input-info__label--unrequired
               任意
           = f.text_field :telephone, value: @address.telephone, class: 'address-form__input-info__field'
-          = f.submit "登録する", class: 'address-form__input-info__action-button'
+          = f.submit "発送元・お届け先住所を変更する", class: 'address-form__input-info__action-button'
