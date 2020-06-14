@@ -1,0 +1,6 @@
+%header
+  = render 'layouts/global-header'
+.redirect__btn
+  = link_to user_path(current_user.id), class: 'link__btn' do
+    マイページに戻る
+  

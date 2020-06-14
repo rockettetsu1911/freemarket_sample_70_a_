@@ -1,0 +1,138 @@
+%header
+  = render 'layouts/global-header'
+
+.items__details__header
+  .my--page__nav
+    .my--page__nav__guide
+      .my--page__nav__guide--menu
+        %ul
+          %li.my--page__nav__guide--menu__btn
+            = link_to '#', id: 'toppage-btn' do
+              FURIMA
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to '#' do
+              ベビー・キッズ
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to '#' do
+              ベビー服(男女兼用)~95cm
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to '#' do
+              アウター
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            %b 
+              = @item.name        
+            
+.items__details__contents
+  %section.main__contents
+    .main__contents__details
+      .top__contents
+        .top__contents__items
+          %h2.top__contents__items__name
+            = @item.name
+          .top__contents__items__picture
+            %ul.main__picture__detail
+              %li.main__picture__detail__list 
+                = image_tag 'curry.png', alt: '商品画像1', class: 'main__image'
+                - unless @item.bought_at == nil
+                  .sold--icon
+                  .sold--message sold
+                %ul.sub__picture__detail
+                  %li.sub__picture__detail__list
+                    = image_tag 'fish.png', alt: '商品画像2', class: 'sub__image'
+                  %li.sub__picture__detail__list
+                    = image_tag 'curry.png', alt: '商品画像2', class: 'sub__image'
+                  %li.sub__picture__detail__list
+                    = image_tag 'meat.png', alt: '商品画像2', class: 'sub__image'
+          .top__contents__items__price
+            %span 
+              ¥#{@item.price}
+            .price__detail
+              %a (税込)
+              %a 送料込み
+          .top__contents__items__text
+            = @item.explanation
+          .top__contents__items__table
+            %table
+              %tr
+                %th 出品者
+                %td 
+                  = @item.user.nickname
+              %tr
+                %th カテゴリー
+                %td 
+                  = link_to '#' do
+                    ベビー・キッズ
+                  = link_to '#' do
+                    ベビー服(男女兼用)~95cm
+                  = link_to '#' do
+                    アウター
+              %tr
+                %th ブランド
+                %td
+              %tr
+                %th 商品のサイズ
+                %td
+              %tr
+                %th 商品の状態
+                %td 未使用に近い
+              %tr 
+                %th 配送料の負担
+                %td 送料込み(出品者負担)
+              %tr 
+                %th 発送元の地域
+                %td 
+                  = link_to '#' do
+                    岩手県
+              %tr 
+                %th 発送日の目安
+                %td 4〜7日で発送
+          .top__contents__items__footer
+            %ul
+              %li.likes__btn
+                = icon('fa','star')
+                お気に入り 0
+            %ul
+              %li.report__btn
+                = link_to '#' do
+                  =icon('fa','flag')
+                  不適切な商品の通報
+        - unless current_user == @item.user.id
+          %section.purchase__btn
+            = link_to purchase_item_path, class: 'link__btn' do
+              購入する
+        %section.top__contents__comment
+          %form.comment__box
+            %input{type:'hidden'}
+            %textarea{type:'text', class: 'form__area'}
+            .notice
+              %p 相手のことを考え丁寧なコメントを心がけましょう。
+              %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            %button.submit__btn
+              = icon('fa','comment')
+              コメントする
+      %ul.link__items
+        %li
+          = link_to '#' do
+            = icon('fa', 'angle-left')
+            %span 前の商品
+        %li 
+          = link_to '#' do
+            後ろの商品
+            = icon('fa','angle-right')
+      .back__category
+        = link_to '#' do
+          ベビー・キッズをもっと見る
+  
+%aside
+  = render 'layouts/global-aside'
+%footer
+  = render 'layouts/global-footer'
+= render 'layouts/global-sellBtn'

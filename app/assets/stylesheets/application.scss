@@ -2,6 +2,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "global";
+@import "modules/_flash";
 @import "modules/_top-page";
 @import "modules/_my-page";
 @import "modules/_sell-page";
@@ -9,3 +10,6 @@
 @import "modules/_my-page_card-new";
 @import "modules/_users";
 @import "modules/_purchase-page";
+@import "modules/_items_details-page";
+@import "modules/_addresses";
+@import "modules/_items-done";
