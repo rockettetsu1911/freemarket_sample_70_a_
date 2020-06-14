@@ -92,6 +92,14 @@
         .title-and-required {
           line-height: 48px;
         }
+        .price-box {
+          display: flex;
+
+          span {
+            display: block;
+            margin: auto 5px auto 0;
+          }
+        }
       }
       &--input {
         display: inline-block;
@@ -192,6 +200,7 @@
         }
       }
     }
+
     &__inputArea {
       width: 100%;
       padding: 10px 0 10px 15px;

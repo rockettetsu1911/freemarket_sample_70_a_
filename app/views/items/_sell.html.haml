@@ -1,12 +1,4 @@
 = form_with model: @item, url: '/items/new', local: true do |f|
-  -# - if @item.errors.any?
-  -# - binding.pry
-  = render 'users/shared/error_messages', resource: f.object
-  -# .item-sell-errors
-  -#   %h2 = "#{@item.errors.full_messages.count}件のエラーが発生しました．"
-  -#   %ul
-  -#     - @item.errors.full_messages.each do |message|
-  -#       %li = message
   %section.sellFillOut.sellImage
     .sellFillOut__label
       %label.sellFillOut__label--title 出品画像
@@ -27,16 +19,12 @@
     .sellFillOut__label
       %label.sellFillOut__label--title 商品名
       %span.sellFillOut__label--required 必須
-    -# %input.sellFillOut__inputArea#sell-name{ type: 'text', name: 'name', required: true, autofocus: true,
-    -#                                         placeholder: '40文字まで' }
     = f.text_field :name, type: 'text', class: 'sellFillOut__inputArea', id: 'sell-name', placeholder: '40文字まで'
     .sellFillOut__alert
       #sell-name-alert
     .sellFillOut__label
       %label.sellFillOut__label--title 商品の説明
       %span.sellFillOut__label--required 必須
-    -# %textarea.sellFillOut__inputArea#sell-explanation{ name: 'explanation', rows: '6', required: true, autofocus: true,
-    -#                                                   placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" }
     = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
     .sellFillOut__wordCount
       %span#sell-word-count 0
@@ -51,7 +39,6 @@
       %span.sellFillOut__label--required 必須
     .sellFillOut__selectWrapper.category-wrapper
       .sellFillOut__selectWrapper__box.category-parent
-        -# = f.select :category_id, @category_parent_array(1), {}, class: 'select-form', id: 'category_parent'
         = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
