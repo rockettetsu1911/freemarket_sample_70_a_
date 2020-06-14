@@ -12,7 +12,7 @@ describe CardsController do
     describe 'GET #show' do
       it "show.html.hamlに遷移すること" do
         @user = FactoryBot.create(:user)
-        get :show, params: {id: 1 }
+        get :show, params: {id: user }
         expect(response).to render_template :show
       end
     end
