@@ -87,6 +87,39 @@ $main_title_font-size:16px;
   line-height: $line-height;
 }
 
+@mixin unrequired ($font-size, $line-height) {
+  display: inline-block;
+  background-color: #999999;
+  color: #ffffff;
+  font-size: $font-size;
+  margin-left: 5px;
+  padding: 0 3px;
+  border-radius: 2px;
+  line-height: $line-height;
+}
+
+@mixin sold-triangle ($length, $top, $left) {
+  border-right: $length solid transparent;
+  border-bottom: $length solid red;
+  border-left: $length solid transparent;
+  position: absolute;
+  top: $top;
+  left: $left;
+  z-index: 3;
+  transform:rotate(-45deg);
+}
+
+@mixin sold-message ($font-size, $top, $left) {
+  font-size: $font-size;
+  color: $bg_font-color;
+  font-weight: bold;
+  position: absolute;
+  top: $top;
+  left: $left;
+  z-index: 5;
+  transform:rotate(-45deg);
+}
+
 /********************
  * FURIMAのデフォルト設定
 ********************/
