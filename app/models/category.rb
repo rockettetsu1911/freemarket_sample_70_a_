@@ -4,7 +4,6 @@ class Category < ApplicationRecord
   has_ancestry
 
   validates :name, presence: { message: "カテゴリーを選択してください" }
-  validates :item, presence:true
 
   #enum name:{
     #'---':                 0,
