@@ -244,7 +244,7 @@ header {
   /********************
   * TOP INDEX カテゴリー実装機能までの仮置
   ********************/
-  .topIndex {
+  .topIndex, .topCategory {
     height: 530px;
     width: 100%;
     padding: 80px 20px;
@@ -266,11 +266,18 @@ header {
         background-color: #fff;
         margin: 0 20px;
         font-size: $itemIndex_font-size;
+        position: relative;
 
         &--image {
           width: 220px;
           height: 150px;
           object-fit: cover;
+        }
+        &--triangle {
+          @include sold-triangle(50px, -7px, -32px);
+        }
+        &--soldMessage {
+          @include sold-message(24px, 9px, -1px);
         }
         &--summary {
           padding: 16px 16px;
@@ -284,6 +291,7 @@ header {
 
               &--mark {
                 margin-right: 5px;
+                color: $icon_bg-color;
               }
             }
           }
