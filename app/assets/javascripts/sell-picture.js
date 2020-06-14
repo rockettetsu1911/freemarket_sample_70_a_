@@ -1,6 +1,6 @@
 $(document).on('click', '.picture-upload', function() {
   var preview = $('<div class="picture-preview__wrapper"><img class="preview"></div><div class="preview-btn"><div class="preview-btn--delete">削除</div></div>'); 
-  var append_input = $(`<li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box">クリックしてファイルをアップロード<div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li>`);
+  var append_input = $(`<li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box"><i class="fas fa-camera uploadBox-icon"></i><p>クリックしてファイルをアップロード</p><div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li>`);
   $ul = $('.picturePreviews');
   $li = $(this).parents('li');
   $label = $(this).parents('.pictureInput__uploadLabel');
@@ -55,7 +55,7 @@ $(document).on('click', '.picture-upload', function() {
 });
 
 $(document).on('click', '.preview-btn--delete', function() {
-  var append_input = $(`<li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box">クリックしてファイルをアップロード<div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li>`);
+  var append_input = $(`<li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box"><i class="fas fa-camera uploadBox-icon"></i><p>クリックしてファイルをアップロード</p><div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li>`);
   $li = $(this).parents('.picture-preview');
   
   $li.remove();
@@ -87,7 +87,7 @@ $(document).on('click', '.preview-btn--delete', function() {
 });
 
 window.onload = function() {
-  var append_input = $(`<ul class="picturePreviews"><li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box">クリックしてファイルをアップロード<div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li></ul>`);
+  var append_input = $(`<ul class="picturePreviews"><li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box"><i class="fas fa-camera uploadBox-icon"></i><p>クリックしてファイルをアップロード</p><div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li></ul>`);
   $parent = $('#image-box');
   $ul = $('.picturePreviews');
   if($ul.length > 1) {

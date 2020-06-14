@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   with_options presence: true do
+    validates :user
     validates :pictures
     validates :name,        length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
