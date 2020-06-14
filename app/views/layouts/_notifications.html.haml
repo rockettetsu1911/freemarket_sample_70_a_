@@ -1,0 +1,7 @@
+.notification
+  - flash.each do |key, value|
+    - if value.is_a?(Array)
+      - value.each do |message|
+        = content_tag :div, message, class: key
+    - else
+      = content_tag :div, value, class: key
