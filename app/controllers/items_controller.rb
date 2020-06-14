@@ -28,12 +28,11 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: '出品が完了しました。'
     else
-      # renderだとurlバーに/items/newではなくて/itemsと表示されるためredirectを使用
+      flash.now[:alert] = @item.errors.full_messages
       @item.pictures.new
       render :new
-      # redirect_to new_item_path
     end
   end
 
