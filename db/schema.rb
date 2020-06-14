@@ -72,12 +72,13 @@ ActiveRecord::Schema.define(version: 2020_05_31_172345) do
     t.integer "view_count", null: false
     t.integer "buyer"
     t.datetime "bought_at"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["name"], name: "index_items_on_name"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_172345) do
   add_foreign_key "comments", "users"
   add_foreign_key "item_tags", "tags"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "users"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
   add_foreign_key "pictures", "items"

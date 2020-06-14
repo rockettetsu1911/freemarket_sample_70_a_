@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_many   :pictures,             dependent: :destroy
   has_many   :likes,                dependent: :destroy
 
-  validates :name, :price, :condition, :explanation,
+  validates :name, :price, :condition, :explanation, :user_id, :category_id,
             presence: true
 
   validates :name,        presence: { message: "商品名を入力してください" }
