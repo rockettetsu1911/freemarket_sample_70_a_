@@ -7,7 +7,7 @@ class Address < ApplicationRecord
   validates :zip_code, format: { with: VALID_ZIP_CODE_REGEX }
 
   validates :dest_first_name, :dest_last_name, :dest_first_name_kana, :dest_last_name_kana,
-            :zip_code, :prefecture, :city, :block_number,  
+            :zip_code, :prefecture, :city, :block_number,  :user_id,
             presence: true
 
   validates :dest_first_name,      presence: { message: "苗字を入力してください" }
