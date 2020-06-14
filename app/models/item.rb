@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-
+ 
   belongs_to :user
   has_many   :tags, through: :item_tags, dependent: :destroy
   has_many   :item_tags
@@ -9,18 +9,20 @@ class Item < ApplicationRecord
   has_many   :likes,                dependent: :destroy         
   validates_associated :pictures
   accepts_nested_attributes_for :pictures, allow_destroy: true
-
+ 
   with_options presence: true do
     validates :user
-    validates :pictures
+    validates :pictures,    length: { maximum: 10, message: 'は10枚以内で入力してください' }
     validates :name,        length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
+    validates :category_id
     validates :condition,   exclusion: { in: %w(---), message: 'を入力してください' }
     validates :price,       numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
     validates :user_id
-    validates :category_id
   end
-
+ 
+  validate :category_id_is_valid
+ 
   enum condition:{
     '---':         0,
     unused:        1, 
@@ -30,5 +32,9 @@ class Item < ApplicationRecord
     injured:       5,
     bad:           6
   }
-
+ 
+  def category_id_is_valid
+    errors.messages.delete(:category) unless Category.find_by(id: category_id)
+  end
+ 
 end
