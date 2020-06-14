@@ -101,7 +101,7 @@ ja:
       item: "商品"
     attributes:
       item:
-        category: "カテゴリー"
+        category_id: "カテゴリー"
         name: "商品名"
         price: "価格"
         explanation: "商品の説明"
