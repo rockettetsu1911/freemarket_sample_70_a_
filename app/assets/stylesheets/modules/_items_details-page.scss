@@ -126,11 +126,13 @@
                     vertical-align:bottom;
                     width:100%;
                   }
-                  .sold--icon{
+                  .sold{
+                    &--icon{
                     @include sold-triangle(120px, -18px, -78px);
-                  }
-                  .sold--message{
+                    }
+                    &--message{
                     @include sold-message(40px, 20px, 10px);
+                    }
                   }
                   .sub__picture__detail{
                     display:flex;
