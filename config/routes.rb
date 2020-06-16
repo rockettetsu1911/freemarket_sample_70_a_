@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     end
   end
   
-  post 'items/new', to: 'items#create', as: 'item_new'
   resources :users, only: :show
   resources :cards, only: [:new, :create, :show, :destroy] 
   resources :users do
