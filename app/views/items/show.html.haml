@@ -104,7 +104,18 @@
                 = link_to '#' do
                   =icon('fa','flag')
                   不適切な商品の通報
-        - unless current_user == @item.user.id
+        - if current_user.id == @item.user.id
+          %section.item--edit__btn
+            = link_to '#', class: 'link__btn' do
+              商品の編集
+          %p or
+          %section.item--pause__btn
+            = link_to '#', class: 'un--link__btn' do
+              商品の出品を一旦停止する
+          %section.item--delete__btn
+            = link_to '#', class: 'un--link__btn' do
+              この商品を削除する
+        - else
           %section.purchase__btn
             = link_to purchase_item_path, class: 'link__btn' do
               購入する

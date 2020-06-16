@@ -230,6 +230,40 @@
               }
             }
           }
+          .item{
+            &--edit__btn{
+            max-width:380px;
+            text-align:center;
+            margin:40px auto;
+              .link__btn{
+                @include required(16px,60px);
+                width:100%;
+              }
+            }
+            &--pause__btn{
+            max-width:380px;
+            text-align:center;
+            margin:40px auto;
+            .un--link__btn{
+              @include unrequired(16px,60px);
+              width:100%;
+              }
+            }
+            &--delete__btn{
+            max-width:380px;
+            text-align:center;
+            margin:40px auto;
+            .un--link__btn{
+              @include unrequired(16px,60px);
+              width:100%;
+              }
+            }
+          }
+          p{
+            display:block;
+            text-align:center;
+            font-size:16px;
+          }
           .purchase__btn{
             max-width:380px;
             text-align:center;
