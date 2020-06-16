@@ -25,10 +25,4 @@ Rails.application.routes.draw do
   end
   
 
-  # resources :purchases, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
-  #     member do
-  #       get 'confirm'
-  #       #Todo: 購入完了ページなどが以下に追加される
-  #   end
-  # end
-end
+
