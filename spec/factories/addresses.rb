@@ -11,6 +11,8 @@ FactoryBot.define do
     block_number               {"神南１ー１２ー６"}
     building                   {""}
     telephone                  {""}
-    user_id                    {"1"}
+
+    association                :user
+    user                       {user.owner}
   end
 end

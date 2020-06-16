@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
-    id                    {"1"}
-    nickname              {"テストユーザ"}
-    email                 {"testuser@gmail.com"}
+    sequence(:id)         { |n| "#{n}"}
+    sequence(:nickname)   { |n| "単体テストユーザ#{n}"}
+    sequence(:email)      { |n| "unit_testuser#{n}@gmail.com"}
     first_name            {"太郎"} 
     last_name             {"手洲戸"}
     first_name_kana       {"タロウ"}
