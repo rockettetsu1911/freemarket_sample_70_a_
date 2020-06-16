@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       #Todo: 購入完了ページなどが以下に追加される
     end
   end
+end
   
 
 
