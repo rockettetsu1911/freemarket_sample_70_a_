@@ -22,10 +22,33 @@
       &--btn{
         padding:24px 0;
         border-bottom:1px solid #f5f5f5;
+        .creditcard--info{
+          &__form{
+            position:relative;
+            max-width:320px;
+            margin: 0 auto;
+            &__period{
+              margin-top:8px;
+              font-size:16px;
+            }
+            &--delete{
+              position:absolute;
+              top:0;
+              right:0;
+              padding:4px 6px;
+              background-color: #fff;
+              border-radius:3px;
+              border: 1px solid #ea352d;
+              color:#ea352d;
+            }
+          }
+          }
+        }
         .link__btn{
           max-width:320px;
           margin:0 auto;
           display:flex;
+          padding:24px 0;
           .add__card__btn{
             display:block;
             width:100%;
@@ -44,7 +67,6 @@
             }
           }
         }
-      }
       &--announcement{
         .announcement__pay{
           display:block;

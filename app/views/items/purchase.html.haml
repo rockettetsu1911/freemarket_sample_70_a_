@@ -9,26 +9,35 @@
         .purchaseItem__imageArea
           = image_tag asset_path('curry.png'), class: 'purchaseItem__imageArea--image', alt: '購入アイテム画像'
         .purchaseItem__box
-          %p 我が家のカレーライス size L
+          %p 
+            = @item.name
           .purchaseItem__box--price
-            %span ¥1,100
+            %span 
+              = @item.price
+              円 
             %span.shipping-fee （税込） 送料込み
       %section.purchaseMain__content
         .purchaseMain__content__wrapper
           .purchaseMain__content__wrapper__price
             .purchaseMain__content__wrapper__price--label 支払い金額
-            .purchaseMain__content__wrapper__price--value ¥1,100
+            .purchaseMain__content__wrapper__price--value 
+              = @item.price
+              円
         .purchaseMain__content__wrapper
           .purchaseMain__content__wrapper__payMethod
             .purchaseMain__content__wrapper__payMethod--label 支払い方法
-            = link_to '#', class: 'changeBtn' do
+            = link_to card_path(@card.id), class: 'changeBtn' do
               変更する
           %p.user-card-info
-            クレジットカード<br>
-            ************9999<br>
-            有効期限 01/24<br>
+            クレジットカード
+            = "**** **** **** " + @card_information.last4 
+          %p.user-card-info
+            有効期限
+            - exp_month = @card_information.exp_month.to_s
+            - exp_year = @card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
           %figure.user-card-logo
-            = embedded_svg('if-visa-2593666_86609.svg')
+            = image_tag "#{@card_src}",width:'34',height:'20', alt:'master-card'
         .purchaseMain__content__wrapper
           .purchaseMain__content__wrapper__delivery
             .purchaseMain__content__wrapper__delivery--label 配送先
@@ -42,6 +51,8 @@
           %p.purchase-info
             郵便局/コンビニ受取をご希望の方は、購入後に<strong>取引画面</strong>から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
           .btn-enter
-            %button.purchase-btn 購入する
+            = link_to pay_item_path(@item.id), method: :patch do
+              .purchase-btn
+                購入する
 
   = render 'layouts/global-footer-simple'
