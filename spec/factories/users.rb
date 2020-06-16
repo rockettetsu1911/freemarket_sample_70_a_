@@ -1,8 +1,9 @@
+  require 'faker'
+
 FactoryBot.define do
   factory :user do
-    id                    {"1"}
-    nickname              {"テストユーザ"}
-    email                 {"testuser@gmail.com"}
+    nickname              { Faker::Name.name }
+    email                 { Faker::Internet.email }
     first_name            {"太郎"} 
     last_name             {"手洲戸"}
     first_name_kana       {"タロウ"}
