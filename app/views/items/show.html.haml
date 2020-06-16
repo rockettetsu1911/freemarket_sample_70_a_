@@ -27,7 +27,8 @@
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
-            %b product3        
+            %b 
+              = @item.name        
             
 .items__details__contents
   %section.main__contents
@@ -35,11 +36,14 @@
       .top__contents
         .top__contents__items
           %h2.top__contents__items__name
-            product3
+            = @item.name
           .top__contents__items__picture
             %ul.main__picture__detail
               %li.main__picture__detail__list 
-                = image_tag 'fish.png', alt: '商品画像1', class: 'main__image'
+                = image_tag 'curry.png', alt: '商品画像1', class: 'main__image'
+                - unless @item.bought_at == nil
+                  .sold--icon
+                  .sold--message sold
                 %ul.sub__picture__detail
                   %li.sub__picture__detail__list
                     = image_tag 'fish.png', alt: '商品画像2', class: 'sub__image'
@@ -48,17 +52,19 @@
                   %li.sub__picture__detail__list
                     = image_tag 'meat.png', alt: '商品画像2', class: 'sub__image'
           .top__contents__items__price
-            %span ￥30000
+            %span 
+              ¥#{@item.price}
             .price__detail
               %a (税込)
               %a 送料込み
           .top__contents__items__text
-            親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+            = @item.explanation
           .top__contents__items__table
             %table
               %tr
                 %th 出品者
-                %td hoge
+                %td 
+                  = @item.user.nickname
               %tr
                 %th カテゴリー
                 %td 
@@ -98,9 +104,14 @@
                 = link_to '#' do
                   =icon('fa','flag')
                   不適切な商品の通報
+        - unless current_user == @item.user.id
+          %section.purchase__btn
+            = link_to purchase_item_path, class: 'link__btn' do
+              購入する
         %section.top__contents__comment
           %form.comment__box
-            %input{type: 'text_area', class: 'form__area'}
+            %input{type:'hidden'}
+            %textarea{type:'text', class: 'form__area'}
             .notice
               %p 相手のことを考え丁寧なコメントを心がけましょう。
               %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。

@@ -90,14 +90,27 @@
       .credit__card__box
         %section.credit__card__box--text
           %h2 クレジットカード一覧
-        %section.credit__card__box--btn
+        - if @card.present?
+          %section.credit__card__box--btn
+            %ul.creditcard--info
+              %li
+                .creditcard--info__form
+                  = image_tag "#{@card_src}",width:'34',height:'20', alt:'master-card'
+                  %p.creditcard--info__form__period
+                    = "**** **** **** " + @card_information.last4 #クレジットカードの下４桁を表示
+                  %p.creditcard--info__form__period 
+                  - exp_month = @card_information.exp_month.to_s
+                  - exp_year = @card_information.exp_year.to_s.slice(2,3)
+                  = exp_month + " / " + exp_year
+                  = button_to "削除する", card_path(@card), method: :delete, class:"creditcard--info__form--delete"
+        - else
           .link__btn
-            = link_to '#',class: 'add__card__btn' do
+            = link_to new_card_path,class: 'add__card__btn' do
               .icon__card--before
                 = icon('far', 'credit-card')
               %span クレジットカードを追加する
         %section.credit__card__box--announcement
-          = link_to '#',class: 'announcement__pay' do
+          = link_to new_card_path, class: 'announcement__pay' do
             %span 支払い方法について
             .icon__arrow--right
               >

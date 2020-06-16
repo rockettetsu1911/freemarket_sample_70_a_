@@ -80,34 +80,48 @@
         %li 
           = link_to '#', class: 'list__btn' do
             ログアウト
+  
 
-
-      
   .my--page__contents__box--allert
     %section.card__information
       .card__information--header
         %h1 クレジットカード情報入力
       .card__information--form
-        %section.top
-          %label カード番号
-          %span 必須
-        %input{ type: 'text', class:'card__number', placeholder: '半角数字のみ', maxlength: '19'}
-        .form
-        .visa
-          VISA
-        %section.middle
-          %label 有効期限
-          %span 必須
-        %input{ type: 'text', class:'card__number', placeholder: '半角数字のみ', maxlength: '4'}
-        %section.bottom
-          %label セキュリティコード
-          %span 必須
-        %input{ type: 'text', class:'card__number', placeholder: 'カード背面4桁もしくは3桁の番号'}
-        .action
-          %a1.question__mark ?
-          %a カード裏面の番号とは
-        .link__btn
-          = link_to '#',class: 'add__card__btn' do
-            追加する
-
+        = form_with url: cards_path, method: :post, html: { name: "inputForm" } do |f| 
+          %section.top
+            %label カード番号
+            %span 必須
+          = f.text_field :card__number, type: 'text',class: 'card__number',id: 'card_number', placeholder: '半角数字のみ', maxlength: '19' 
+          %ul.card__logo
+            %li 
+              = image_tag 'if-visa-2593666_86609.svg', width:'49', height: '20' ,alt: 'visaロゴ'
+            %li 
+              = image_tag 'mastercard.png', width: '34' ,height:'20', alt: 'mastercardロゴ'
+            %li 
+              = image_tag 'saisoncard.png', width: '30' ,height:'20', alt: 'saioncardロゴ'
+            %li
+              = image_tag 'jcbcard.png', width: '32' ,height:'20', alt: 'jcbcardロゴ'
+            %li
+              = image_tag 'americancard.png', width: '21', height:'20', alt: 'americancardロゴ'
+            %li
+              = image_tag 'diners_club.png', width: '32' ,height:'20', alt: 'dinersclucロゴ'
+            %li
+              = image_tag 'discover.png', width: '32' ,height:'20', alt: 'discoverロゴ'
+          %section.middle
+            %label 有効期限
+            %span 必須
+          .add__card
+            = f.select :exp_month,[["01",1],["02",2],["03",3],["04",4],["05",5],["06",6],["07",7],["08",8],["09",9],["10",10],["11",11],["12",12]],{} ,id: 'exp_month', class:'card__number'
+            %span 月
+            = f.select :exp_year, [["19",2019],["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]],{} ,id: 'exp_year', class:'card__number'
+            %span 年
+          %section.bottom
+            %label セキュリティコード
+            %span 必須
+          = f.text_field :cvc, type: 'integer',class:'card__number', id: 'cvc'
+          .action
+            %a1.question__mark ?
+            %a カード裏面の番号とは
+          .link__btn#card_token
+            = f.submit '追加する', class: 'add__card__btn', id: 'token_submit'
       

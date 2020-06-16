@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   } 
 
   root 'items#index'
-  resources :items, only: [:index, :new, :show]
+  resources :items, only: [:index, :new, :show] do
+    member do
+      get  'purchase'=>  'items#purchase', as: 'purchase'
+      patch 'pay'=>   'items#pay', as: 'pay'
+      get 'done'=>  'items#done', as: 'done'
+    end
+  end
   resources :users, only: :show
-  resources :cards, only: [:new, :show]
-
+  resources :cards, only: [:new, :create, :show, :destroy] 
   resources :users do
     resources :addresses, only: [:new, :create]
   end
@@ -18,4 +23,6 @@ Rails.application.routes.draw do
       #Todo: 購入完了ページなどが以下に追加される
     end
   end
-end
+  
+
+
