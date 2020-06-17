@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :address do
-    id                         {"1"}
     dest_first_name            {"太郎"} 
     dest_last_name             {"手洲戸"}
     dest_first_name_kana       {"タロウ"}
@@ -11,8 +10,7 @@ FactoryBot.define do
     block_number               {"神南１ー１２ー６"}
     building                   {""}
     telephone                  {""}
-
     association                :user
-    user                       {user.owner}
+
   end
 end
