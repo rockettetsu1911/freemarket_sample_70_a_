@@ -113,7 +113,7 @@
             = link_to '#', class: 'un--link__btn' do
               商品の出品を一旦停止する
           %section.item--delete__btn
-            = link_to '#', class: 'un--link__btn' do
+            = link_to item_path, method: :delete, class: 'un--link__btn' do
               この商品を削除する
         - else
           %section.purchase__btn
