@@ -1,4 +1,4 @@
-= form_with model: @item, local: true do |f|
+= form_with model: @item, class: 'form', id: 'item-form-edit', local: true do |f|
   %section.sellFillOut.sellImage
     .sellFillOut__label
       %label.sellFillOut__label--title 出品画像
@@ -6,14 +6,21 @@
     %p.sellFillOut__text 最大10枚までアップロードできます
     #image-box
       %ul.picturePreviews
-        = f.fields_for :pictures do |picture|
-          %li.pictureInput
-            %label.pictureInput__uploadLabel
-              .pictureInput__uploadLabel__box
-                %i.fas.fa-camera.uploadBox-icon
-                %p クリックしてファイルをアップロード
-                .pictureInput__uploadLabel__box--input
-                  = picture.file_field :image, class: 'picture-upload hidden'
+        = f.fields_for :picture do |picture|
+          - @item.pictures.each_with_index do |pict, i|
+            %li.picture-preview
+              %label.pictureInput__uploadLabel{ style: 'display: none;' }
+                .pictureInput__uploadLabel__box
+                  %i.fas.fa-camera.uploadBox-icon
+                  %p クリックしてファイルをアップロード
+                  .pictureInput__uploadLabel__box--input
+                    = picture.file_field :image, value: pict.image, class: 'picture-upload hidden'
+                    = picture.hidden_field :id, value: pict.id, image: "item[:picture][#{i}]"
+              .picture-preview__wrapper
+                = image_tag pict.image.to_s, class: 'preview'
+              .picture-preview__btn
+                .picture-preview__btn--edit 変更
+                .picture-preview__btn--delete 削除
 
   %section.sellFillOut.sellItem
     .sellFillOut__label

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :item_look_for, only: :purchase
   before_action :move_to_login, only: [:new, :edit]
-  before_action :set_item, only: :edit
+  before_action :set_item, only: [:edit, :update]
   before_action :correct_user, only: :edit
 
   def index
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path, notice: '出品が完了しました。'
+      redirect_to item_path(@item), notice: '出品が完了しました。'
     else
       flash.now[:alert] = @item.errors.full_messages
       @item.pictures.new
@@ -39,10 +39,34 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
+    # @parents = Category.where(ancestry: nil)
+    if params[:item].keys.include?('picture') || params[:item].keys.include?('pictures_attributes')
+      item = Item.new(item_params)
+      if item.valid?
+        binding.pry
+        update_pictures_ids = params[:item][:picture].values
+        before_pictures_ids = item.pictures.ids
+        if params[:item].keys.include?('picture')
+          before_pictures_ids.each do |pict_id|
+            Picture.find(pict_id).destroy unless update_pictures_ids.include?(pict_id)
+          end
+        else
+          before_pictures_ids.each do |pict_id|
+            Picture.find(pict_id).destroy
+          end
+        end
+        @item.update(item_params)
+        redirect_to item_path(@item), notice: '商品を更新しました'
+      else
+        flash.now[:alert] = item.errors.full_messages
+        render :edit
+      end
+    else
+      redirect_back(fallback_location: root_path, flash: {success: '画像は1枚以上必要です'})
+    end
   end
 
   def get_category_children
