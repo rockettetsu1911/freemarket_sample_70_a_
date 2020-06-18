@@ -1,0 +1,111 @@
+= form_with model: @item, local: true do |f|
+  %section.sellFillOut.sellImage
+    .sellFillOut__label
+      %label.sellFillOut__label--title 出品画像
+      %span.sellFillOut__label--required 必須
+    %p.sellFillOut__text 最大10枚までアップロードできます
+    #image-box
+      = f.fields_for :pictures do |picture|
+        %ul.picturePreviews
+          %li.pictureInput
+            %label.pictureInput__uploadLabel
+              .pictureInput__uploadLabel__box
+                %i.fas.fa-camera.uploadBox-icon
+                %p クリックしてファイルをアップロード
+                .pictureInput__uploadLabel__box--input
+                  = picture.file_field :image, class: 'picture-upload hidden'
+
+  %section.sellFillOut.sellItem
+    .sellFillOut__label
+      %label.sellFillOut__label--title 商品名
+      %span.sellFillOut__label--required 必須
+    = f.text_field :name, type: 'text', class: 'sellFillOut__inputArea', id: 'sell-name', placeholder: '40文字まで'
+    .sellFillOut__alert
+      #sell-name-alert
+    .sellFillOut__label
+      %label.sellFillOut__label--title 商品の説明
+      %span.sellFillOut__label--required 必須
+    = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    .sellFillOut__wordCount
+      %span#sell-word-count 0
+      \/1000
+    .sellFillOut__alert
+      #sell-word-count-alert
+
+  %section.sellFillOut.sellDetail
+    %p.sellFillOut__text 商品の詳細
+    .sellFillOut__label
+      %label.sellFillOut__label--title カテゴリー
+      %span.sellFillOut__label--required 必須
+    .sellFillOut__selectWrapper.category-wrapper
+      .sellFillOut__selectWrapper__box.category-parent
+        = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+
+    -# Todo: ブランドの追加実装をしたら表示
+    -# .sellFillOut__label
+    -#   %label.sellFillOut__label--title ブランド
+    -#   %span.sellFillOut__label--required.option 任意
+    -# %input.sellFillOut__inputArea{ type: 'text', name: 'brand', required: true, autofocus: true,
+    -#                               placeholder: '例）無印' }
+
+    .sellFillOut__label
+      %label.sellFillOut__label--title 商品の状態
+      %span.sellFillOut__label--required 必須
+    .sellFillOut_selectWrapper
+      .sellFillOut__selectWrapper__box
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+        = f.select :condition, Item.conditions_i18n.invert, {}, class: 'select-form'
+  -# Todo: 配送オプションの追加実装をしたら表示
+  -# %section.sellFillOut.sellDelivery
+  -#   .section.sellFillOut--wrapper
+  -#     %p.sellFillOut__text 配送について
+  -#     = link_to '#' do
+  -#       = icon('far', 'question-circle')
+  -#   .sellFillOut__label
+  -#     %label.sellFillOut__label--title 配送料の負担
+  -#     %span.sellFillOut__label--required 必須
+  -#   %select.sellFillOut__inputArea{ name: 'postage', required: true, autofocus: true }
+  -#     %option{ value: '' } 選択してください
+  -#     %option{ value: 'INCLUDED' } 送料込み
+  -#     %option{ value: 'COD' } 着払い
+  -#   .sellFillOut__label
+  -#     %label.sellFillOut__label--title 発送までの日数
+  -#     %span.sellFillOut__label--required 必須
+  -#   %select.sellFillOut__inputArea{ name: 'delivery-date', required: true, autofocus: true }
+  -#     %option{ value: '' } 選択してください
+  -#     %option{ value: '1' } 1〜2日で発送
+  -#     %option{ value: '2' } 3〜4日で発送
+  %section.sellFillOut.sellPrice
+    .section.sellFillOut--wrapper
+      %p.sellFillOut__text 価格（¥300〜9,999,999）
+      = link_to '#' do
+        = icon('far', 'question-circle')
+    .sellFillOut__label
+      .sellFillOut__label--wrapper
+        .title-and-required
+          %label.sellFillOut__label--title 販売価格
+          %span.sellFillOut__label--required 必須
+        .price-box
+          %span ¥                                              
+          = f.text_field :price, type: 'number', style: 'text-align: right', placeholder: '0', class: 'sellFillOut__label--input', id: 'sell-price'
+    
+      .sellFillOut__alert
+        #sell-price-alert
+    .sellFillOut__label--wrapper.fee-and-profit
+      販売手数料（3％）
+      %span#fee ー
+    %hr{ noshade: true }
+    .sellFillOut__label--wrapper.fee-and-profit
+      販売利益
+      %span#profit ー
+    %section.sellFillOut__submit
+      .sellFillOut__submit__sellBtn__wrapper
+        = f.submit '出品する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
+      .sellFillOut__submit__sellBtn__wrapper
+        = link_to '#' do
+          = f.button '下書きに保存', { class: 'sellFillOut__submit__sellBtn__wrapper--draft' }
+      = link_to '#', class: 'sellFillOut__submit__sellBtn--cansel' do
+        もどる
+      .sellFillOut__submit__caution
+        %p 禁止されている<a href='#'>行為</a>および<a href='#'>出品物</a>を必ずご確認ください。<a href='#'>偽ブランド品</a>や<a href='#'>盗品物</a>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<a href='#'>加盟店規約</a>に同意したことになります。

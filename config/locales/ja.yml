@@ -2,14 +2,14 @@ ja:
   enums:
     item:
       condition:
-        '---':         "---"
+        '---':           "---"
         unused:        "新品、未使用"
         nearly_unused: "未使用に近い"
         not_injured:   "目立った傷や汚れなし"
         bit_injured:   "やや傷や汚れあり"
         injured:       "傷や汚れあり"
         bad:           "全体的に状態が悪い"
-    
+      
     address:
       prefecture:
         '---': "---"
@@ -90,23 +90,6 @@ ja:
         ticket:                 "チケット"  
         bicycle:                "自転車・オートバイ"
         etc:                    "その他"
-    
-
-    card:
-      number:
-        '---':   "---"
-        01:      "01"
-        02:      "02"
-        03:      "03"
-        04:      "04"
-        05:      "05"
-        06:      "06"
-        07:      "07"
-        08:      "08"
-        09:      "09"
-        10:      "10"
-        11:      "11"
-        12:      "12"
 
   activerecord:
     errors:
@@ -115,6 +98,8 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      address: "発送元・送付先住所"
     attributes:
       address:
         dest_first_name: 姓
@@ -125,6 +110,16 @@ ja:
         prefecture: 都道府県
         city: 市区町村
         block_number: 番地
+    models:
+      item: "商品"
+    attributes:
+      item:
+        category_id: "カテゴリー"
+        name: "商品名"
+        price: "価格"
+        explanation: "商品の説明"
+        pictures: "出品画像"
+        condition: "商品状態"
   date:
     abbr_day_names:
     - 日

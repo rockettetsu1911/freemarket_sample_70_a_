@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('#sell-price').on('input', function() {
     let price = $('#sell-price').val();
     if(price >= 300 && price <= 9999999) {

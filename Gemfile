@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 
 end
 
@@ -85,3 +86,5 @@ gem 'fog-aws'
 gem 'ancestry'
 gem 'rubocop', require: false
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'payjp'
+gem 'jquery-rails'

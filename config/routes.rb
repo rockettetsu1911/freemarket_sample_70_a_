@@ -10,10 +10,21 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  resources :items, only: [:index, :new, :show]
-  resources :users, only: :show
-  resources :cards, only: [:new, :show]
 
+  resources :items, only: [:index, :new, :show, :create] do
+    member do
+      get  'purchase'=>  'items#purchase', as: 'purchase'
+      patch 'pay'=>   'items#pay', as: 'pay'
+      get 'done'=>  'items#done', as: 'done'
+    end
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
+  
+  resources :users, only: :show
+  resources :cards, only: [:new, :create, :show, :destroy] 
   resources :users do
     resources :addresses, only: [:edit, :update]
   end
