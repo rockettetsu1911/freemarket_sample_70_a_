@@ -100,14 +100,9 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if item.bought_at == nil
-      item.destroy
-      redirect_to root_path
-      flash[:notice] = "商品の削除が完了しました。"
-    else
-      redirect_to item_path(item.id)
-      flash[:notice] = "既に購入されている商品は削除できません。"
-    end
+    item.destroy
+    redirect_to root_path
+    flash[:notice] = "商品の削除が完了しました。"
   end
 
   private
