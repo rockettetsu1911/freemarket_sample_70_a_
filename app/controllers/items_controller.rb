@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :item_look_for, only: :purchase
-  before_action :move_to_login, only: [:new]
+  before_action :move_to_login, only: [:new, :edit]
+  before_action :set_item, only: :edit
+  before_action :correct_user, only: :edit
 
   def index
     @items = Item.all.last(3)
@@ -34,6 +36,13 @@ class ItemsController < ApplicationController
       @item.pictures.new
       render :new
     end
+  end
+
+  def edit
+
+  end
+
+  def update
   end
 
   def get_category_children
@@ -128,6 +137,14 @@ class ItemsController < ApplicationController
 
   def move_to_login
     redirect_to user_session_path unless user_signed_in?
+  end
+
+  def correct_user
+    redirect_to purchase_item_path unless current_user.id == @item.user_id
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
   
   def item_look_for
