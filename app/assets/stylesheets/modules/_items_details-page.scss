@@ -140,11 +140,10 @@
                     margin-top:10px;
                     width:560px;
                     &__list{
+                      margin:0 5px 0;
                       width:25%;
-                      margin-right:10px;
                       .sub__image{
                         object-fit:cover;
-                        height:87px;
                         vertical-align:bottom;
                         width:100%;
                       }
