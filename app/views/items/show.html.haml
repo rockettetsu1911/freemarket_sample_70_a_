@@ -13,17 +13,17 @@
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              ベビー・キッズ
+              = @item.category.parent.parent.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              ベビー服(男女兼用)~95cm
+              = @item.category.parent.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              アウター
+              = @item.category.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
@@ -67,13 +67,19 @@
                   = @item.user.nickname
               %tr
                 %th カテゴリー
-                %td 
-                  = link_to '#' do
-                    ベビー・キッズ
-                  = link_to '#' do
-                    ベビー服(男女兼用)~95cm
-                  = link_to '#' do
-                    アウター
+                %td
+                  %ul
+                    %li
+                      = link_to '#' do
+                        = @item.category.parent.parent.name
+                    %li
+                      = link_to '#' do
+                        = icon('fa', 'angle-right') 
+                        = @item.category.parent.name
+                    %li
+                      = link_to '#' do
+                        = icon('fa', 'angle-right') 
+                        = @item.category.name
               %tr
                 %th ブランド
                 %td
