@@ -13,17 +13,17 @@
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              ベビー・キッズ
+              = @item.category.parent.parent.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              ベビー服(男女兼用)~95cm
+              = @item.category.parent.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             = link_to '#' do
-              アウター
+              = @item.category.name
           %li.my--page__nav__guide--menu__btn
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
@@ -40,17 +40,14 @@
           .top__contents__items__picture
             %ul.main__picture__detail
               %li.main__picture__detail__list 
-                = image_tag 'curry.png', alt: '商品画像1', class: 'main__image'
+                = image_tag @item.pictures.first.image.url, alt: '商品画像(メイン)', class: 'main__image'
                 - unless @item.bought_at == nil
                   .sold--icon
                   .sold--message sold
                 %ul.sub__picture__detail
-                  %li.sub__picture__detail__list
-                    = image_tag 'fish.png', alt: '商品画像2', class: 'sub__image'
-                  %li.sub__picture__detail__list
-                    = image_tag 'curry.png', alt: '商品画像2', class: 'sub__image'
-                  %li.sub__picture__detail__list
-                    = image_tag 'meat.png', alt: '商品画像2', class: 'sub__image'
+                  - @item.pictures.each do |picture|
+                    %li.sub__picture__detail__list
+                      = image_tag picture.image.url, alt: '商品画像(サブ)', class: 'sub__image', height:'72', width:'60'
           .top__contents__items__price
             %span 
               ¥#{@item.price}
@@ -67,13 +64,19 @@
                   = @item.user.nickname
               %tr
                 %th カテゴリー
-                %td 
-                  = link_to '#' do
-                    ベビー・キッズ
-                  = link_to '#' do
-                    ベビー服(男女兼用)~95cm
-                  = link_to '#' do
-                    アウター
+                %td
+                  %ul
+                    %li
+                      = link_to '#' do
+                        = @item.category.parent.parent.name
+                    %li
+                      = link_to '#' do
+                        = icon('fa', 'angle-right') 
+                        = @item.category.parent.name
+                    %li
+                      = link_to '#' do
+                        = icon('fa', 'angle-right') 
+                        = @item.category.name
               %tr
                 %th ブランド
                 %td
