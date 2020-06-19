@@ -6,8 +6,8 @@
     %p.sellFillOut__text 最大10枚までアップロードできます
     #image-box
       %ul.picturePreviews
-        = f.fields_for :pictures do |picture|
-          - if @item.id == nil
+        - if @item.id == nil
+          = f.fields_for :pictures do |picture|
             %li.pictureInput
               %label.pictureInput__uploadLabel
                 .pictureInput__uploadLabel__box
@@ -15,7 +15,8 @@
                   %p クリックしてファイルをアップロード
                   .pictureInput__uploadLabel__box--input
                     = picture.file_field :image, class: 'picture-upload hidden'
-          - else
+        - else
+          = f.fields_for :picture do |picture|
             - @item.pictures.each_with_index do |pict, i|
               %li.picture-preview
                 %label.pictureInput__uploadLabel{ style: 'display: none;' }
@@ -28,7 +29,6 @@
                 .picture-preview__wrapper
                   = image_tag pict.image.to_s, class: 'preview'
                 .picture-preview__btn
-                  .picture-preview__btn--edit 変更
                   .picture-preview__btn--delete 削除
 
   %section.sellFillOut.sellItem
