@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
  
-  belongs_to :user
-  has_many   :tags, through: :item_tags, dependent: :destroy
+  has_many   :tags, through: :item_tags
   has_many   :item_tags
+  belongs_to :user
   belongs_to :category
   has_many   :comments,             dependent: :destroy
   has_many   :pictures,             dependent: :destroy
