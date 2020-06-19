@@ -4,16 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
   
-  has_one  :addresses ,dependent: :destroy
+  has_one  :address,   dependent: :destroy
   has_many :comments
   has_many :items,     dependent: :destroy
   has_many :likes,     dependent: :destroy
   has_many :cards,     dependent: :destroy
 
+  #email形式
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  #全角のみ
   VALID_ZENKAKU_REGEX = /\A[^\x01-\x7E]+\z/
+  #全角カナのみ
   VALID_KANA_REGEX = /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/
+  #日付形式 yyyy/mm/dd or yyyy/m/d
   VALID_BIRTHDAY_REGEX = /\A(19|20)\d{2}\/([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[12][0-9]|3[01])\z/
+  #数字のみ
   VALID_TELEPHONE_REGEX = /\d+/
 
   validates :email,           presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }

@@ -19,6 +19,7 @@ ja:
         iwate:     "岩手県"
         miyagi:    "宮城県"
         akita:     "秋田県"
+        yamagata:  "山形県"
         fukushima: "福島県"
 
         #関東地方
@@ -31,14 +32,14 @@ ja:
         kanagawa: "神奈川県"
 
         #東海地方
-        nigata:    "新潟県"
+        niigata:    "新潟県"
         toyama:    "富山県"
         ishikawa:  "石川県"
         fukui:     "福井県"
         yamanashi: "山梨県"
         nagano:    "長野県"
         gifu:      "岐阜県"
-        shizuoka:   "静岡県"
+        shizuoka:  "静岡県"
         aichi:     "愛知県"
 
         #近畿地方
@@ -97,6 +98,18 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      address: "発送元・送付先住所"
+    attributes:
+      address:
+        dest_first_name: 姓
+        dest_last_name: 名
+        dest_first_name_kana: セイ
+        dest_last_name_kana: メイ
+        zip_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        block_number: 番地
     models:
       item: "商品"
     attributes:

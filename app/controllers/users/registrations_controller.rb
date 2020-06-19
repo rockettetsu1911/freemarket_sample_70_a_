@@ -17,10 +17,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    @address = @user.build_address
+    render :new_address
+  end
+
+  def create_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @address = Address.new(address_params)
+    unless @address.valid?
+      flash.now[:alert] = @address.errors.full_messages
+      render :new_address and return
+    end
+    @user.build_address(@address.attributes)
     @user.save
+    session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
     redirect_to root_path, notice: '登録が完了しました。'
+
   end
+
 
   # GET /resource/edit
   # def edit
@@ -67,4 +84,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def address_params
+    params.require(:address).permit(:dest_last_name, :dest_first_name, :dest_last_name_kana, :dest_first_name_kana, :zip_code, :prefecture, :city, :block_number, :building, :telephone)
+  end
+
 end
