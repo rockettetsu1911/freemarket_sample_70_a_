@@ -15,14 +15,12 @@ $(document).on('turbolinks:load', function() {
       });
     }
     else if(listCnt == 5) {
-      $li.addClass('picture-preview');
       $ul.append(append_input);
       $('.picturePreviews li:last-child').css({
         'width': '100%'
       });
     }
     else if(listCnt <= 9) {
-      $li.addClass('picture-preview');
       $ul.append(append_input);
       $('.picturePreviews li:last-child').css({
         'width': `calc(100% - (20% * (${listCnt} - 5 )))`

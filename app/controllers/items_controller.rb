@@ -44,28 +44,26 @@ class ItemsController < ApplicationController
   def update
     # @parents = Category.where(ancestry: nil)
     if params[:item].keys.include?('picture') || params[:item].keys.include?('pictures_attributes')
-      item = Item.new(item_params)
-      if item.valid?
-        binding.pry
-        update_pictures_ids = params[:item][:picture].values
-        before_pictures_ids = item.pictures.ids
+      update_pictures_ids = params[:item][:picture].values
+      before_pictures_ids = @item.pictures.ids
+      if @item.update(item_params)
         if params[:item].keys.include?('picture')
           before_pictures_ids.each do |pict_id|
-            Picture.find(pict_id).destroy unless update_pictures_ids.include?(pict_id)
+            Picture.find(pict_id).destroy unless update_pictures_ids.include?("#{pict_id}")
           end
         else
           before_pictures_ids.each do |pict_id|
             Picture.find(pict_id).destroy
           end
         end
-        @item.update(item_params)
-        redirect_to item_path(@item), notice: '商品を更新しました'
+        redirect_to item_path(@item), notice: '商品を編集しました'
       else
-        flash.now[:alert] = item.errors.full_messages
-        render :edit
+        flash[:alert] = @item.errors.full_messages
+        redirect_back(fallback_location: :edit)
       end
     else
-      redirect_back(fallback_location: root_path, flash: {success: '画像は1枚以上必要です'})
+      flash[:alert] = '画像は1枚以上必要です'
+      redirect_back(fallback_location: root_path)
     end
   end
 

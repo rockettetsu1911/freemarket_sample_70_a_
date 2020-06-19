@@ -7,13 +7,29 @@
     #image-box
       %ul.picturePreviews
         = f.fields_for :pictures do |picture|
-          %li.pictureInput
-            %label.pictureInput__uploadLabel
-              .pictureInput__uploadLabel__box
-                %i.fas.fa-camera.uploadBox-icon
-                %p クリックしてファイルをアップロード
-                .pictureInput__uploadLabel__box--input
-                  = picture.file_field :image, class: 'picture-upload hidden'
+          - if @item.id == nil
+            %li.pictureInput
+              %label.pictureInput__uploadLabel
+                .pictureInput__uploadLabel__box
+                  %i.fas.fa-camera.uploadBox-icon
+                  %p クリックしてファイルをアップロード
+                  .pictureInput__uploadLabel__box--input
+                    = picture.file_field :image, class: 'picture-upload hidden'
+          - else
+            - @item.pictures.each_with_index do |pict, i|
+              %li.picture-preview
+                %label.pictureInput__uploadLabel{ style: 'display: none;' }
+                  .pictureInput__uploadLabel__box
+                    %i.fas.fa-camera.uploadBox-icon
+                    %p クリックしてファイルをアップロード
+                    .pictureInput__uploadLabel__box--input
+                      = picture.file_field :image, value: pict.image, class: 'picture-upload hidden'
+                      = picture.hidden_field :id, value: pict.id, image: "item[:picture][#{i}]"
+                .picture-preview__wrapper
+                  = image_tag pict.image.to_s, class: 'preview'
+                .picture-preview__btn
+                  .picture-preview__btn--edit 変更
+                  .picture-preview__btn--delete 削除
 
   %section.sellFillOut.sellItem
     .sellFillOut__label
@@ -101,7 +117,10 @@
       %span#profit ー
     %section.sellFillOut__submit
       .sellFillOut__submit__sellBtn__wrapper
-        = f.submit '出品する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
+        - if @item.id == nil
+          = f.submit '出品する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
+        - else
+          = f.submit '編集する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
       .sellFillOut__submit__sellBtn__wrapper
         = link_to '#' do
           = f.button '下書きに保存', { class: 'sellFillOut__submit__sellBtn__wrapper--draft' }
