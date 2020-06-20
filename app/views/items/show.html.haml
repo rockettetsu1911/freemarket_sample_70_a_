@@ -85,18 +85,21 @@
                 %td
               %tr
                 %th 商品の状態
-                %td 未使用に近い
+                %td
+                  = @item.condition_i18n
               %tr 
                 %th 配送料の負担
-                %td 送料込み(出品者負担)
+                %td
+                  = @item.postage.name
               %tr 
                 %th 発送元の地域
-                %td 
+                %td
                   = link_to '#' do
-                    岩手県
+                    = @item.prefecture.name
               %tr 
                 %th 発送日の目安
-                %td 4〜7日で発送
+                %td
+                  = @item.delivery_date.name
           .top__contents__items__footer
             %ul
               %li.likes__btn
