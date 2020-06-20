@@ -27,9 +27,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    binding.pry
     if @item.save
-      redirect_to root_path, notice: '出品が完了しました。'
+      redirect_to item_path(@item.id), notice: '出品が完了しました。'
     else
       flash.now[:alert] = @item.errors.full_messages
       @item.pictures.new
