@@ -2,7 +2,7 @@ ja:
   enums:
     item:
       condition:
-        '---':           "---"
+        '---':         "---"
         unused:        "新品、未使用"
         nearly_unused: "未使用に近い"
         not_injured:   "目立った傷や汚れなし"
@@ -102,7 +102,7 @@ ja:
       item: "商品"
     attributes:
       item:
-        category_id: "カテゴリー"
+        category: "カテゴリー"
         name: "商品名"
         price: "価格"
         explanation: "商品の説明"

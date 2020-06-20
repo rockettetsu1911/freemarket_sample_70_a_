@@ -5,7 +5,6 @@ $(document).on('turbolinks:load', function() {
   $input = $ul.find('.pictureInput');
 
   var listCnt = $list.length;
-  console.log($input.length, listCnt)
   if($input.length == 0) {
 
     if(listCnt <= 4) {

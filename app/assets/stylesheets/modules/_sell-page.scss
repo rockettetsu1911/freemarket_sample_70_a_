@@ -36,6 +36,9 @@
       height: 3px;
       border-style: unset;
     }
+    label.error {
+      color: red;
+    }
     &__selectWrapper {
 
       &__box {

@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
   function appendChildrenBox(insertHtml) {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-children' id= 'children_wrapper'>
-              <select class='select-form' id='category_child' name='item[category_id]'>
+              <select class='select-form' id='category_child' name='item[category]'>
                 <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
   function appendGrandchildrenBox(insertHtml) {
     var html = '';
     html = `<div class='sellFillOut__selectWrapper__box category-grandchildren' id= 'grandchildren_wrapper'>
-              <select class='select-form' id='category_grandchildren' name='item[category_id]'>
+              <select class='select-form' id='category_grandchildren' name='item[category]'>
                 <option value=0 data-category=0> --- </option>
                 ${insertHtml}
               <select>
@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function() {
     var parentId = document.getElementById('category_parent').value;
     if ((parentId != 0)) { 
       $.ajax({
-        url: 'get_category_children',
+        url: '/items/get_category_children',
         type: 'GET',
         data: { parent_id: parentId },
         dataType: 'json'
@@ -55,16 +55,16 @@ $(document).on('turbolinks:load', function() {
       $('#grandchildren_wrapper').remove();
       var isAttr = document.getElementById('category_parent').hasAttribute('name');
       if (!isAttr) {
-        document.getElementById('category_parent').setAttribute('name', 'item[category_id]');
+        document.getElementById('category_parent').setAttribute('name', 'item[category]');
       }
     }
   });
 
   $('.category-wrapper').on('change', '#category_child', function() {
-    var childId = $('#category_child option:selected').data('category');
+    var childId = document.getElementById('category_child').value;
     if (childId != 0) {
       $.ajax({
-        url: 'get_category_grandchildren',
+        url: '/items/get_category_grandchildren',
         type: 'GET',
         data: { child_id: childId },
         dataType: 'json'

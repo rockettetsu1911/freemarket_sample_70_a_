@@ -39,6 +39,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @category_grandchild = @item.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+    @child_array = []
+    @child_array = set_ancestry(@category_parent.id)
+    @grandchild_array = []
+    @grandchild_array = set_ancestry(@category_child.id)
   end
 
   def update
@@ -144,14 +151,14 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image])
-    .merge(user_id: current_user.id, category_id: params[:item][:category_id])
+    .merge(user_id: current_user.id, category_id: params[:item][:category])
   end
   
-  def set_categories
-    @category_parent_array = @item.set_ancestry('parent', nil)
-    params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
-    .merge(user_id: current_user.id)
-  end
+  # def set_categories
+  #   @category_parent_array = @item.set_ancestry('parent')
+  #   params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
+  #   .merge(user_id: current_user.id)
+  # end
 
   def set_ancestry(key)
     return Category.find(key).children

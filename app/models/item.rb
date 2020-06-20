@@ -15,17 +15,12 @@ class Item < ApplicationRecord
     validates :user
     validates :name,        length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
-    validates :category_id
+    validates :category
     validates :condition,   exclusion: { in: %w(---), message: 'を入力してください' }
     validates :price,       numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-    validates :user_id
   end
 
-  
-  validate :category_id_is_valid
-
   enum condition:{
-    '---':         0,
     unused:        1, 
     nearly_unused: 2, 
     not_injured:   3, 
@@ -33,9 +28,5 @@ class Item < ApplicationRecord
     injured:       5,
     bad:           6
   }
- 
-  def category_id_is_valid
-    errors.messages.delete(:category) unless Category.find_by(id: category_id)
-  end
  
 end

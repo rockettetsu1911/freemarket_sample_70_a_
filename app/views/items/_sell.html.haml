@@ -1,4 +1,4 @@
-= form_with model: @item, local: true do |f|
+= form_with model: @item, id: "sell-form", local: true do |f|
   %section.sellFillOut.sellImage
     .sellFillOut__label
       %label.sellFillOut__label--title 出品画像
@@ -54,24 +54,36 @@
       %label.sellFillOut__label--title カテゴリー
       %span.sellFillOut__label--required 必須
     .sellFillOut__selectWrapper.category-wrapper
-      .sellFillOut__selectWrapper__box.category-parent
-        = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
-        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+      - if @item.category == nil
+        .sellFillOut__selectWrapper__box.category-parent
+          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
+          = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+      - else 
+        .sellFillOut__selectWrapper__box.category-parent
+          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {selected: @category_parent.id}, {class: 'select-form', id: 'category_parent'}
+          = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+        .sellFillOut__selectWrapper__box.category-child#children_wrapper
+          = f.collection_select :category_id, Category.where(ancestry: @category_child.ancestry), :id, :name, {selected: @category_child.id}, {class: 'select-form', id: 'category_child'}
+          = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+        .sellFillOut__selectWrapper__box.category-grandchild#grandchildren_wrapper
+          = f.collection_select :category, Category.where(ancestry: @category_grandchild.ancestry), :id, :name, {selected: @category_grandchild.id}, {class: 'select-form', id: 'category_grandchild'}
+          = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+
 
     -# Todo: ブランドの追加実装をしたら表示
     -# .sellFillOut__label
     -#   %label.sellFillOut__label--title ブランド
-    -#   %span.sellFillOut__label--required.option 任意
+    -#   %span.sellFillOut__label--required.option 任
     -# %input.sellFillOut__inputArea{ type: 'text', name: 'brand', required: true, autofocus: true,
     -#                               placeholder: '例）無印' }
 
     .sellFillOut__label
       %label.sellFillOut__label--title 商品の状態
       %span.sellFillOut__label--required 必須
-    .sellFillOut_selectWrapper
+    .sellFillOut__selectWrapper
       .sellFillOut__selectWrapper__box
+        = f.select :condition, Item.conditions_i18n.invert, {prompt: '---'}, class: 'select-form'
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
-        = f.select :condition, Item.conditions_i18n.invert, {}, class: 'select-form'
   -# Todo: 配送オプションの追加実装をしたら表示
   -# %section.sellFillOut.sellDelivery
   -#   .section.sellFillOut--wrapper
