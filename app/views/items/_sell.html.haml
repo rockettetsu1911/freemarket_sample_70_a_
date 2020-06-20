@@ -56,26 +56,25 @@
       .sellFillOut__selectWrapper__box
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
         = f.select :condition, Item.conditions_i18n.invert, {}, class: 'select-form'
-  -# Todo: 配送オプションの追加実装をしたら表示
-  -# %section.sellFillOut.sellDelivery
-  -#   .section.sellFillOut--wrapper
-  -#     %p.sellFillOut__text 配送について
-  -#     = link_to '#' do
-  -#       = icon('far', 'question-circle')
-  -#   .sellFillOut__label
-  -#     %label.sellFillOut__label--title 配送料の負担
-  -#     %span.sellFillOut__label--required 必須
-  -#   %select.sellFillOut__inputArea{ name: 'postage', required: true, autofocus: true }
-  -#     %option{ value: '' } 選択してください
-  -#     %option{ value: 'INCLUDED' } 送料込み
-  -#     %option{ value: 'COD' } 着払い
-  -#   .sellFillOut__label
-  -#     %label.sellFillOut__label--title 発送までの日数
-  -#     %span.sellFillOut__label--required 必須
-  -#   %select.sellFillOut__inputArea{ name: 'delivery-date', required: true, autofocus: true }
-  -#     %option{ value: '' } 選択してください
-  -#     %option{ value: '1' } 1〜2日で発送
-  -#     %option{ value: '2' } 3〜4日で発送
+
+  %section.sellFillOut.sellDelivery
+    .section.sellFillOut--wrapper
+      %p.sellFillOut__text 配送について
+      = link_to '#' do
+        = icon('far', 'question-circle')
+    .sellFillOut__label
+      %label.sellFillOut__label--title 配送料の負担
+      %span.sellFillOut__label--required 必須
+    = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    .sellFillOut__label
+      %label.sellFillOut__label--title 配送元の地域
+      %span.sellFillOut__label--required 必須
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    .sellFillOut__label
+      %label.sellFillOut__label--title 発送までの日数
+      %span.sellFillOut__label--required 必須
+    = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 価格（¥300〜9,999,999）
