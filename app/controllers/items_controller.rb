@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
       redirect_to root_path, notice: '出品が完了しました。'
     else
@@ -112,7 +113,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image])
+    params.require(:item).permit(:name, :price, :condition, :explanation, :view_count, pictures_attributes: [:image])
     .merge(user_id: current_user.id, category_id: params[:item][:category_id])
   end
   
