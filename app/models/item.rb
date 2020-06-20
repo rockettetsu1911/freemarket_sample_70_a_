@@ -9,6 +9,11 @@ class Item < ApplicationRecord
   has_many   :likes,                dependent: :destroy         
   validates_associated :pictures
   accepts_nested_attributes_for :pictures, allow_destroy: true
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :postage
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :delivery_date
  
   with_options presence: true do
     validates :user
