@@ -63,7 +63,7 @@
           = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {selected: @category_parent.id}, {class: 'select-form', id: 'category_parent'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
         .sellFillOut__selectWrapper__box.category-child#children_wrapper
-          = f.collection_select :category_id, Category.where(ancestry: @category_child.ancestry), :id, :name, {selected: @category_child.id}, {class: 'select-form', id: 'category_child'}
+          = f.collection_select :category, Category.where(ancestry: @category_child.ancestry), :id, :name, {selected: @category_child.id}, {class: 'select-form', id: 'category_child'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
         .sellFillOut__selectWrapper__box.category-grandchild#grandchildren_wrapper
           = f.collection_select :category, Category.where(ancestry: @category_grandchild.ancestry), :id, :name, {selected: @category_grandchild.id}, {class: 'select-form', id: 'category_grandchild'}

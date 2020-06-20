@@ -34,22 +34,16 @@ class ItemsController < ApplicationController
     else
       flash.now[:alert] = @item.errors.full_messages
       @item.pictures.new
+      set_category if @item.category != nil
       render :new
     end
   end
 
   def edit
-    @category_grandchild = @item.category
-    @category_child = @category_grandchild.parent
-    @category_parent = @category_child.parent
-    @child_array = []
-    @child_array = set_ancestry(@category_parent.id)
-    @grandchild_array = []
-    @grandchild_array = set_ancestry(@category_child.id)
+    set_category
   end
 
   def update
-    # @parents = Category.where(ancestry: nil)
     if params[:item].keys.include?('picture') || params[:item].keys.include?('pictures_attributes')
       update_pictures_ids = params[:item][:picture].values
       before_pictures_ids = @item.pictures.ids
@@ -170,6 +164,16 @@ class ItemsController < ApplicationController
 
   def correct_user
     redirect_to purchase_item_path unless current_user.id == @item.user_id
+  end
+
+  def set_category
+    @category_grandchild = @item.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+    @child_array = []
+    @child_array = set_ancestry(@category_parent.id)
+    @grandchild_array = []
+    @grandchild_array = set_ancestry(@category_child.id)
   end
 
   def set_item

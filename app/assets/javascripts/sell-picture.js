@@ -85,13 +85,3 @@ $(document).on('click', '.picture-preview__btn--delete', function() {
     });
   }
 });
-
-// window.onload = function() {
-//   var append_input = $(`<ul class="picturePreviews"><li class="pictureInput"><label class="pictureInput__uploadLabel"><div class="pictureInput__uploadLabel__box"><i class="fas fa-camera uploadBox-icon"></i><p>クリックしてファイルをアップロード</p><div class="pictureInput__uploadLabel__box--input"><input class="picture-upload hidden" type="file"></div></div></label></li></ul>`);
-//   $parent = $('#image-box');
-//   $ul = $('.picturePreviews');
-//   if($ul.length > 1) {
-//     $ul.remove();
-//     $parent.append(append_input);
-//   }
-// }

@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
   
   $('#sell-form').validate( {
     rules: {
-      'item[pictures_attributes][0][image]': {
+      'item[pictures_attributes]': {
         required: true
       },
       'item[name]': {
@@ -67,7 +67,6 @@ $(document).on('turbolinks:load', function() {
     }
   });
 });
-
 
 function localStr(str) {
   var num = Number(str);
