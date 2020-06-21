@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      address: "発送元・送付先住所"
+    attributes:
+      address:
+        dest_first_name: 姓
+        dest_last_name: 名
+        dest_first_name_kana: セイ
+        dest_last_name_kana: メイ
+        zip_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        block_number: 番地
