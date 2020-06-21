@@ -45,10 +45,10 @@ class ItemsController < ApplicationController
 
   def update
     if params[:item].keys.include?('picture') || params[:item].keys.include?('pictures_attributes')
-      update_pictures_ids = params[:item][:picture].values
       before_pictures_ids = @item.pictures.ids
       if @item.update(item_params)
         if params[:item].keys.include?('picture')
+          update_pictures_ids = params[:item][:picture].values
           before_pictures_ids.each do |pict_id|
             Picture.find(pict_id).destroy unless update_pictures_ids.include?("#{pict_id}")
           end

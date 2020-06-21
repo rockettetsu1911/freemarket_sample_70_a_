@@ -25,7 +25,7 @@
                     %p クリックしてファイルをアップロード
                     .pictureInput__uploadLabel__box--input
                       = picture.file_field :image, value: pict.image, class: 'picture-upload hidden'
-                      = picture.hidden_field :id, value: pict.id, image: "item[:picture][#{i}]"
+                      = picture.hidden_field :id, value: pict.id, name: "item[picture][#{i}]"
                 .picture-preview__wrapper
                   = image_tag pict.image.to_s, class: 'preview'
                 .picture-preview__btn
