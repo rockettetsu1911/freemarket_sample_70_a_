@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_132731) do
+ActiveRecord::Schema.define(version: 2020_06_21_135032) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "dest_first_name", null: false
@@ -69,21 +69,19 @@ ActiveRecord::Schema.define(version: 2020_06_20_132731) do
     t.integer "price", null: false
     t.integer "condition", null: false
     t.string "explanation", null: false
-    t.integer "view_count", default: 0, null: false
+    t.integer "view_count", default: 0
     t.integer "buyer"
     t.datetime "bought_at"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "prefecture_id"
+    t.integer "prefecture_id", null: false
     t.integer "postage_id", null: false
     t.integer "delivery_date_id", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
     t.index ["name"], name: "index_items_on_name"
-    t.index ["postage_id"], name: "index_items_on_postage_id"
-    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -107,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_132731) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -126,6 +125,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_132731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_132731) do
   add_foreign_key "comments", "users"
   add_foreign_key "item_tags", "tags"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "users"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
   add_foreign_key "pictures", "items"

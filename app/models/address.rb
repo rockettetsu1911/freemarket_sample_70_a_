@@ -22,7 +22,7 @@ class Address < ApplicationRecord
   validates :block_number,            presence: true, length: { maximum: 30 }, format: { with: VALID_ZENKAKU_REGEX }
   validates :building,                allow_blank: true, length: { maximum: 30 }, format: { with: VALID_ZENKAKU_REGEX }
   validates :telephone,               allow_blank: true, length: { in: 10..11 }, format: { with: VALID_TELEPHONE_REGEX }
-  validates :user_id,                 presence: true, uniqueness: true
+  # validates :user_id,                 presence: true, uniqueness: true
 
   enum prefecture:{
     '---':         0,
