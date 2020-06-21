@@ -51,25 +51,25 @@
             = f.select :prefecture, Address.prefectures.keys.map{|k| [I18n.t("enums.address.prefecture.#{k}"), k]}
           .address-form__input-info__label
             .address-form__input-info__label__set
-              市区町村
+              市区町村（全角）
             .address-form__input-info__label--required
               必須
           = f.text_field :city, placeholder: "例）渋谷区", class: 'address-form__input-info__field'
           .address-form__input-info__label
             .address-form__input-info__label__set
-              番地
+              番地（全角）
             .address-form__input-info__label--required
               必須
           = f.text_field :block_number, placeholder: "例）渋谷５丁目６−１", class: 'address-form__input-info__field'
           .address-form__input-info__label
             .address-form__input-info__label__set
-              建物名・部屋
+              建物名・部屋（全角）
             .address-form__input-info__label--unrequired
               任意
           = f.text_field :building, placeholder: "例）フリマビル　２０１号室", class: 'address-form__input-info__field'
           .address-form__input-info__label
             .address-form__input-info__label__set
-              電話番号（ハイフンなし）
+              電話番号（半角ハイフンなし）
             .address-form__input-info__label--unrequired
               任意
           = f.text_field :telephone, placeholder: "例）0312345678", class: 'address-form__input-info__field'
