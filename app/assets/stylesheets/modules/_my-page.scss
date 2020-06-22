@@ -53,9 +53,15 @@
       &--left{
         padding-right: 30px;
         font-weight:bold;
+        a:hover{
+          color:$highlight-color;
+        }
       }
       &--right{
         padding-left: 16px;
+        a:hover{
+          color:$highlight-color;
+        }
       }
     }
   }

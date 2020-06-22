@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
     @card = Card.find_by(user_id: current_user.id)
     if @card == nil
       redirect_to new_card_path
-      flash[:noCard] = "Cardが登録されていませんので登録してください"
+      flash[:alert] = "クレジットカードが登録されていませんので登録してください"
     else
       Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_PRIVATE_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
