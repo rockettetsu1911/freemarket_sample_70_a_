@@ -16,20 +16,19 @@
                   .pictureInput__uploadLabel__box--input
                     = picture.file_field :image, class: 'picture-upload hidden'
         - else
-          = f.fields_for :picture do |picture|
-            - @item.pictures.each_with_index do |pict, i|
-              %li.picture-preview
-                %label.pictureInput__uploadLabel{ style: 'display: none;' }
-                  .pictureInput__uploadLabel__box
-                    %i.fas.fa-camera.uploadBox-icon
-                    %p クリックしてファイルをアップロード
-                    .pictureInput__uploadLabel__box--input
-                      = picture.file_field :image, value: pict.image, class: 'picture-upload hidden'
-                      = picture.hidden_field :id, value: pict.id, name: "item[picture][#{i}]"
-                .picture-preview__wrapper
-                  = image_tag pict.image.to_s, class: 'preview'
-                .picture-preview__btn
-                  .picture-preview__btn--delete 削除
+          = f.fields_for :pictures, @item.pictures do |picture|
+            %li.picture-preview
+              %label.pictureInput__uploadLabel{ style: 'display: none;' }
+                .pictureInput__uploadLabel__box
+                  %i.fas.fa-camera.uploadBox-icon
+                  %p クリックしてファイルをアップロード
+                  .pictureInput__uploadLabel__box--input
+                    = picture.file_field :image, name: "item[pictures_attributes][#{picture.object.id}][image]", class: 'picture-edit hidden'
+                    = picture.hidden_field :id, value: picture.object.id, name: "item[picture][#{picture.object.id}]"
+              .picture-preview__wrapper
+                = image_tag picture.object.image.to_s, class: 'preview'
+              .picture-preview__btn
+                .picture-preview__btn--delete 削除
 
   %section.sellFillOut.sellItem
     .sellFillOut__label

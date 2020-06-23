@@ -33,9 +33,6 @@ $(document).on('turbolinks:load', function() {
   
   $('#sell-form').validate( {
     rules: {
-      'item[pictures_attributes]': {
-        required: true
-      },
       'item[name]': {
         required: true,
         maxlength: 40
@@ -65,6 +62,7 @@ $(document).on('turbolinks:load', function() {
         error.insertAfter(element);
       }
     }
+    
   });
 });
 

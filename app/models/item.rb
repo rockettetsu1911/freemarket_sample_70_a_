@@ -12,8 +12,10 @@ class Item < ApplicationRecord
  
   validates :pictures, presence: true, length: { maximum: 10, message: 'は10枚以内で入力してください' }, on: :create
   with_options presence: true do
+    validates :user_id
     validates :name,        length: { maximum: 40 }
     validates :explanation, length: { maximum: 1000 }
+    validates :category_id
     validates :condition,   exclusion: { in: %w(---), message: 'を入力してください' }
     validates :price,       numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
