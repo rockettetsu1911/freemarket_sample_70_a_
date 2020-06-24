@@ -72,7 +72,7 @@
     -# Todo: ブランドの追加実装をしたら表示
     -# .sellFillOut__label
     -#   %label.sellFillOut__label--title ブランド
-    -#   %span.sellFillOut__label--required.option 任
+    -#   %span.sellFillOut__label--required.option 任意
     -# %input.sellFillOut__inputArea{ type: 'text', name: 'brand', required: true, autofocus: true,
     -#                               placeholder: '例）無印' }
 
@@ -83,6 +83,7 @@
       .sellFillOut__selectWrapper__box
         = f.select :condition, Item.conditions_i18n.invert, {prompt: '---'}, class: 'select-form'
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
+
   -# Todo: 配送オプションの追加実装をしたら表示
   -# %section.sellFillOut.sellDelivery
   -#   .section.sellFillOut--wrapper
@@ -103,6 +104,7 @@
   -#     %option{ value: '' } 選択してください
   -#     %option{ value: '1' } 1〜2日で発送
   -#     %option{ value: '2' } 3〜4日で発送
+  
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 価格（¥300〜9,999,999）

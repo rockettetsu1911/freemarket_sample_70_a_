@@ -147,12 +147,6 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image, :_destroy, :id])
     .merge(user_id: current_user.id, category_id: params[:item][:category])
   end
-  
-  # def set_categories
-  #   @category_parent_array = @item.set_ancestry('parent')
-  #   params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
-  #   .merge(user_id: current_user.id)
-  # end
 
   def set_ancestry(key)
     return Category.find(key).children
