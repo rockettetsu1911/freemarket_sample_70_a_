@@ -122,5 +122,41 @@ describe Item do
       expect(item).to be_valid
     end
  
+    it 'postage_idがない場合は出品できないこと' do
+      item = build(:item, postage_id: nil)
+      item.valid?
+      expect(item.errors[:postage_id]).to include('を入力してください')
+    end
+ 
+    it 'postageが1,2以外の場合は出品できないこと' do
+      item = build(:item, postage_id: 3)
+      item.valid?
+      expect(item.errors[:postage_id]).to include('は2以下の値にしてください')
+    end
+ 
+    it 'prefectureが選択されていない場合は出品できないこと' do
+      item = build(:item, prefecture: nil)
+      item.valid?
+      expect(item.errors[:prefecture_id]).to include('を入力してください')
+    end
+ 
+    it 'prefectureが1-47以外の場合は出品できないこと' do
+      item = build(:item, prefecture_id: 48)
+      item.valid?
+      expect(item.errors[:prefecture_id]).to include('は47以下の値にしてください')
+    end
+ 
+    it 'delivery_dateがない場合は出品できないこと' do
+      item = build(:item, delivery_date_id: nil)
+      item.valid?
+      expect(item.errors[:delivery_date_id]).to include('を入力してください')
+    end
+ 
+    it 'delivery_dateが1,2以外の場合は出品できないこと' do
+      item = build(:item, delivery_date_id: 3)
+      item.valid?
+      expect(item.errors[:delivery_date_id]).to include('は2以下の値にしてください')
+    end
+ 
   end  
 end
