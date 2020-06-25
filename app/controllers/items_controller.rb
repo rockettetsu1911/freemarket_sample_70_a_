@@ -144,8 +144,8 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, pictures_attributes: [:image, :_destroy, :id])
-    .merge(user_id: current_user.id, category_id: params[:item][:category])
+    params.require(:item).permit(:name, :price, :condition, :explanation, :view_count, pictures_attributes: [:image, :_destroy, :id])
+    .merge(user_id: current_user.id, category_id: params[:item][:category], prefecture_id: params["prefecture"], postage_id: params["postage"], delivery_date_id: params["delivery-date"])
   end
 
   def set_ancestry(key)
