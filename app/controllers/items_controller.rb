@@ -153,8 +153,9 @@ class ItemsController < ApplicationController
     end
   end
   
-  def hashtag
+  def tag
     @tag = Tag.find_by(name: params[:name])
+    @items = @tag.items
   end
 
   private
