@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :item_look_for, only: :purchase
-  before_action :move_to_login, only: [:new]
+  before_action :move_to_login, only: [:new, :edit]
+  before_action :set_item, only: [:edit, :update]
+  before_action :correct_user, only: :edit
 
   def index
     @items = Item.all.last(3)
@@ -28,11 +30,41 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to item_path(@item.id), notice: '出品が完了しました。'
+      redirect_to item_path(@item), notice: '出品が完了しました。'
     else
       flash.now[:alert] = @item.errors.full_messages
       @item.pictures.new
+      set_category if @item.category != nil
       render :new
+    end
+  end
+
+  def edit
+    set_category
+  end
+
+  def update
+    if params[:item].keys.include?('picture') || params[:item].keys.include?('pictures_attributes')
+      before_pictures_ids = @item.pictures.ids
+      if @item.update(item_params)
+        if params[:item].keys.include?('picture')
+          update_pictures_ids = params[:item][:picture].values
+          before_pictures_ids.each do |pict_id|
+            Picture.find(pict_id).destroy unless update_pictures_ids.include?("#{pict_id}")
+          end
+        else
+          before_pictures_ids.each do |pict_id|
+            Picture.find(pict_id).destroy
+          end
+        end
+        redirect_to item_path(@item), notice: '商品を編集しました'
+      else
+        flash[:alert] = @item.errors.full_messages
+        redirect_back(fallback_location: :edit)
+      end
+    else
+      flash[:alert] = '画像は1枚以上必要です'
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -53,7 +85,7 @@ class ItemsController < ApplicationController
     @card = Card.find_by(user_id: current_user.id)
     if @card == nil
       redirect_to new_card_path
-      flash[:noCard] = "Cardが登録されていませんので登録してください"
+      flash[:alert] = "クレジットカードが登録されていませんので登録してください"
     else
       Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_PRIVATE_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -112,14 +144,8 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :condition, :explanation, :view_count, pictures_attributes: [:image])
-    .merge(user_id: current_user.id, category_id: params[:item][:category_id], prefecture_id: params["prefecture"], postage_id: params["postage"], delivery_date_id: params["delivery-date"])
-  end
-  
-  def set_categories
-    @category_parent_array = @item.set_ancestry('parent', nil)
-    params.require(:item).permit(:name, :price, :condition, :explanation, :category_id, pictures_attributes: [:image])
-    .merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :condition, :explanation, :view_count, pictures_attributes: [:image, :_destroy, :id])
+    .merge(user_id: current_user.id, category_id: params[:item][:category], prefecture_id: params["prefecture"], postage_id: params["postage"], delivery_date_id: params["delivery-date"])
   end
 
   def set_ancestry(key)
@@ -128,6 +154,24 @@ class ItemsController < ApplicationController
 
   def move_to_login
     redirect_to user_session_path unless user_signed_in?
+  end
+
+  def correct_user
+    redirect_to purchase_item_path unless current_user.id == @item.user_id
+  end
+
+  def set_category
+    @category_grandchild = @item.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+    @child_array = []
+    @child_array = set_ancestry(@category_parent.id)
+    @grandchild_array = []
+    @grandchild_array = set_ancestry(@category_child.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
   
   def item_look_for

@@ -5,7 +5,6 @@ class Category < ApplicationRecord
 
   validates :name, presence: { message: "カテゴリーを選択してください" }
 
-
   #enum name:{
     #'---':                 0,
     #ladies:                1, 

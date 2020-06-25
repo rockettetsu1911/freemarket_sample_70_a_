@@ -110,10 +110,11 @@
                 = link_to '#' do
                   =icon('fa','flag')
                   不適切な商品の通報
+
         - if @item.bought_at == nil
           - if current_user.id == @item.user.id
             %section.item--edit__btn
-              = link_to '#', class: 'link__btn' do
+              = link_to edit_item_path, class: 'link__btn' do
                 商品の編集
             %p or
             %section.item--pause__btn
@@ -126,6 +127,7 @@
             %section.purchase__btn
               = link_to purchase_item_path, class: 'link__btn' do
                 購入する
+
         %section.top__contents__comment
           %form.comment__box
             %input{type:'hidden'}

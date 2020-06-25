@@ -36,6 +36,9 @@
       height: 3px;
       border-style: unset;
     }
+    label.error {
+      color: red;
+    }
     &__selectWrapper {
 
       &__box {
@@ -123,6 +126,7 @@
       .picture-preview {
         display: inline-block;
         vertical-align: top;
+        width: 120px;
         
         &__wrapper {
           height: 126px;
@@ -138,7 +142,7 @@
             max-height: 100%;
           }
         }
-        .preview-btn {
+        &__btn {
           display: flex;
           justify-content: center;
           font-size: 16px;
@@ -147,6 +151,9 @@
           &--edit {
             display: block;
             width: 50%;
+            &:hover {
+              cursor: pointer;
+            }
           }
           &--delete {
             display: block;
