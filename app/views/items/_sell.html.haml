@@ -83,7 +83,6 @@
       .sellFillOut__selectWrapper__box
         = f.select :condition, Item.conditions_i18n.invert, {prompt: '---'}, class: 'select-form'
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
-        = f.select :condition, Item.conditions_i18n.invert, {}, class: 'select-form'
 
   %section.sellFillOut.sellDelivery
     .section.sellFillOut--wrapper
