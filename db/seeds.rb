@@ -326,5 +326,3 @@ etc_8 = etc.children.create(name: "事務/店舗用品")
 etc_8.children.create([{name: "オフィス用品一般"},{name: "オフィス家具"},{name: "店舗用品"},{name: "OA機器"},{name: "ラッピング/包装"},{name: "その他"}])
 etc_9 = etc.children.create(name: "その他")
 etc_9.children.create([{name: "すべて"}])
-
-
