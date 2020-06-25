@@ -85,7 +85,7 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'ancestry'
 gem 'rubocop', require: false
-gem 'font-awesome-sass', '~> 5.12.0'
+gem 'font-awesome-sass', '~> 5.13.0'
 gem 'payjp'
 gem 'jquery-rails'
 gem 'active_hash'
