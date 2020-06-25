@@ -141,7 +141,7 @@ class ItemsController < ApplicationController
 
   def done
   end
-
+  
   def destroy
     item = Item.find(params[:id])
     if item.destroy
@@ -151,6 +151,10 @@ class ItemsController < ApplicationController
       redirect_to item_path(item.id)
       flash[:notice] = "商品の削除に失敗しました。"
     end
+  end
+  
+  def hashtag
+    @tag = Tag.find_by(name: params[:name])
   end
 
   private

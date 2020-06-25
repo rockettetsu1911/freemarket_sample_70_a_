@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :addresses, only: [:edit, :update]
   end
+
+  get '/tags/:name', to: 'items#hashtag', as: 'tag'
+
 end
