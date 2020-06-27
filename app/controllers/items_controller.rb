@@ -78,6 +78,10 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id
+    if @item.view_count < 99999
+      @item.save
+    end
   end
 
   def purchase
