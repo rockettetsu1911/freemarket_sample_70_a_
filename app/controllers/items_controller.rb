@@ -78,9 +78,15 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id
-    if @item.view_count < 99999
-      @item.save
+    respond_to do |format|
+      format.html do
+        @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id
+        if @item.view_count < 99999
+          @item.save
+        end
+        render :show
+      end
+      format.json {render json: @item}
     end
   end
 

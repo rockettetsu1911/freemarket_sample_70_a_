@@ -34,7 +34,7 @@
   %section.main__contents
     .main__contents__details
       .top__contents
-        .top__contents__items
+        .top__contents__items{data: {itemid: @item.id}}
           %h2.top__contents__items__name
             = @item.name
           .top__contents__items__picture
@@ -105,7 +105,7 @@
               %li.likes__btn
                 = icon('fa','star')
                 お気に入り 0
-              %li.views__btn
+              %li.views__btn#view_count
                 = icon('fa','eye')
                 閲覧回数 #{@item.view_count}
             %ul
