@@ -23,4 +23,9 @@
                 0
               - else
                 = @likes_count[item.id]
+          .itemDetails__fav
+            .itemDetails__fav--mark
+              = icon('fa','eye')
+            .itemDetails__fav--count 
+              = item.view_count
         %p (税込)

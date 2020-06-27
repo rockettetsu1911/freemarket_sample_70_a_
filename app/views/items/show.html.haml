@@ -105,6 +105,9 @@
               %li.likes__btn
                 = icon('fa','star')
                 お気に入り 0
+              %li.views__btn
+                = icon('fa','eye')
+                閲覧回数 #{@item.view_count}
             %ul
               %li.report__btn
                 = link_to '#' do
@@ -112,7 +115,7 @@
                   不適切な商品の通報
 
         - if @item.bought_at == nil
-          - if current_user.id == @item.user.id
+          - if user_signed_in? && current_user.id == @item.user.id
             %section.item--edit__btn
               = link_to edit_item_path, class: 'link__btn' do
                 商品の編集
