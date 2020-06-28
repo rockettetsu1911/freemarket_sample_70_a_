@@ -291,7 +291,7 @@ header {
             display:flex;
             justify-content: space-between;
 
-            &__fav {
+            &__fav, &__view {
               display: flex;
               justify-content: end;
 

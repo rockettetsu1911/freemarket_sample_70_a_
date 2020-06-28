@@ -20,6 +20,10 @@ class ItemsController < ApplicationController
     @picked_up_category = "レディース"
     @picked_up_items = items_by_category[:"#{@picked_up_category}"]
 
+    respond_to do |format|
+      format.html
+      format.json { render json: @items.concat(@picked_up_items)}
+    end
   end
 
   def new

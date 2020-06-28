@@ -9,7 +9,7 @@
       - unless item.bought_at == nil
         .topIndex__contents__itemBox--triangle
         .topIndex__contents__itemBox--soldMessage sold
-      .topIndex__contents__itemBox--summary
+      .topIndex__contents__itemBox--summary{data: {itemid: item.id}}
         %name 
           = item.name
         .itemDetails
@@ -23,9 +23,9 @@
                 0
               - else
                 = @likes_count[item.id]
-          .itemDetails__fav
-            .itemDetails__fav--mark
+          .itemDetails__view
+            .itemDetails__view--mark
               = icon('fa','eye')
-            .itemDetails__fav--count 
+            .itemDetails__view--count 
               = item.view_count
         %p (税込)
