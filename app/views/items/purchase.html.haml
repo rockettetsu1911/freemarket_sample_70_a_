@@ -7,7 +7,7 @@
     = form_with model: @item, local: true do |f|
       .purchaseMain__content.purchaseItem
         .purchaseItem__imageArea
-          = image_tag asset_path('curry.png'), class: 'purchaseItem__imageArea--image', alt: '購入アイテム画像'
+          = image_tag @item.pictures.first.image.url, class: 'purchaseItem__imageArea--image', alt: '購入アイテム画像'
         .purchaseItem__box
           %p 
             = @item.name
@@ -41,12 +41,19 @@
         .purchaseMain__content__wrapper
           .purchaseMain__content__wrapper__delivery
             .purchaseMain__content__wrapper__delivery--label 配送先
-            = link_to '#', class: 'changeBtn' do
+            = link_to edit_user_address_path(current_user.id,current_user.address.id), class: 'changeBtn' do
               変更する
           %p.user-address-info
-            〒113-0034<br>
-            東京都文京区湯島６−７−２<br>
-            清水 健
+            - address = current_user.address
+            %p
+              ="〒"+ address.zip_code 
+            %p 
+              = address.prefecture_i18n + address.city + address.block_number
+            - unless address.building == nil
+              %p
+                = address.building 
+            %p
+              = address.dest_last_name + address.dest_first_name
         .purchaseMain__content__wrapper
           %p.purchase-info
             郵便局/コンビニ受取をご希望の方は、購入後に<strong>取引画面</strong>から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。

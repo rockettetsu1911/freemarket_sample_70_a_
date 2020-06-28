@@ -20,11 +20,7 @@
           font-size:14px;
         }
         span{
-          font-size:12px;
-          background-color: #EA352D;
-          color:#FFFFFF;
-          padding:2px 4px;
-          margin-left:8px;
+          @include required(12px,22px)
         }
       }
       .card__number{
@@ -52,7 +48,7 @@
         }
         span{
           font-size:12px;
-          background-color: #EA352D;
+          background-color: $action_bg-color;
           color:#FFFFFF;
           padding:2px 4px;
           margin-left:8px;
@@ -87,7 +83,7 @@
         }
         span{
           font-size:12px;
-          background-color: #EA352D;
+          background-color: $action_bg-color;
           color:#FFFFFF;
           padding:2px 4px;
           margin-left:8px;
@@ -97,7 +93,7 @@
         text-align:right;
         .question__mark{
           display:inline-block;
-          background-color: #0099e8;
+          background-color: $icon_bg-color;
           width:14px;
           height:14px;
           border-radius:50%;
@@ -108,23 +104,14 @@
         }
         a{
           font-size:14px;
-          color:#0099e8;
+          color:$icon_bg-color;
         }
       }
       .link__btn{
         margin-top:32px;
         .add__card__btn{
-          display:block;
-          width:100%;
-          line-height:48px;
-          font-size:14px;
-          text-align:center;
-          cursor:pointer;
-          background-color: #ea352d;
-          border:1px solid #ea352d;
-          color:#fff;
+          @include action-button(350px,$action_bg-color);
           display:flex;
-          width:100%;
           justify-content:center;
         }
       }

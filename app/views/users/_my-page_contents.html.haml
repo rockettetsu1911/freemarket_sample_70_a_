@@ -6,9 +6,9 @@
     %section.user__tabs
       %ul.user__tabs__header
         %li.notice
-          %h2 お知らせ
+          %h2 出品した商品
         %li.do__list 
-          %h2 やることリスト
+          %h2 購入した商品
     %section.tab__content
       %ul.tab__contentn__ul
         %li.tab__content__li
@@ -33,29 +33,5 @@
               %p 商品を出品しましょう。
               %p 〜時間前
         %li.tab__content__li
-          = link_to '#',class: 'tab__content__page' do
-            .content__icon
-              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
-            .content__text
-              %p 今なら50Pプレゼント
-              %p 〜時間前
-        %li.tab__content__li
-          = link_to '#',class: 'tab__content__page' do
-            .content__icon
-              = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
-            .content__text
-              %p 友達をメルカリに招待しよう！
-              %p 〜時間前
-        %li.tab__content__li
           = link_to '#',class: 'tab__content__page--secret' do
             一覧を見る
-
-    %section.tab__container 
-      .tab__container__title
-        %h3 購入した商品
-      %ul.tab__container__header
-        %li.transaction
-          %h3 取引中
-        %li.past__transactions
-          %h3 過去の取引
-      .tab__container__main

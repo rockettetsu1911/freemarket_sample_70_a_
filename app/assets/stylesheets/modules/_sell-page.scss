@@ -76,14 +76,7 @@
         font-size: 14px;
       }
       &--required {
-        display: inline-block;
-        background-color: #FF0110;
-        color: #ffffff;
-        font-size: 12px;
-        margin-left: 5px;
-        padding: 0 3px;
-        border-radius: 2px;
-        line-height: 1.4;
+        @include required(12px,22px)
       }
       .option {
         background-color: $option_bg-color;
@@ -224,7 +217,7 @@
     &__alert {
       margin-top: 15px;
       font-size: 14px;
-      color: red;
+      color:$action_bg-color;
       display: flex;
 
       #sell-price-alert {
@@ -256,23 +249,11 @@
           font-size: 17px;
           
           &--post {
-            border-radius: 5px;
-            @include action-button(360px, red);
+            @include action-button(350px,$action_bg-color);
             margin-bottom: 0px;
             @media (max-width: 760px) {
               width: 100%;
             }
-            font-weight: bold;
-          }
-          &--draft {
-            border-radius: 5px;
-            @include action-button(360px, lightgrey);
-            margin-bottom: 0px;
-            margin-top: 20px;
-            @media (max-width: 760px) {
-              width: 100%;
-            }
-            color: #222;
             font-weight: bold;
           }
         }
