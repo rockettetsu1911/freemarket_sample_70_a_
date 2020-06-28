@@ -68,14 +68,6 @@
           = f.collection_select :category, Category.where(ancestry: @category_grandchild.ancestry), :id, :name, {selected: @category_grandchild.id}, {class: 'select-form', id: 'category_grandchild'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
-
-    -# Todo: ブランドの追加実装をしたら表示
-    -# .sellFillOut__label
-    -#   %label.sellFillOut__label--title ブランド
-    -#   %span.sellFillOut__label--required.option 任意
-    -# %input.sellFillOut__inputArea{ type: 'text', name: 'brand', required: true, autofocus: true,
-    -#                               placeholder: '例）無印' }
-
     .sellFillOut__label
       %label.sellFillOut__label--title 商品の状態
       %span.sellFillOut__label--required 必須
@@ -131,10 +123,7 @@
           = f.submit '出品する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
         - else
           = f.submit '編集する', { class: 'sellFillOut__submit__sellBtn__wrapper--post' } 
-      .sellFillOut__submit__sellBtn__wrapper
-        = link_to '#' do
-          = f.button '下書きに保存', { class: 'sellFillOut__submit__sellBtn__wrapper--draft' }
-      = link_to '#', class: 'sellFillOut__submit__sellBtn--cansel' do
+      = link_to root_path, class: 'sellFillOut__submit__sellBtn--cansel' do
         もどる
       .sellFillOut__submit__caution
         %p 禁止されている<a href='#'>行為</a>および<a href='#'>出品物</a>を必ずご確認ください。<a href='#'>偽ブランド品</a>や<a href='#'>盗品物</a>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<a href='#'>加盟店規約</a>に同意したことになります。
