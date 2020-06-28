@@ -28,7 +28,6 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      console.log(data);
       if (location.pathname == "/") {
         itemIndexBuildHTML(data);
       }else if (location.pathname.match(/\/items\/[0-9]+/) != null ) {
