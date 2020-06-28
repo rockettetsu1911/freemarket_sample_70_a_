@@ -107,7 +107,10 @@
                 お気に入り 0
               %li.views#view_count
                 = icon('fa','eye')
-                閲覧回数 #{@item.view_count}
+                - if @item.view_count > 99999
+                  閲覧回数 99999+
+                - else
+                  閲覧回数 #{@item.view_count}
             %ul
               %li.report__btn
                 = link_to '#' do

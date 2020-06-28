@@ -27,5 +27,8 @@
             .itemDetails__view--mark
               = icon('fa','eye')
             .itemDetails__view--count
-              = item.view_count
+              - if item.view_count > 99999
+                99999+
+              - else
+                = item.view_count
         %p (税込)
