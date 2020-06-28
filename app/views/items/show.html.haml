@@ -101,7 +101,7 @@
                 お気に入り 0
             %ul
               %li.report__btn
-                = link_to '#' do
+                %a
                   =icon('fa','flag')
                   不適切な商品の通報
 
@@ -130,18 +130,6 @@
             %button.submit__btn
               = icon('fa','comment')
               コメントする
-      %ul.link__items
-        %li
-          = link_to '#' do
-            = icon('fa', 'angle-left')
-            %span 前の商品
-        %li 
-          = link_to '#' do
-            後ろの商品
-            = icon('fa','angle-right')
-      .back__category
-        = link_to '#' do
-          ベビー・キッズをもっと見る
   
 %aside
   = render 'layouts/global-aside'
