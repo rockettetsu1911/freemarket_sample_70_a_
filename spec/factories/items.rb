@@ -1,12 +1,15 @@
 FactoryBot.define do
   
   factory :item do
-    name          {"商品名"}
-    price         {1000}
-    condition     {'not_injured'}
-    explanation   {"商品説明"}
+    name               {"商品名"}
+    price              {1000}
+    condition          {'not_injured'}
+    explanation        {"商品説明"}
     user
     category
+    postage_id         {1}
+    prefecture_id      {13}
+    delivery_date_id   {1}
   end
 
   factory :item_valid, parent: :item do |item|

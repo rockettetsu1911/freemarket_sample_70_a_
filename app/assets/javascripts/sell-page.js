@@ -30,6 +30,40 @@ $(document).on('turbolinks:load', function() {
       $('#sell-word-count-alert').text('');
     }
   });
+  
+  $('#sell-form').validate( {
+    rules: {
+      'item[name]': {
+        required: true,
+        maxlength: 40
+      },
+      'item[explanation]': {
+        required: true,
+        maxlength: 1000
+      },
+      'item[category]': {
+        required: true
+      },
+      'item[condition]': {
+        required: true
+      },
+      'item[price]': {
+        required: true,
+        number: true,
+        min: 300,
+        max: 9999999
+      },
+    },
+    errorPlacement: function(error, element) {
+      if(element.attr('name')=='item[price]') {
+        error.insertAfter('.sellFillOut__label--wrapper:first');
+      }
+      else {
+        error.insertAfter(element);
+      }
+    }
+    
+  });
 });
 
 function localStr(str) {

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :items, only: [:index, :new, :show, :create, :destroy] do
+  resources :items do
     member do
       get  'purchase'=>  'items#purchase', as: 'purchase'
       patch 'pay'=>   'items#pay', as: 'pay'

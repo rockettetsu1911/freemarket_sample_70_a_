@@ -30,7 +30,7 @@ class CardsController < ApplicationController
 
   def new # カードの登録画面。送信ボタンを押すとcreateアクションへ。
     card = Card.where(user_id: current_user.id).first
-    redirect_to card_path(@card.id) if card.present?
+    redirect_to card_path(card.id) if card.present?
   end
 
 

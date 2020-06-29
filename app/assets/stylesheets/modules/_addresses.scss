@@ -41,7 +41,7 @@
       resize: none;
     }
     &__action-button {
-      @include action-button(350px, red);
+      @include action-button(350px,$action_bg-color);
     }
   }
   &__input-name {
