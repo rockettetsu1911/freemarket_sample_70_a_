@@ -78,12 +78,6 @@
                         = icon('fa', 'angle-right') 
                         = @item.category.name
               %tr
-                %th ブランド
-                %td
-              %tr
-                %th 商品のサイズ
-                %td
-              %tr
                 %th 商品の状態
                 %td
                   = @item.condition_i18n
@@ -113,26 +107,24 @@
                   閲覧回数 #{@item.view_count}
             %ul
               %li.report__btn
-                = link_to '#' do
+                %a
                   =icon('fa','flag')
                   不適切な商品の通報
 
         - if @item.bought_at == nil
-          - if user_signed_in? && current_user.id == @item.user.id
-            %section.item--edit__btn
-              = link_to edit_item_path, class: 'link__btn' do
-                商品の編集
-            %p or
-            %section.item--pause__btn
-              = link_to '#', class: 'un--link__btn' do
-                商品の出品を一旦停止する
-            %section.item--delete__btn
-              = link_to item_path, method: :delete, class: 'un--link__btn' do
-                この商品を削除する
-          - else
-            %section.purchase__btn
-              = link_to purchase_item_path, class: 'link__btn' do
-                購入する
+          - if user_signed_in?
+            - if current_user.id == @item.user.id
+              %section.item--edit__btn
+                = link_to edit_item_path, class: 'link__btn' do
+                  商品の編集
+              %p or
+              %section.item--delete__btn
+                = link_to item_path, method: :delete, class: 'un--link__btn' do
+                  この商品を削除する
+            - else
+              %section.purchase__btn
+                = link_to purchase_item_path, class: 'link__btn' do
+                  購入する
 
         %section.top__contents__comment
           %form.comment__box
@@ -144,18 +136,6 @@
             %button.submit__btn
               = icon('fa','comment')
               コメントする
-      %ul.link__items
-        %li
-          = link_to '#' do
-            = icon('fa', 'angle-left')
-            %span 前の商品
-        %li 
-          = link_to '#' do
-            後ろの商品
-            = icon('fa','angle-right')
-      .back__category
-        = link_to '#' do
-          ベビー・キッズをもっと見る
   
 %aside
   = render 'layouts/global-aside'
