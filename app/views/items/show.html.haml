@@ -124,8 +124,8 @@
           .comment__container
             %ul.comment__container__list
               - @commentAll.each do |comment|
-                - unless comment.user_id == current_user.id
-                  %li
+                %li.comment--block
+                  - unless comment.user_id == current_user.id
                     %section.user__information
                       = link_to '#', class: 'seller__link' do
                         .user__icon
@@ -148,11 +148,11 @@
                             %span 
                               = comment.created_at
                           - if @item.user_id == current_user.id
-                            .right--icon
-                              = icon('fa', 'flag')
-                - if comment.user_id == current_user.id
-                  %li 
-                    %section.user__comment
+                            .right--icon#user_comment-delete{data:{index: comment.id}} 
+                              = link_to comment_path(comment.id), method: :delete do
+                                = icon('fa', 'trash')
+                  - if comment.user_id == current_user.id 
+                    %section.user__comment{data:{index: comment.id}} 
                       .user__comment__current__name
                         = current_user.nickname
                       .user__comment__body__current-user
@@ -167,7 +167,7 @@
                             %span 
                               = comment.created_at
                           - if @item.user_id == current_user.id
-                            .right--icon{data:{index: comment.id}} 
+                            .right--icon#current_user_comment-delete{data:{index: comment.id}} 
                               = link_to comment_path(comment.id), method: :delete do
                                 = icon('fa', 'trash')
                     %section.user__information

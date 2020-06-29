@@ -2,15 +2,22 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
-    flash[:notice] = 'コメントしました。'
-    redirect_to item_path(@comment.item.id)
+    if @comment.save
+      #respond_to do |format|
+        #format.json
+        flash[:notice] = 'コメントしました。'
+        redirect_to item_path(@comment.item.id)
+      end
+    # else
+    #  flash[:notice] = 'コメント出来ませんでした。'
+    #  redirect_to item_path(params[:id])
+    # end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to item_path(@comment.item.id)
+    comment = Comment.find(params[:id])
+    comment.text = 'このコメントは出品者によって削除されました。'
+    comment.save
   end
 
 private
