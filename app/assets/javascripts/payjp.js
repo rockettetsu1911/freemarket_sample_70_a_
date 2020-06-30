@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $('#token_submit').on('click', function(e) {
     Payjp.setPublicKey("pk_test_0df3d3eb150a3f3dd0f2fc3e");
-    e.preventDefault();
+    e.preventDefault();　//ボタンを一旦無効化
     //カード情報生成
     const card = {
       number: document.getElementById("card_number").value,
@@ -20,9 +20,10 @@ $(document).on('turbolinks:load', function() {
           $('<input hidden name="payjp-token">').val(response.id)
         ); //トークンを送信できるように隠しタグを生成
         document.inputForm.submit();
+      } else {
+        alert("カード情報が正しくありません。");
       }
     });
   });
-  false;
 });
 

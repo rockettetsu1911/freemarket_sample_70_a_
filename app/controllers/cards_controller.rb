@@ -37,7 +37,7 @@ class CardsController < ApplicationController
   def create #PayjpとCardのデータベースを作成
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_PRIVATE_KEY]
     if params['payjp-token'].blank?
-      redirect_to action: "new"
+      redirect_to action: "new", alert: 'クレジットカード情報を入力してください。'
     else
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
       customer = Payjp::Customer.create(
@@ -48,9 +48,9 @@ class CardsController < ApplicationController
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to card_path(@card.id), notice: "クレジットカード情報を登録しました。"
+        redirect_to card_path(@card.id), notice: 'クレジットカード情報を登録しました。'
       else
-        redirect_to action: "create", notice: "クレジットカード情報が正しくありません。"
+        redirect_to action: "new", alert: 'クレジットカード情報が正しくありません。'
       end
     end
   end
@@ -61,9 +61,9 @@ class CardsController < ApplicationController
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     if @card.destroy #削除に成功した時にポップアップを表示します。
-      redirect_to action: "show", notice: "削除しました"
+      redirect_to action: "show", notice: '削除しました'
     else #削除に失敗した時にアラートを表示します。
-      redirect_to action: "show", alert: "削除できませんでした"
+      redirect_to action: "show", alert:  '削除できませんでした'
     end
   end
 
