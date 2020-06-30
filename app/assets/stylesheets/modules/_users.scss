@@ -25,6 +25,8 @@
   }
   &__input-info {
     font-size: $main_contents_font-size;
+    width: 350px;
+    margin: 5px auto;
     &__label {
       width: 350px;
       margin: 5px auto;
@@ -85,4 +87,10 @@
       }
     }
   }
+}
+
+.invalid {
+  margin: 5px auto;
+  color: red;
+  font-size: $searchBox_font-size;
 }
