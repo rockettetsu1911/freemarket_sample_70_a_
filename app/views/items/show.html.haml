@@ -28,13 +28,13 @@
             = icon('fa', 'angle-right')
           %li.my--page__nav__guide--menu__btn
             %b 
-              = @item.name        
+              = @item.name
             
 .items__details__contents
   %section.main__contents
     .main__contents__details
       .top__contents
-        .top__contents__items
+        .top__contents__items{data: {itemid: @item.id}}
           %h2.top__contents__items__name
             = @item.name
           .top__contents__items__picture
@@ -99,6 +99,12 @@
               %li.likes__btn
                 = icon('fa','star')
                 お気に入り 0
+              %li.views#view_count
+                = icon('fa','eye')
+                - if @item.view_count > 99999
+                  閲覧回数 99999+
+                - else
+                  閲覧回数 #{@item.view_count}
             %ul
               %li.report__btn
                 %a
