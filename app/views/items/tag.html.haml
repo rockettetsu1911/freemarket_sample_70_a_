@@ -3,36 +3,34 @@
 .topMain
   %section.topCategory
     .topCategory__title
-      %h2 タグ検索
-      %h3 <strong>##{@tag.name} 新規投稿商品</strong>
+      %h2 タグ付き商品
+      %h3 <strong>表示タグ： ##{@tag.name}</strong>
 
     .topCategory__contents
-      -# - @picked_up_items.each do |item|
-      -#   = link_to item_path(item.id), class: 'topCategory__contents__itemBox' do 
-      -#     = image_tag item.pictures.first.image.url, class: 'topCategory__contents__itemBox--image', alt: '商品画像'
-      -#     - unless item.bought_at == nil
-      -#       .topCategory__contents__itemBox--triangle
-      -#       .topCategory__contents__itemBox--soldMessage sold
-      -#     .topCategory__contents__itemBox--summary
-      -#       %name 
-      -#         = item.name
-      -#       .itemDetails
-      -#         .itemDetails__price 
-      -#           #{item.price}円
-      -#         .itemDetails__fav
-      -#           .itemDetails__fav--mark
-      -#             = icon('fa','star')
-      -#           .itemDetails__fav--count 
-      -#             - if @likes_count[item.id] == nil
-      -#               0
-      -#             - else
-      -#               = @likes_count[item.id]
-      -#       %p (税込)
-
-    .tagContents
-      = render_with_tag(@items)
+      - @items.each do |item|
+        - if user_signed_in?
+          - unless current_user.id == item.user_id
+          = link_to item_path(item.id), class: 'topCategory__contents__itemBox' do 
+            = image_tag item.pictures.first.image.url, class: 'topCategory__contents__itemBox--image', alt: '商品画像'
+            - unless item.bought_at == nil
+              .topCategory__contents__itemBox--triangle
+              .topCategory__contents__itemBox--soldMessage sold
+            .topCategory__contents__itemBox--summary
+              %name 
+                = item.name
+              .itemDetails
+                .itemDetails__price 
+                  #{item.price}円
+                .itemDetails__fav
+                  .itemDetails__fav--mark
+                    = icon('fa','star')
+                  -# .itemDetails__fav--count 
+                  -#   - if @likes_count[item.id] == nil
+                  -#     0
+                  -#   - else
+                  -#     = @likes_count[item.id]
+              %p (税込)
 
 %footer
   = render 'layouts/global-footer'
 = render 'layouts/global-sellBtn'
-
