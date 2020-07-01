@@ -13,10 +13,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(sign_up_params)
+    @nickname_present = true
+    @email_present = true
     unless @user.valid?
       # flash.now[:alert] = @user.errors.full_messages
-      # render :new and return
-      return
+      @nickname_present = false if User.find_by(nickname: @user.nickname).present?
+      @email_present = false if User.find_by(email: @user.email).present?
+      render :new and return @nickname_present, @email_present
     end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
@@ -28,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(address_params)
     unless @address.valid?
-      flash.now[:alert] = @address.errors.full_messages
+      # flash.now[:alert] = @address.errors.full_messages
       render :new_address and return
     end
     @user.build_address(@address.attributes)

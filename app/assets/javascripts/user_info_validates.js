@@ -8,12 +8,20 @@ $(document).on('turbolinks:load', function() {
   }, '全角カナで入力してください');
     
   jQuery.validator.addMethod("isBirthday", function(value, element) {
-    return this.optional( element ) || /\A(19|20)\d{2}\/([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[12][0-9]|3[01])\z/.test( value );
-  }, '正しい年月日で入力してください');
+    return this.optional( element ) || /^\d{4}\/\d{1,2}\/\d{1,2}$/.test( value );
+  }, '正しい年月日を入力してください');
 
   jQuery.validator.addMethod("isTelephone", function(value, element) {
     return this.optional( element ) || /\d+/.test( value );
   }, '数字で入力してください');
+
+  jQuery.validator.addMethod("isZipCode", function(value, element) {
+    return this.optional( element ) || /^\d{7}$/.test( value );
+  }, '正しい郵便番号を入力してください');
+ 
+  $.validator.addMethod("isPrefecture", function(value, element) {
+    return this.optional( element ) || /^[a-z]+$/.test( value );
+    }, "都道府県を選択してください");
 
   $("#signup_form").validate({
     rules: {
@@ -67,6 +75,60 @@ $(document).on('turbolinks:load', function() {
         required: true,
         minlength: 7,
         equalTo: '#user_password'
+      },
+    },
+    errorClass: "invalid",
+    errorElement: "p",
+    validClass: "valid", 
+  });
+  $("#address_form").validate({
+    rules: {
+      'address[dest_first_name]': {
+        required: true,
+        maxlength: 15,
+        isZenkaku: true
+      },
+      'address[dest_last_name]': {
+        required: true,
+        maxlength: 15,
+        isZenkaku: true
+      },
+      'address[dest_first_name_kana]': {
+        required: true,
+        maxlength: 30,
+        isZenkakuKana: true
+      },
+      'address[dest_last_name_kana]': {
+        required: true,
+        maxlength: 30,
+        isZenkakuKana: true
+      },
+      'address[zip_code]': {
+        required: true,
+        isZipCode: true
+      },
+      'address[prefecture]': {
+        required: true,
+        isPrefecture: true
+      },
+      'address[city]': {
+        required: true,
+        maxlength: 30,
+        isZenkaku: true
+      },
+      'address[block_number]': {
+        required: true,
+        maxlength: 30,
+        isZenkaku: true
+      },
+      'address[building]': {
+        maxlength: 30,
+        isZenkaku: true
+      },
+      'address[telephone]': {
+        maxlength: 11,
+        minlength: 10,
+        isTelephone: true
       },
     },
     errorClass: "invalid",
