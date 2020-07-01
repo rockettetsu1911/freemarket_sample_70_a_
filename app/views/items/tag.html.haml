@@ -1,21 +1,20 @@
 %header
   = render 'layouts/global-header'
-.topMain
-  %section.topCategory
-    .topCategory__title
+.searchResult
+  %section.searchIndex
+    .searchIndex__title
       %h2 タグ付き商品
       %h3 <strong>表示タグ： ##{@tag.name}</strong>
 
-    .topCategory__contents
+    .searchIndex__contents
       - @items.each do |item|
-        - if user_signed_in?
-          - unless current_user.id == item.user_id
-          = link_to item_path(item.id), class: 'topCategory__contents__itemBox' do 
-            = image_tag item.pictures.first.image.url, class: 'topCategory__contents__itemBox--image', alt: '商品画像'
+        - unless item.user_id == @current_user_id
+          = link_to item_path(item.id), class: 'searchIndex__contents__itemBox' do 
+            = image_tag item.pictures.first.image.url, class: 'searchIndex__contents__itemBox--image', alt: '商品画像'
             - unless item.bought_at == nil
-              .topCategory__contents__itemBox--triangle
-              .topCategory__contents__itemBox--soldMessage sold
-            .topCategory__contents__itemBox--summary
+              .searchIndex__contents__itemBox--triangle
+              .searchIndex__contents__itemBox--soldMessage sold
+            .searchIndex__contents__itemBox--summary
               %name 
                 = item.name
               .itemDetails

@@ -156,6 +156,7 @@ class ItemsController < ApplicationController
   def tag
     @tag = Tag.find_by(name: params[:name])
     @items = @tag.items
+    @current_user_id = current_user.id if user_signed_in?
   end
 
   private

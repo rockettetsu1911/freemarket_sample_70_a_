@@ -1,20 +1,18 @@
 $(document).on('turbolinks:load', function() {
-  let $tag_text = $((document.getElementById('js_tag')));
-  let tag_link = $tag_text.text();
-  var tag_html = tag_link;
-  var tags = [];
+  if(document.URL.match(/items\/[\d]+$/)) {
+    let $tag_text = $((document.getElementById('js_tag')));
+    let tag_html = $tag_text.context.innerHTML;
+    var tags = [];
 
-  $text_parent = $tag_text.parents('.top__contents__items__text');
-  hashtags = $tag_text.text().match(/[#＃](?<!#＃)[\w\p{Han}０-９ぁ-ヶｦ-ﾟー]+/g);
+    hashtags = $tag_text.text().match(/[#＃](?<!#＃)[\u30e0-\u9fcf\w０-９ぁ-ヶｦ-ﾟー]+/g);
+    $.each(hashtags, function(i, hashtag) {
+      tags.push(hashtag.slice(1));
+    })
 
-  $.each(hashtags, function(i, hashtag) {
-    tags.push(hashtag.slice(1));
-  })
+    $.each(tags, function(i, tag) {
+      tag_html = tag_html.replace(hashtags[i], `<a href='/tags/${tag}'>${tag}</a>`);
+    })
 
-  $.each(tags, function(i, tag) {
-    tag_html = tag_html.replace(hashtags[i], `<a href='/tags/${tag}'>${tag}</a>`);
-    console.log(tag_html);
-  })
-
-  $tag_text.html(tag_html);
+    $tag_text.html(tag_html);
+  }
 });
