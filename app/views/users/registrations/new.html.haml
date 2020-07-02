@@ -11,7 +11,7 @@
         .signup__input-info__label--required
           必須
       = f.text_field :nickname, placeholder: "例）フリマくん", class: 'signup__input-info__field'
-      - if @nickname_present == false
+      - if @nickname_present == true
         .invalid
           このニックネームは既に使われています
       .signup__input-name
@@ -50,7 +50,7 @@
         .signup__input-info__label--required
           必須
       = f.text_field :email, placeholder: "例）freema@example.com", class: 'signup__input-info__field'
-      - if @email_present == false
+      - if @email_present == true
         .invalid
           このメールアドレスは既に使われています
 
