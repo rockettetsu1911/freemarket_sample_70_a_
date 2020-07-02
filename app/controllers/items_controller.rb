@@ -141,7 +141,7 @@ class ItemsController < ApplicationController
 
   def done
   end
-  
+
   def destroy
     item = Item.find(params[:id])
     if item.destroy
