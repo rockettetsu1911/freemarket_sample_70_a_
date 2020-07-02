@@ -125,67 +125,87 @@
             %ul.comment__container__list
               - @commentAll.each do |comment|
                 %li.comment--block
-                  - unless comment.user_id == current_user.id
-                    %section.user__information
-                      = link_to '#', class: 'seller__link' do
-                        .user__icon
-                          = image_tag 'member_photo_noimage_thumb.png', height: '40', width: '40' 
-                        -if @item.user_id == comment.user_id
-                          .user__name
-                            出品者
+                  %section.user__information
+                    = link_to '#', class: 'seller__link' do
+                      //　プロフィールページが出来次第実装
+                      .user__icon
+                        = image_tag 'member_photo_noimage_thumb.png', height: '40', width: '40' 
+                      -if @item.user_id == comment.user_id
+                        .user__name
+                          出品者
+                  - if user_signed_in?
+                    - if comment.user_id == current_user.id 
+                      %section.user__comment{data:{index: comment.id}} 
+                        .user__comment__current__name
+                          = current_user.nickname
+                        .user__comment__body__current-user
+                          .user__comment__body__current-user--text
+                            = comment.text
+                          .user__comment__body__current-user__icon
+                            = icon('icon','balloon')
+                          .user__comment__body__current-user__date
+                            .left--icon
+                              .icon--watch
+                                = icon('fa', 'clock')
+                              %span 
+                                = comment.created_at
+                            - if @item.user_id == current_user.id
+                              .right--icon#current_user_comment-delete{data:{index: comment.id}} 
+                                = link_to comment_path(comment.id), method: :delete do
+                                  = icon('fa', 'trash')
+                    - else
+                      %section.user__comment{data:{index: comment.id}}  
+                        .user__comment__name
+                          - unless comment.comment_status == 1
+                            = comment.user.nickname
+                        .user__comment__body
+                          .user__comment__body--text
+                            = comment.text
+                          .user__comment__body__icon
+                            = icon('icon','balloon')
+                          .user__comment__body__date
+                            - unless comment.comment_status == 1
+                              .left--icon
+                                .icon--watch
+                                  = icon('fa', 'clock')
+                                %span 
+                                  = comment.created_at
+                              - if @item.user_id == current_user.id
+                                .right--icon#user_comment-delete{data:{index: comment.id}} 
+                                  = link_to comment_path(comment.id), method: :delete do
+                                    = icon('fa', 'trash') 
+                  - else
                     %section.user__comment{data:{index: comment.id}}  
                       .user__comment__name
-                        = comment.user.nickname
+                        - unless comment.comment_status == 1
+                          = comment.user.nickname
                       .user__comment__body
                         .user__comment__body--text
                           = comment.text
                         .user__comment__body__icon
                           = icon('icon','balloon')
                         .user__comment__body__date
-                          .left--icon
-                            .icon--watch
-                              = icon('fa', 'clock')
-                            %span 
-                              = comment.created_at
-                          - if @item.user_id == current_user.id
-                            .right--icon#user_comment-delete{data:{index: comment.id}} 
-                              = link_to comment_path(comment.id), method: :delete do
-                                = icon('fa', 'trash')
-                  - if comment.user_id == current_user.id 
-                    %section.user__comment{data:{index: comment.id}} 
-                      .user__comment__current__name
-                        = current_user.nickname
-                      .user__comment__body__current-user
-                        .user__comment__body__current-user--text
-                          = comment.text
-                        .user__comment__body__current-user__icon
-                          = icon('icon','balloon')
-                        .user__comment__body__current-user__date
-                          .left--icon
-                            .icon--watch
-                              = icon('fa', 'clock')
-                            %span 
-                              = comment.created_at
-                          - if @item.user_id == current_user.id
-                            .right--icon#current_user_comment-delete{data:{index: comment.id}} 
-                              = link_to comment_path(comment.id), method: :delete do
-                                = icon('fa', 'trash')
-                    %section.user__information
-                      = link_to '#', class: 'seller__link' do
-                        .user__icon
-                          = image_tag 'member_photo_noimage_thumb.png', height: '40', width: '40'
-          .comment__box
-            = form_with model: @comment,class: 'new__comment' ,local: true do |f|
-              = f.text_area :text,type: 'text', class: 'form__area'
-              = f.hidden_field :item_id, value: @item.id
-              .notice
-                %p 相手のことを考え丁寧なコメントを心がけましょう。
-                %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-              // ログインしていない場合ボタん無くす
-              // 出品者とそれ以外でコメントの色をかえる
-              %button.submit__btn{name: "button", type: 'submit'}
-                = icon('fa','comment')
-                コメントする
+                          - unless comment.comment_status == 1
+                            .left--icon
+                              .icon--watch
+                                = icon('fa', 'clock')
+                              %span 
+                                = comment.created_at
+                      %section.user__information
+                        = link_to '#', class: 'seller__link' do
+                          .user__icon
+                            = image_tag 'member_photo_noimage_thumb.png', height: '40', width: '40'
+          - if user_signed_in?
+            .comment__box
+              = form_with class: 'new__comment',model: @comment do |f|
+                = f.text_area :text,type: 'text', class: 'form__area'
+                = f.hidden_field :item_id, value: @item.id
+                .notice
+                  %p 相手のことを考え丁寧なコメントを心がけましょう。
+                  %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+                %button.submit__btn{name: "button", type: 'submit'}
+                  = icon('fa','comment')
+                  コメントする
   
 %aside
   = render 'layouts/global-aside'
