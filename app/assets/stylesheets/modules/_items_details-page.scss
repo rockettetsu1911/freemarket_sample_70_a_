@@ -111,6 +111,12 @@
               line-height:1.5;
               font-size:18px;
               margin-bottom:30px;
+
+              p {
+                a {
+                  color: $highlight-color;
+                }
+              }
             }
             &__table{
               margin-bottom:20px;

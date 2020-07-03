@@ -152,6 +152,13 @@ class ItemsController < ApplicationController
       flash[:notice] = "商品の削除に失敗しました。"
     end
   end
+  
+  def tag
+    @tag = Tag.find_by(name: params[:name])
+    @items = @tag.items
+    @current_user_id = current_user.id if user_signed_in?
+    @likes_count = Like.group(:item_id).count
+  end
 
   private
 
