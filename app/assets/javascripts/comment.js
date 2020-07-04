@@ -1,34 +1,29 @@
 $(document).on('turbolinks:load', function() {
-  $(".comment__container__list").on('click','.right--icon',function(e){
-    e.preventDefault();
-    var index = $(this).data("index");
-    $(`.comment--block[data-index=${index}]`).remove();
-    });
 
-    function user__comment__delete(index){
-      var html = 
-      `
-      <div class="user__comment__body--text">
-        コメントは出品者により削除されました。
-      </div>
-      `
-    return html;
-    };
+  function user__comment__delete(index){
+    var html = 
+    `
+    <div class="user__comment__body--text">
+      コメントは出品者によって削除されました。
+    </div>
+    `
+  return html;
+  };
 
-    function current__user__comment__delete(index){
-      var html = 
-      `
-      <div class="user__comment__body__current-user--text">
-        コメントは出品者により削除されました。
-      </div>
-      `
-    return html;
-    };
+  function current__user__comment__delete(index){
+    var html = 
+    `
+    <div class="user__comment__body__current-user--text">
+      コメントは出品者によって削除されました。
+    </div>
+    `
+  return html;
+  };
 
   // 自分のコメントを削除した場合
   $(".comment__container__list").on('click',"#current_user_comment-delete",function(e){
-    e.preventDefault();
     var index = $(this).data("index");
+    $(`.comment--block[data-index=${index}]`).remove();
     var content =  $(`.user__comment[data-index=${index}]`).find(".user__comment__body__current-user");
     content.empty();
     content.append(current__user__comment__delete(index));
@@ -36,8 +31,8 @@ $(document).on('turbolinks:load', function() {
 
   // 他人のコメントを削除した場合
   $(".comment__container__list").on('click',"#user_comment-delete",function(e){
-    e.preventDefault();
     var index = $(this).data("index");
+    $(`.comment--block[data-index=${index}]`).remove();
     var content =  $(`.user__comment[data-index=${index}]`).find(".user__comment__body");
     content.empty();
     content.append(user__comment__delete(index));
@@ -64,7 +59,10 @@ $(document).on('turbolinks:load', function() {
   })
   .fail(function() {
     alert("メッセージ送信に失敗しました");
-      });
+      })
+  .always(function() {
+    $('.submit__btn').removeAttr('disabled');
+          })
     });
 
   // 新規コメント表示用
@@ -97,8 +95,8 @@ $(document).on('turbolinks:load', function() {
       `
     var HTML_deleteBtn =  
         `
-              <div class="right--icon #current_user_comment-delete" data-index=${comment_data.id}>
-                <a rel="nofollow" data-method="delete" href="/comments/${comment_data.id}">
+              <div class="right--icon" id="current_user_comment-delete" data-index=${comment_data.id}>
+                <a rel="nofollow" data-method="PATCH" href="/comments/${comment_data.id}">
                   <i class="fa fa-trash"></i>  
                 </a>
               </div>
