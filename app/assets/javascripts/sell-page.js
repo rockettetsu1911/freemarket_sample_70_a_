@@ -14,6 +14,22 @@ $(document).on('turbolinks:load', function() {
     let count = $(this).val().length;
     $('#sell-word-count').text(count);
   });
+
+  $('form').on('submit',function() {
+    function scrollToPicture() {
+      scrollTo(0, position);
+    }
+    var element = document.getElementById('picture-scroll');
+    var rect = element.getBoundingClientRect();
+    var position = window.pageYOffset + rect.top;
+    $is_upload = $('#item_pictures_attributes_0_image');
+    $is_exist = $('.picture-preview__wrapper');
+    if((!$is_upload.val()) && $is_exist.length == 0) {
+      document.getElementById('sell-picture-alert').textContent = '画像がありません';
+      scrollToPicture();
+      return false;
+    }
+  });
   
   $('#sell-form').validate( {
     rules: {
@@ -47,6 +63,35 @@ $(document).on('turbolinks:load', function() {
         max: 9999999
       },
     },
+    messages: {
+      'item[name]': {
+        required: '入力してください',
+      },
+      'item[explanation]': {
+        required: '入力してください',
+        maxlength: 1000
+      },
+      'item[category]': {
+        required: '選択してください'
+      },
+      'item[condition]': {
+        required: '選択してください'
+      },
+      'postage': {
+        required: '選択してください'
+      },
+      'prefecture': {
+        required: '選択してください'
+      },
+      'delivery-date': {
+        required: '選択してください'
+      },
+      'item[price]': {
+        required: '入力してください',
+        min: '300以上9999999以下で入力してください',
+        max: '300以上9999999以下で入力してください'
+      },
+    },
     errorPlacement: function(error, element) {
       if(element.attr('name')=='item[price]') {
         error.insertAfter('#sell-price-alert');
@@ -55,7 +100,6 @@ $(document).on('turbolinks:load', function() {
         error.insertAfter(element);
       }
     }
-    
   });
 });
 

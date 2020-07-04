@@ -1,7 +1,7 @@
 = form_with model: @item, id: "sell-form", local: true do |f|
   %section.sellFillOut.sellImage
     .sellFillOut__label
-      %label.sellFillOut__label--title 出品画像
+      %label.sellFillOut__label--title#picture-scroll 出品画像
       %span.sellFillOut__label--required 必須
     %p.sellFillOut__text 最大10枚までアップロードできます
     #image-box
@@ -29,6 +29,8 @@
                 = image_tag picture.object.image.to_s, class: 'preview'
               .picture-preview__btn
                 .picture-preview__btn--delete 削除
+    .sellFillOut__alert
+      #sell-picture-alert
 
   %section.sellFillOut.sellItem
     .sellFillOut__label
