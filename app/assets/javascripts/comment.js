@@ -70,33 +70,9 @@ $(document).on('turbolinks:load', function() {
   // 新規コメント表示用
   function new_comment(comment_data){
 
-    var HTML_comment_block
-      `
-      <li class="comment--block">
-        <section class="user__inforamtion">
-          <a class="seller__link" href="#">
-          <div class="user__icon">
-          　<img src="member_photo_noimage_thumb.png">
-          </div>
-      `
-
-    var HTML_sellerMark =
-        `
-          <div class="user__name">
-          出品者
-          </div>
-        </a>
-        `
-
-    var HTML_not_sellerMark = 
-        `
-          <div class="user__name">
-          </div>
-        </a>
-        `
-
     var HTML_user_data = 
       `
+      <li class="comment--block">
         <section class="user__comment" data-index=${comment_data.id}>
           <div class="user__comment__current__name">
             ${comment_data.user_nickname}
@@ -106,7 +82,7 @@ $(document).on('turbolinks:load', function() {
               ${comment_data.text}
             </div>
             <div class="user__comment__body__current-user__icon">
-              <i class='fa fa-balloon'></i>
+              <i class='icon fa-balloon'></i>
             </div>
             <div class="user__comment__body__current-user__date">
               <div class="left--icon">
@@ -130,21 +106,44 @@ $(document).on('turbolinks:load', function() {
 
     var HTML_endDiv =
       `
-              </div>
             </div>
-          </section>
+          </div>
         </section>
-      </li> 
       `
-    if (comment_data.item_id == comment_data.user_id){
+    var HTML_comment_block =
+    `
+      <section class="user__inforamtion">
+        <a class="seller__link" href="#">
+          <div class="user__icon">
+            <img height="40" width="40" src="/assets/member_photo_noimage_thumb-3f5db95de8bc1582908f994329d16ed91cf4398c2e3e0cc7387e0f2f8f0c88a9.png">
+          </div>
+    
+    `
+
+  var HTML_sellerMark =
+    `
+          <div class="user__current-name">
+          出品者
+          </div>
+        </a>
+      </section>
+    </li>
+    `
+
+  var HTML_not_sellerMark = 
+    `
+        </a>
+      </section>
+    </li>
+    `
+    if (comment_data.current_user.id== comment_data.seller_id){
         // 出品者とコメントしたユーザーが等しい場合
-      var html = HTML_comment_block + HTML_sellerMark + HTML_user_data + HTML_deleteBtn + HTML_endDiv
+      var html = HTML_user_data + HTML_deleteBtn +  HTML_endDiv + HTML_comment_block + HTML_sellerMark
     }else{
       // 出品者とコメントしたユーザーが異なる場合
-      var html = HTML_comment_block + HTML_not_sellerMark + HTML_user_data +  HTML_endDiv
-      console.log(html);
+      var html = HTML_user_data  +  HTML_endDiv + HTML_comment_block + HTML_not_sellerMark
           };
-
+    console.log(html);
     return html;
   };
 });
