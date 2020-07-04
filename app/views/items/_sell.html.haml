@@ -55,7 +55,7 @@
     .sellFillOut__selectWrapper.category-wrapper
       - if @item.category == nil
         .sellFillOut__selectWrapper__box.category-parent
-          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
+          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {class: 'select-form', id: 'category_parent'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
       - else 
         .sellFillOut__selectWrapper__box.category-parent
@@ -73,7 +73,7 @@
       %span.sellFillOut__label--required 必須
     .sellFillOut__selectWrapper
       .sellFillOut__selectWrapper__box
-        = f.select :condition, Item.conditions_i18n.invert, {prompt: '---'}, class: 'select-form'
+        = f.select :condition, Item.conditions_i18n.invert, {prompt: '選択してください'}, class: 'select-form'
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
   %section.sellFillOut.sellDelivery
@@ -84,15 +84,15 @@
     .sellFillOut__label
       %label.sellFillOut__label--title 配送料の負担
       %span.sellFillOut__label--required 必須
-    = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage'}
     .sellFillOut__label
       %label.sellFillOut__label--title 配送元の地域
       %span.sellFillOut__label--required 必須
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture'}
     .sellFillOut__label
       %label.sellFillOut__label--title 発送までの日数
       %span.sellFillOut__label--required 必須
-    = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date'}
 
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper
