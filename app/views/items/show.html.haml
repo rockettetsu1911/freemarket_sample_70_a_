@@ -135,8 +135,6 @@
                           .user__comment__body__current-user--text
                             = simple_format(comment.text)
                           - unless comment.comment_status == 1
-                            .user__comment__body__current-user__icon
-                              = icon('icon','balloon')
                             .user__comment__body__current-user__date
                               .left--icon
                                 .icon--watch
@@ -172,14 +170,16 @@
                           .user__comment__body--text
                             = comment.text
                           - unless comment.comment_status == 1
-                            .user__comment__body__icon
-                              = icon('icon','balloon')
                             .user__comment__body__date
                               .left--icon
                                 .icon--watch
                                   = icon('fa', 'clock')
                                 %span 
                                   = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                              - if @item.user_id == current_user.id
+                                .right--icon#user_comment-delete{data:{index: comment.id}} 
+                                  = link_to comment_path(comment.id), method: :PATCH do
+                                    = icon('fa', 'trash')
                   - else
                     %section.user__information
                       = link_to '#', class: 'seller__link' do
@@ -196,8 +196,6 @@
                       .user__comment__body
                         .user__comment__body--text
                           = comment.text
-                        .user__comment__body__icon
-                          = icon('icon','balloon')
                         .user__comment__body__date
                           - unless comment.comment_status == 1
                             .left--icon

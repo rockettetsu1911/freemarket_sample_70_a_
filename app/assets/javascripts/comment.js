@@ -1,20 +1,20 @@
 $(document).on('turbolinks:load', function() {
 
-  function user__comment__delete(index){
+  function user_comment_delete(index){
     var html = 
     `
     <div class="user__comment__body--text">
-      コメントは出品者によって削除されました。
+      このコメントは出品者によって削除されました。
     </div>
     `
   return html;
   };
 
-  function current__user__comment__delete(index){
+  function current_user_comment_delete(index){
     var html = 
     `
     <div class="user__comment__body__current-user--text">
-      コメントは出品者によって削除されました。
+      このコメントは出品者によって削除されました。
     </div>
     `
   return html;
@@ -23,19 +23,21 @@ $(document).on('turbolinks:load', function() {
   // 自分のコメントを削除した場合
   $(".comment__container__list").on('click',"#current_user_comment-delete",function(e){
     var index = $(this).data("index");
-    $(`.comment--block[data-index=${index}]`).remove();
+    var nickname = $(`.user__comment[data-index=${index}]`).find(".user__comment__current__name");
+    nickname.empty();
     var content =  $(`.user__comment[data-index=${index}]`).find(".user__comment__body__current-user");
     content.empty();
-    content.append(current__user__comment__delete(index));
+    content.append(current_user_comment_delete(index));
   });
 
   // 他人のコメントを削除した場合
   $(".comment__container__list").on('click',"#user_comment-delete",function(e){
     var index = $(this).data("index");
-    $(`.comment--block[data-index=${index}]`).remove();
+    var nickname = $(`.user__comment[data-index=${index}]`).find(".user__comment__name");
+    nickname.empty();
     var content =  $(`.user__comment[data-index=${index}]`).find(".user__comment__body");
     content.empty();
-    content.append(user__comment__delete(index));
+    content.append(user_comment_delete(index));
   });
 
     // コメント作成した場合
