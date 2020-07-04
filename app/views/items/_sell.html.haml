@@ -40,7 +40,7 @@
     .sellFillOut__label
       %label.sellFillOut__label--title 商品の説明
       %span.sellFillOut__label--required 必須
-    = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。\n#〇〇でタグをつけることも可能です。\n例）#ジャニーズ"
     .sellFillOut__wordCount
       %span#sell-word-count 0
       \/1000
@@ -84,15 +84,24 @@
     .sellFillOut__label
       %label.sellFillOut__label--title 配送料の負担
       %span.sellFillOut__label--required 必須
-    = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage'}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
     .sellFillOut__label
       %label.sellFillOut__label--title 配送元の地域
       %span.sellFillOut__label--required 必須
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture'}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
     .sellFillOut__label
       %label.sellFillOut__label--title 発送までの日数
       %span.sellFillOut__label--required 必須
-    = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date'}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper

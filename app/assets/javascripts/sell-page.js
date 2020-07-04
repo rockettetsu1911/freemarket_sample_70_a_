@@ -8,27 +8,11 @@ $(document).on('turbolinks:load', function() {
     } else {
       $('#fee').text('-');
       $('#profit').text('-');
-      $('#sell-price-alert').text('300以上9999999以下で入力してください');
-    }
-  });
-  $('#sell-name').on('input', function() {
-    let count = $(this).val().length;
-    if(count > 40) {
-      $('#sell-name-alert').text('40文字以下で入力してください');
-    } else {
-      $('#sell-name-alert').text('');
     }
   });
   $('#sell-explanation').on('input', function() {
     let count = $(this).val().length;
     $('#sell-word-count').text(count);
-    if(count > 1000) {
-      $('#sell-word-count').css('color', 'red');
-      $('#sell-word-count-alert').text('1000文字以下で入力してください');
-    } else {
-      $('#sell-word-count').css('color', '');
-      $('#sell-word-count-alert').text('');
-    }
   });
   
   $('#sell-form').validate( {
@@ -47,6 +31,15 @@ $(document).on('turbolinks:load', function() {
       'item[condition]': {
         required: true
       },
+      'postage': {
+        required: true
+      },
+      'prefecture': {
+        required: true
+      },
+      'delivery-date': {
+        required: true
+      },
       'item[price]': {
         required: true,
         number: true,
@@ -56,7 +49,7 @@ $(document).on('turbolinks:load', function() {
     },
     errorPlacement: function(error, element) {
       if(element.attr('name')=='item[price]') {
-        error.insertAfter('.sellFillOut__label--wrapper:first');
+        error.insertAfter('#sell-price-alert');
       }
       else {
         error.insertAfter(element);
