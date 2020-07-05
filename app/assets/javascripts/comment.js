@@ -143,7 +143,6 @@ $(document).on('turbolinks:load', function() {
       // 出品者とコメントしたユーザーが異なる場合
       var html = HTML_user_data  +  HTML_endDiv + HTML_comment_block + HTML_not_sellerMark
           };
-    console.log(html);
     return html;
   };
 });
