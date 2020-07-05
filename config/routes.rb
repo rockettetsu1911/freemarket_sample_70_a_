@@ -32,10 +32,6 @@ Rails.application.routes.draw do
 
   resources :cards, only: [:new, :create, :show, :destroy] 
 
-  resources :purchases, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    member do
-      get 'confirm'
-      #Todo: 購入完了ページなどが以下に追加される
-    end
-  end
+  get '/tags/:name', to: 'items#tag', as: 'tag'
+
 end

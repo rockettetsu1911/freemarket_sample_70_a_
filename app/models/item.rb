@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
  
+  has_many   :item_tags, dependent: :destroy
   has_many   :tags, through: :item_tags
-  has_many   :item_tags
   belongs_to :user
   belongs_to :category
   has_many   :comments,             dependent: :destroy
@@ -37,5 +37,31 @@ class Item < ApplicationRecord
     injured:       5,
     bad:           6
   }
+
+  after_create do
+    item = Item.find_by(id: self.id)
+    tags = self.explanation.scan(/[#＃](?<!#＃)[\w\p{Han}０-９ぁ-ヶｦ-ﾟー]+/).map(&:strip)
+    tags.uniq.map do |t|
+      tag = Tag.find_or_create_by(name: t.delete('#＃'))
+      item.tags << tag
+    end
+  end
+
+  before_update do
+    item = Item.find_by(id: self.id)
+    ids = item.tags.ids
+    tags = self.explanation.scan(/[#＃](?<!#＃)[\w\p{Han}０-９ぁ-ヶｦ-ﾟー]+/).map(&:strip)
+    tags.uniq.map do |t|
+      tag = Tag.find_or_create_by(name: t.delete('#＃'))
+      if (isExist = item.tags.where(name: tag.name)) != []
+        ids.delete(isExist[0].id)
+      else
+        item.tags << tag
+      end
+    end
+    ids.each do |id|
+      item.tags.delete(id)
+    end
+  end
  
 end

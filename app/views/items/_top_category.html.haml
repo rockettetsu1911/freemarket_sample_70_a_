@@ -9,7 +9,7 @@
       - unless item.bought_at == nil
         .topCategory__contents__itemBox--triangle
         .topCategory__contents__itemBox--soldMessage sold
-      .topCategory__contents__itemBox--summary
+      .topCategory__contents__itemBox--summary{data: {itemid: item.id}}
         %name 
           = item.name
         .itemDetails
@@ -23,4 +23,12 @@
                 0
               - else
                 = @likes_count[item.id]
+          .itemDetails__view
+            .itemDetails__view--mark
+              = icon('fa','eye')
+            .itemDetails__view--count
+              - if item.view_count > 99999
+                99999+
+              - else
+                = item.view_count
         %p (税込)

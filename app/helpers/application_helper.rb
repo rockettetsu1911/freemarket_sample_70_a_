@@ -9,4 +9,8 @@ module ApplicationHelper
     end
     doc.to_html.html_safe
   end
+
+  def nl2br(str)
+    h(str).gsub(/\R/, '<br>')
+  end
 end

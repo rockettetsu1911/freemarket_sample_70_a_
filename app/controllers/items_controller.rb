@@ -20,6 +20,10 @@ class ItemsController < ApplicationController
     @picked_up_category = "レディース"
     @picked_up_items = items_by_category[:"#{@picked_up_category}"]
 
+    respond_to do |format|
+      format.html
+      format.json { render json: @items.concat(@picked_up_items)}
+    end
   end
 
   def new
@@ -80,6 +84,14 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @comment = Comment.new
     @commentAll = @item.comments
+    respond_to do |format|
+      format.html do
+        @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id
+        @item.save
+        render :show
+      end
+      format.json {render json: @item}
+    end
   end
 
   def purchase
@@ -141,6 +153,13 @@ class ItemsController < ApplicationController
       redirect_to item_path(item.id)
       flash[:notice] = "商品の削除に失敗しました。"
     end
+  end
+  
+  def tag
+    @tag = Tag.find_by(name: params[:name])
+    @items = @tag.items
+    @current_user_id = current_user.id if user_signed_in?
+    @likes_count = Like.group(:item_id).count
   end
 
   private
