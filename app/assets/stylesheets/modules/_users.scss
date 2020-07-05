@@ -25,9 +25,11 @@
   }
   &__input-info {
     font-size: $main_contents_font-size;
+    width: 350px;
+    margin: 5px auto;
     &__label {
       width: 350px;
-      margin: 5px auto;
+      margin: 30px auto 5px;
       display: flex;
       justify-content: start;
       &__set {
@@ -41,14 +43,14 @@
       width: 350px;
       height: 30px;
       text-align: start;
-      margin: 0 auto 30px;
+      margin: 0 auto;
       display: block;
     }
     &__area {
       width: 350px;
       height: 150px;
       text-align: start;
-      margin: 0 auto 30px;
+      margin: 0 auto;
       display: block;
       overflow: scroll;
       resize: none;
@@ -59,7 +61,7 @@
   }
   &__input-name {
     width: 350px;
-    margin: 5px auto;
+    margin: 30px auto 5px;
     display: flex;
     justify-content: space-between;
     &__set {
@@ -80,9 +82,15 @@
         width: 170px;
         height: 30px;
         text-align: start;
-        margin: 0 auto 30px;
+        margin: 0 auto;
         display: block;
       }
     }
   }
+}
+
+.invalid {
+  text-align: left;
+  color: red;
+  font-size: $searchBox_font-size;
 }

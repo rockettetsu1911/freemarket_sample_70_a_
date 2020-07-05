@@ -9,7 +9,7 @@
       %h3.address-form__title
         発送元・お届け先 住所変更
       .address-form__input-info
-        = form_with model: [@user, @address], url: user_address_path, local: true do |f|
+        = form_with model: [@user, @address], url: user_address_path, local: true, html: {id: "address_form"} do |f|
           .address-form__input-name
             .address-form__input-name__set
               .address-form__input-name__set__child

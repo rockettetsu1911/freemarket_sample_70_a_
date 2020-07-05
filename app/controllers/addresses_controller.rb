@@ -10,7 +10,6 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to user_path(current_user.id), notice: '発送元・送付先住所を変更しました'
     else
-      flash.now[:alert] = @address.errors.full_messages
       render :edit and return
     end
   end

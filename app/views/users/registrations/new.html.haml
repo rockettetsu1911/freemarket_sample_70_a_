@@ -4,13 +4,16 @@
   %h3.signup__title
     新規会員登録
   .signup__input-info
-    = form_for(resource, url: user_registration_path) do |f|
+    = form_for(resource, url: user_registration_path, html: {id: "signup_form"}) do |f|
       .signup__input-info__label
         .signup__input-info__label__set
           ニックネーム（20文字以下）
         .signup__input-info__label--required
           必須
       = f.text_field :nickname, placeholder: "例）フリマくん", class: 'signup__input-info__field'
+      - if @nickname_present == true
+        .invalid
+          このニックネームは既に使われています
       .signup__input-name
         .signup__input-name__set
           .signup__input-name__set__child
@@ -47,6 +50,10 @@
         .signup__input-info__label--required
           必須
       = f.text_field :email, placeholder: "例）freema@example.com", class: 'signup__input-info__field'
+      - if @email_present == true
+        .invalid
+          このメールアドレスは既に使われています
+
       .signup__input-info__label
         .signup__input-info__label__set
           誕生日
