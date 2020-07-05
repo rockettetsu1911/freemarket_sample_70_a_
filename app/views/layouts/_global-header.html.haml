@@ -2,10 +2,13 @@
   .wrapper__top
     = link_to root_path, class: 'wrapper__top__icon' do 
       = image_tag 'logo.png', width: '140', alt: 'FURIMAロゴ'
-    .wrapper__top__searchBox
-      %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
-      = link_to '#', class: 'wrapper__top__searchBox__icon' do
-        = image_tag 'icon-search 1.png', alt: '検索ボタン'
+    = form_with url: search_items_path, class: 'wrapper__top__searchBox', method: :get, local: true do |f|
+      = f.text_field :keyword, class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す'
+      = image_submit_tag 'icon-search 1.png', class: 'wrapper__top__searchBox__icon'
+    -# .wrapper__top__searchBox
+    -#   %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
+    -#   = link_to '#', class: 'wrapper__top__searchBox__icon' do
+    -#     = image_tag 'icon-search 1.png', alt: '検索ボタン'
 
   .wrapper__bottom
     %ul

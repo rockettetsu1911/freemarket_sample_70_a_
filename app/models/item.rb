@@ -62,5 +62,10 @@ class Item < ApplicationRecord
       item.tags.delete(id)
     end
   end
+
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ? OR explanation LIKE ?', "%#{search}%", "%#{search}%"])
+  end
  
 end

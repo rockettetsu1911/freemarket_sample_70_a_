@@ -168,6 +168,11 @@ class ItemsController < ApplicationController
     @likes_count = Like.group(:item_id).count
   end
 
+  def search
+    @keyword = params[:keyword]
+    @items = Item.search(params[:keyword])
+  end
+
   private
 
   def item_params

@@ -1,0 +1,15 @@
+%header
+  = render 'layouts/global-header'
+.searchResult
+  %section.searchIndex
+    .searchIndex__title
+      %h2 検索結果
+      %h3 <strong>検索ワード： #{@keyword}</strong>
+  
+    .searchIndex__contents
+      - @items.each do |item|
+        = item.name
+
+%footer
+  = render 'layouts/global-footer'
+= render 'layouts/global-sellBtn'
