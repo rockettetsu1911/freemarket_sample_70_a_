@@ -81,8 +81,6 @@
   %section.sellFillOut.sellDelivery
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 配送について
-      = link_to '#' do
-        = icon('far', 'question-circle')
     .sellFillOut__label
       %label.sellFillOut__label--title 配送料の負担
       %span.sellFillOut__label--required 必須
@@ -108,8 +106,6 @@
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 価格（¥300〜9,999,999）
-      = link_to '#' do
-        = icon('far', 'question-circle')
     .sellFillOut__label
       .sellFillOut__label--wrapper
         .title-and-required
@@ -137,4 +133,4 @@
       = link_to root_path, class: 'sellFillOut__submit__sellBtn--cansel' do
         もどる
       .sellFillOut__submit__caution
-        %p 禁止されている<a href='#'>行為</a>および<a href='#'>出品物</a>を必ずご確認ください。<a href='#'>偽ブランド品</a>や<a href='#'>盗品物</a>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<a href='#'>加盟店規約</a>に同意したことになります。
+        %p 禁止されている<strong>行為</strong>および<strong>出品物</strong>を必ずご確認ください。<strong>偽ブランド品</strong>や<strong>盗品物</strong>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<strong>加盟店規約</strong>に同意したことになります。

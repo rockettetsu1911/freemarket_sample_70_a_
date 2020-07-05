@@ -69,7 +69,6 @@ $(document).on('turbolinks:load', function() {
       },
       'item[explanation]': {
         required: '入力してください',
-        maxlength: 1000
       },
       'item[category]': {
         required: '選択してください'
