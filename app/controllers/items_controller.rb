@@ -167,10 +167,12 @@ class ItemsController < ApplicationController
     @current_user_id = current_user.id if user_signed_in?
     @likes_count = Like.group(:item_id).count
   end
-
+  
   def search
     @keyword = params[:keyword]
     @items = Item.search(params[:keyword])
+    @current_user_id = current_user.id if user_signed_in?
+    @likes_count = Like.group(:item_id).count
   end
 
   private
