@@ -8,26 +8,26 @@ $(document).on('turbolinks:load', function() {
     } else {
       $('#fee').text('-');
       $('#profit').text('-');
-      $('#sell-price-alert').text('300以上9999999以下で入力してください');
-    }
-  });
-  $('#sell-name').on('input', function() {
-    let count = $(this).val().length;
-    if(count > 40) {
-      $('#sell-name-alert').text('40文字以下で入力してください');
-    } else {
-      $('#sell-name-alert').text('');
     }
   });
   $('#sell-explanation').on('input', function() {
     let count = $(this).val().length;
     $('#sell-word-count').text(count);
-    if(count > 1000) {
-      $('#sell-word-count').css('color', 'red');
-      $('#sell-word-count-alert').text('1000文字以下で入力してください');
-    } else {
-      $('#sell-word-count').css('color', '');
-      $('#sell-word-count-alert').text('');
+  });
+
+  $('form').on('submit',function() {
+    function scrollToPicture() {
+      scrollTo(0, position);
+    }
+    var element = document.getElementById('picture-scroll');
+    var rect = element.getBoundingClientRect();
+    var position = window.pageYOffset + rect.top;
+    $is_upload = $('#item_pictures_attributes_0_image');
+    $is_exist = $('.picture-preview__wrapper');
+    if((!$is_upload.val()) && $is_exist.length == 0) {
+      document.getElementById('sell-picture-alert').textContent = '画像がありません';
+      scrollToPicture();
+      return false;
     }
   });
   
@@ -47,6 +47,15 @@ $(document).on('turbolinks:load', function() {
       'item[condition]': {
         required: true
       },
+      'postage': {
+        required: true
+      },
+      'prefecture': {
+        required: true
+      },
+      'delivery-date': {
+        required: true
+      },
       'item[price]': {
         required: true,
         number: true,
@@ -54,15 +63,42 @@ $(document).on('turbolinks:load', function() {
         max: 9999999
       },
     },
+    messages: {
+      'item[name]': {
+        required: '入力してください',
+      },
+      'item[explanation]': {
+        required: '入力してください',
+      },
+      'item[category]': {
+        required: '選択してください'
+      },
+      'item[condition]': {
+        required: '選択してください'
+      },
+      'postage': {
+        required: '選択してください'
+      },
+      'prefecture': {
+        required: '選択してください'
+      },
+      'delivery-date': {
+        required: '選択してください'
+      },
+      'item[price]': {
+        required: '入力してください',
+        min: '300以上9999999以下で入力してください',
+        max: '300以上9999999以下で入力してください'
+      },
+    },
     errorPlacement: function(error, element) {
       if(element.attr('name')=='item[price]') {
-        error.insertAfter('.sellFillOut__label--wrapper:first');
+        error.insertAfter('#sell-price-alert');
       }
       else {
         error.insertAfter(element);
       }
     }
-    
   });
 });
 

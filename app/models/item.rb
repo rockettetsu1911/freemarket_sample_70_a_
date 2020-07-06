@@ -15,9 +15,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :delivery_date
  
-  validates :pictures, presence: true, length: { maximum: 10, message: 'は10枚以内で入力してください' }, on: :create
   with_options presence: true do
-    validates :pictures,          length: { maximum: 10, message: 'は10枚以内で入力してください' }
+    validates :pictures,          length: { maximum: 10, message: 'は10枚以内で入力してください' }, on: :create
     validates :name,              length: { maximum: 40 }
     validates :explanation,       length: { maximum: 1000 }
     validates :category_id
