@@ -24,25 +24,27 @@ $(function(){
     $('#view_count').html(html);
   }
   var reloadViewCount = function(){
-    if (location.pathname == "/") {
-      var url = "/";
-    }else if (location.pathname.match(/\/items\/[0-9]+/) != null ) {
-      var url = $('.top__contents__items').data('itemid');
-    }
-    $.ajax({
-      url: url,
-      type: "GET",
-      dataType: 'json',
-      processData: false,
-      contentType: false
-    })
-    .done(function(data){
+    if (location.pathname == "/" || location.pathname.match(/\/items\/[0-9]+/) != null) {
       if (location.pathname == "/") {
-        itemIndexBuildHTML(data);
+        var url = "/";
       }else if (location.pathname.match(/\/items\/[0-9]+/) != null ) {
-        itemShowBuildHTML(data);
+        var url = $('.top__contents__items').data('itemid');
       }
-    })
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(data){
+        if (location.pathname == "/") {
+          itemIndexBuildHTML(data);
+        }else if (location.pathname.match(/\/items\/[0-9]+/) != null ) {
+          itemShowBuildHTML(data);
+        }
+      })
+    }
   }
   setInterval(reloadViewCount, 7000);
 });
