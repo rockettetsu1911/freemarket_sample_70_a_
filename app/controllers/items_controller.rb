@@ -82,6 +82,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @comment = Comment.new
+    @commentAll = @item.comments
     respond_to do |format|
       format.html do
         @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id

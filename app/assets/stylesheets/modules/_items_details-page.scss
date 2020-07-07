@@ -220,6 +220,146 @@
             background-color: #fff;
             margin:10px 0;
             text-align:center;
+            .comment__container{
+              padding-bottom:24px;
+              &__list{
+                .comment--block{
+                  display:flex;
+                  margin-bottom:60px;
+                  section{
+                    .seller__link{
+                      cursor:pointer;
+                      .user{
+                        &__icon{
+                          img{
+                            border-radius:50%;
+                          }
+                        }
+                        &__name{
+                          margin-top:8px;
+                          padding:4px 2px;
+                          background-color: $comment_seller-color;
+                          color:black;
+                          border-radius:2px;
+                          font-size:12px;
+                          vertical-align:top;
+                        }
+                        &__current-name{
+                          margin-top:8px;
+                          padding:4px 2px;
+                          background-color: $comment_current_user-color;
+                          color:black;
+                          border-radius:2px;
+                          font-size:12px;
+                          vertical-align:top;
+                        }
+                      }
+                    }
+                  }
+                  .user__comment{
+                    &__name{
+                      font-size:14px;
+                      width:600px;
+                      min-width:600px;
+                      text-align:left;
+                      padding-left:20px;
+                      
+                    }
+                    &__current__name{
+                      text-align:right;
+                      padding-right:20px;
+                      font-size:14px;
+                      width:600px;
+                    }
+                    &__body{
+                      margin-top:5px;
+                      padding:16px;
+                      border-radius:15px;
+                      background-color: $comment_seller-color;
+                      line-height:1.5;
+                      word-break: break-all;
+                      margin-left:15px;
+                      font-size:14px;
+                      text-align:left;
+                      position:relative;
+                      &--text{
+                        p{
+                          text-align:left;
+                          font-size:14px;
+                        }
+                      }
+                      &__date{
+                        display:flex;
+                        justify-content: space-between;
+                        color:black;
+                        margin-top:8px;
+                        .left--icon{
+                          display:flex;
+                        }
+                        .right--icon{
+                          color:black;
+                        }
+                      }
+                    }
+                    &__body::before{
+                      content: '';
+                      position: absolute;
+                      display: block;
+                      width: 0;
+                      height: 0;
+                      left: -15px;
+                      top: 10px;
+                      border-right: 15px solid $comment_seller-color;
+                      border-top: 15px solid transparent;
+                      border-bottom: 15px solid transparent;
+                    }
+                    &__body__current-user{
+                      margin-top:5px;
+                      padding:16px;
+                      border-radius:15px;
+                      background-color: $comment_current_user-color;
+                      line-height:1.5;
+                      word-break: break-all;
+                      margin-right:15px;
+                      font-size:14px;
+                      text-align:left;
+                      position:relative;
+                      &--text{
+                        p{
+                          text-align:left;
+                          font-size:14px;
+                        }
+                      }
+                      &__date{
+                        display:flex;
+                        justify-content: space-between;
+                        color:black;
+                        margin-top:8px;
+                        .left--icon{
+                          display:flex;
+                        }
+                        .right--icon{
+                          color:black;
+                          cursor:pointer;
+                        }
+                      }
+                    }
+                    &__body__current-user::before{
+                      content: '';
+                      position: absolute;
+                      display: block;
+                      width: 0;
+                      height: 0;
+                      right: -15px;
+                      top: 10px;
+                      border-left: 15px solid $comment_current_user-color;
+                      border-top: 15px solid transparent;
+                      border-bottom: 15px solid transparent;
+                    }
+                  }
+                }
+              }
+            }
             .comment__box{
               textarea{
                 display:block;
@@ -239,6 +379,7 @@
                 padding-bottom:10px;
                 p{
                   font-size:14px;
+                  text-align:left;
                 }
               }
               .submit__btn{
