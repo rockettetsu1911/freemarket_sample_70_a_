@@ -85,6 +85,11 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @commentAll = @item.comments
     @likes_count = Like.where(item_id: @item.id).count
+    if Like.where(item_id: @item.id, user_id: current_user.id).count > 0
+      @like_check = true
+    else
+      @like_check = false
+    end
     respond_to do |format|
       format.html do
         @item.view_count += 1 unless user_signed_in? && current_user.id == @item.user.id

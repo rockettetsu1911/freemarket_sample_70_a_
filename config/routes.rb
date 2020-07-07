@@ -29,9 +29,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :addresses, only: [:edit, :update]
   end
+  resources :items do
+    resources :users do
+      resources :likes, only: [:new, :create, :destroy]
+    end
+  end
 
   resources :cards, only: [:new, :create, :show, :destroy] 
 
   get '/tags/:name', to: 'items#tag', as: 'tag'
-
 end

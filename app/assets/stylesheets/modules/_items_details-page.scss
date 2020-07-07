@@ -153,12 +153,21 @@
               ul{
                 margin-top:10px;
                 display:flex;
-                .likes__btn{
-                  margin-right:auto;
-                  padding:6px 10px;
-                  border-radius:40px;
-                  color:#3CCACE;
-                  border:1px solid #ffb340;
+                .fav__btn {
+                  border: none;
+                  background: none;
+                  padding: 0;
+                  cursor: pointer;
+                  &:focus {
+                    outline: none;
+                  }
+                  .likes__btn{
+                    margin-right:auto;
+                    padding:6px 10px;
+                    border-radius:40px;
+                    color:#3CCACE;
+                    border:1px solid #ffb340;
+                  }
                 }
                 .views{
                   margin-left:10px;
