@@ -2,18 +2,16 @@ require 'rails_helper'
  
 describe Item do
   describe 'method' do
-    describe 'search(search) method' do
-      it 'nameにキーワードを含むitemを検索できること' do
+    describe 'search(keyword) method' do
+      it 'nameにkeywordを含むitemを検索できること' do
         item = create(:item_valid)
-        searchItem = Item.search('名')
-        expect(searchItem[0].id).to eq item.id
+        expect(Item.search('名')).to include item
       end
-      it 'explanationにキーワードを含むitemを検索できること' do
+      it 'explanationにkeywordを含むitemを検索できること' do
         item = create(:item_valid)
-        searchItem = Item.search('説明')
-        expect(searchItem[0].id).to eq item.id
+        expect(Item.search('説明')).to include item
       end
-      it 'キーワードを含むitemが存在しない場合は検索できないこと' do
+      it 'keywordを含むitemが存在しない場合は検索できないこと' do
         item = create(:item_valid)
         expect(Item.search('検索')).to eq []
       end

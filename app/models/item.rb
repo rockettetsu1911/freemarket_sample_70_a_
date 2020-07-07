@@ -63,9 +63,9 @@ class Item < ApplicationRecord
     end
   end
 
-  def self.search(search)
-    return Item.all unless search
-    Item.where(['name LIKE ? OR explanation LIKE ?', "%#{search}%", "%#{search}%"])
+  def self.search(keyword)
+    return Item.all unless keyword
+    Item.where(['name LIKE ? OR explanation LIKE ?', "%#{keyword}%", "%#{keyword}%"])
   end
  
 end
