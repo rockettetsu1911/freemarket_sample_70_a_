@@ -3,9 +3,14 @@ require 'rails_helper'
 describe Item do
   describe 'method' do
     describe 'search(search) method' do
-      it 'キーワードを含むitemを検索できること' do
+      it 'nameにキーワードを含むitemを検索できること' do
         item = create(:item_valid)
-        searchItem = Item.search('商品')
+        searchItem = Item.search('名')
+        expect(searchItem[0].id).to eq item.id
+      end
+      it 'explanationにキーワードを含むitemを検索できること' do
+        item = create(:item_valid)
+        searchItem = Item.search('説明')
         expect(searchItem[0].id).to eq item.id
       end
       it 'キーワードを含むitemが存在しない場合は検索できないこと' do
