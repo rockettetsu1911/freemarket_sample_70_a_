@@ -98,21 +98,13 @@
             %ul
               %li
                 - if user_signed_in? && @item.user.id != current_user.id
-                  - if @like_check
-                    = button_to item_user_like_path(@item.id, current_user.id), method: :delete , class: 'fav__btn' do
-                      .likes__btn{data: {itemid: @item.id}}
-                        = icon('fa','star')
-                        お気に入り #{@likes_count}
-                  - else
-                    = button_to item_user_likes_path(@item.id, current_user.id), method: :post , class: 'fav__btn' do
-                      .likes__btn{data: {itemid: @item.id}}
-                        = icon('fa','star')
-                        お気に入り #{@likes_count}
+                  .likes__btn{data: {itemid: @item.id, userid: current_user.id, likecheck: @like_check}}
+                    = icon('fa','star')
+                    お気に入り #{@likes_count}
                 - else
                   .likes__btn{data: {itemid: @item.id}}
                     = icon('fa','star')
                     お気に入り #{@likes_count}
-
               %li.views#view_count
                 = icon('fa','eye')
                 - if @item.view_count > 99999

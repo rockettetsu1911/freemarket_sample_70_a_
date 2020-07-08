@@ -3,15 +3,21 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @like.save
-    # render template: "items/show"
-    redirect_to item_path(params[:item_id]), method: :get
+    likes_count = {like_id: @like.id, likes_count: Like.where(item_id: params[:item_id]).count}
+    respond_to do |format|
+      format.json {render json: likes_count}
+      format.html
+    end
   end
 
   def destroy
-    like = Like.find_by(item_id: params[:item_id], user_id: params[:user_id])
-    like.destroy
-    # render template: "items/show"
-    redirect_to item_path(params[:item_id]), method: :get
+    @like = Like.find_by(item_id: params[:item_id], user_id: params[:user_id])
+    @like.destroy
+    likes_count = {like_id: 0, likes_count: Like.where(item_id: params[:item_id]).count}
+    respond_to do |format|
+      format.json {render json: likes_count}
+      format.html
+    end
   end
 
   private

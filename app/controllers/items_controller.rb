@@ -85,10 +85,10 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @commentAll = @item.comments
     @likes_count = Like.where(item_id: @item.id).count
-    if Like.where(item_id: @item.id, user_id: current_user.id).count > 0
-      @like_check = true
+    if user_signed_in? && Like.where(item_id: @item.id, user_id: current_user.id).present?
+      @like_check = Like.where(item_id: @item.id, user_id: current_user.id).ids[0]
     else
-      @like_check = false
+      @like_check = 0
     end
     respond_to do |format|
       format.html do
