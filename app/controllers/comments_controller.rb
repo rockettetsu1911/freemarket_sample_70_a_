@@ -11,8 +11,7 @@ class CommentsController < ApplicationController
         format.json
       end
      else
-       flash[:alert] = 'コメント出来ませんでした。'
-       redirect_to item_path(@comment.item_id)
+      flash[:alert] = 'コメント出来ませんでした。'
       end
   end
 
