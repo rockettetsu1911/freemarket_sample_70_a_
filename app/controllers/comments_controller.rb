@@ -9,15 +9,15 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.json
-      end
-     else
+    end
+    else
       flash[:alert] = 'コメント出来ませんでした。'
-      end
+    end
   end
 
   def update
     comment = Comment.find(params[:id])
-    comment.text = 'このコメントは出品者によって削除されました。'
+    comment.text =  'このコメントは出品者によって削除されました。'
     comment.comment_status = 1
     comment.save
   end
