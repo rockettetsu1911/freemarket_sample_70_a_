@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function() {
     $('.comment__container__list').animate({ scrollTop: $('.comment__container__list')[0].scrollHeight});
   })
   .fail(function() {
-    alert("メッセージ送信に失敗しました");
+    alert("コメントを入力してください。");
       })
   .always(function() {
     $('.submit__btn').removeAttr('disabled');
