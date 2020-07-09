@@ -9,25 +9,25 @@
 
   .wrapper__bottom
     %ul
-      %li
+      %li.category__btn
+        = icon('fas','list' )
         = link_to '#', class: 'wrapper__bottom--left', id: 'category-search-btn' do
           カテゴリー
-        %ul.category__parent.category__list
-          - @parents.each do |parent|  
-            %li
-              = link_to "#", class: "category__parent--name" do
-                = parent.name
-              %ul.category__child.category__list
-                - parent.children.each do |child|
-                  %li
-                    = link_to "#", class: "category__child--name" do
-                      = child.name
-                    %ul.category__grandchild.category__list
-                      - child.children.each do |grandchild|
-                        %li
-                          = link_to "#", class: "category__child--name" do
-                            = grandchild.name 
+          .category__modal
+            .category__modal--contents
+              .category__modal--contents--header
+                .category__modal--contents--header--title
+                  カテゴリー一覧
+                .category__modal--contents--header--back
+                  戻る
+              .category__modal--contents--list
+                .category__list
+                  - @parents.each do|parent|
+                    .category__list--name
+                      = simple_format(parent.name)
+
       %li.wrapper__bottom--left
+        = icon('fas', 'tags')
         = link_to '#', id: 'brand-search-btn' do
           商品一覧
     %ul

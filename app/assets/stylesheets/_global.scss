@@ -121,13 +121,6 @@ $main_title_font-size:16px;
   transform:rotate(-45deg);
 }
 
-@mixin category-list{
-  display:none;
-  position: absolute;
-  height: 530px;
-  background-color: white;
-  border-right: 1px solid red;
-}
 
 
 /********************
