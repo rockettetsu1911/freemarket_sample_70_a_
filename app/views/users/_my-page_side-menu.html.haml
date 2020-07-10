@@ -4,8 +4,8 @@
       = link_to user_path(current_user.id), class: 'list__btn' do
         マイページ
     %li
-      = link_to '#', class: 'list__btn' do
-        いいね！一覧
+      = link_to likes_path, class: 'list__btn' do
+        お気に入り一覧
     %li
       = link_to new_item_path, class: 'list__btn' do
         出品する

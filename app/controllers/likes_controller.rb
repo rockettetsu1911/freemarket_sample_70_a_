@@ -1,5 +1,10 @@
 class LikesController < ApplicationController
 
+  def index
+    @like_items = Like.where(user_id: current_user.id)
+    @likes_counts = Like.group(:item_id).count 
+  end
+
   def create
     @like = Like.new(like_params)
     @like.save

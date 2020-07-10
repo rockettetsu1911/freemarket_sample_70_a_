@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :addresses, only: [:edit, :update]
   end
+  resources :likes, only: :index
   resources :items do
     resources :users do
       resources :likes, only: [:create, :destroy]
