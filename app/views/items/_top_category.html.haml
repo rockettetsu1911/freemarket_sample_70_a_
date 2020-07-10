@@ -5,7 +5,7 @@
 .topCategory__contents
   - @picked_up_items.each do |item|
     = link_to item_path(item.id), class: 'topCategory__contents__itemBox' do 
-      = image_tag item.pictures.first.image.url, class: 'topCategory__contents__itemBox--image', alt: '商品画像'
+      ///= image_tag item.pictures.first.image.url, class: 'topCategory__contents__itemBox--image', alt: '商品画像'
       - unless item.bought_at == nil
         .topCategory__contents__itemBox--triangle
         .topCategory__contents__itemBox--soldMessage sold
