@@ -45,7 +45,6 @@ desc 'upload master.key'
  end
  before :starting, 'deploy:upload'
  after :finishing, 'deploy:cleanup'
-end
 
 # 必要に応じて/環境変数をcapistranoでの自動デプロイで利用
 set :default_env, {
