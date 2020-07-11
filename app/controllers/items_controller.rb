@@ -169,7 +169,8 @@ class ItemsController < ApplicationController
   end
 
   def sell_list
-
+    @items = Item.where(user_id: current_user.id)
+    @likes_counts = Like.group(:item_id).count
   end
 
   private
