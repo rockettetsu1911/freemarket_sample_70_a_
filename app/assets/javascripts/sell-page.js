@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function() {
     $('#sell-word-count').text(count);
   });
 
-  $('form').on('submit',function() {
+  $('#sell-form').on('submit',function() {
     function scrollToPicture() {
       scrollTo(0, position);
     }
