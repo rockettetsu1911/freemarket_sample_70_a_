@@ -175,6 +175,11 @@ class ItemsController < ApplicationController
 
   end
 
+  def buy_list
+    @items = Item.where(buyer: params[:user_id])
+    @likes_counts = Like.group(:item_id).count
+  end
+
   private
 
   def item_params
