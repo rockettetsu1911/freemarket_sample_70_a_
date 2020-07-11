@@ -10,7 +10,7 @@
       = link_to new_item_path, class: 'list__btn' do
         出品する
     %li
-      = link_to '#', class: 'list__btn' do
+      = link_to user_sell_list_path(current_user.id), class: 'list__btn' do
         出品した商品
     %li
       = link_to '#', class: 'list__btn' do
