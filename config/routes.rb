@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :users do
     resources :addresses, only: [:edit, :update]
+    get 'sell_list'=>  'items#sell_list', as: 'sell_list'
   end
   resources :likes, only: :index
   resources :cards, only: [:new, :create, :show, :destroy] 
