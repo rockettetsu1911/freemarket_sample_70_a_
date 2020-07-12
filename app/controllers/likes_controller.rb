@@ -8,7 +8,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @like.save
-    likes_count = {like_id: @like.id, likes_count: Like.where(item_id: params[:item_id]).count}
+    likes_count = {like_id: @like.id, likes_count: Like.where(item_id: params[:item_id]).count, action: :create}
     respond_to do |format|
       format.json {render json: likes_count}
       format.html
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
   def destroy
     @like = Like.find_by(item_id: params[:item_id], user_id: params[:user_id])
     @like.destroy
-    likes_count = {like_id: 0, likes_count: Like.where(item_id: params[:item_id]).count}
+    likes_count = {like_id: 0, likes_count: Like.where(item_id: params[:item_id]).count, action: :destroy}
     respond_to do |format|
       format.json {render json: likes_count}
       format.html

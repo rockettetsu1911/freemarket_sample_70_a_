@@ -1,10 +1,17 @@
 document.addEventListener("turbolinks:load", function() {
   $(function(){
     function likesShowBuildHTML(data){
-      var html =`
-      <i class="fa fa-star"></i>
-      お気に入り ${data.likes_count}
-      `
+      if (data.action == 'create') {
+        var html =`
+        <i class="fa fa-star"></i>
+        お気に入り ${data.likes_count}
+        `
+      } else if (data.action == 'destroy') {
+        var html =`
+        <i class="far fa-star"></i>
+        お気に入り ${data.likes_count}
+        `
+      }
       $('.likes__btn').html(html);
       $('.likes__btn').data('likecheck', `${data.like_id}`);
     }
@@ -32,6 +39,7 @@ document.addEventListener("turbolinks:load", function() {
         contentType: false
       })
       .done(function(data){
+        console.log(data);
         likesShowBuildHTML(data);
       })
       .fail(function(){
