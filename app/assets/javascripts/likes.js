@@ -34,6 +34,9 @@ document.addEventListener("turbolinks:load", function() {
       .done(function(data){
         likesShowBuildHTML(data);
       })
+      .fail(function(){
+        alert('お気に入りの登録または削除に失敗しました');
+      })
     });
   });
 });
