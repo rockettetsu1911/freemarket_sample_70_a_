@@ -23,6 +23,7 @@
 
       &__itemBox {
         background-color: #fff;
+        max-width: 220px;
         margin: 0 20px 20px 20px;
         font-size: $itemIndex_font-size;
         position: relative;
@@ -41,7 +42,7 @@
         &--summary {
           padding: 16px 16px;
           .itemDetails {         
-            display:flex;
+            display: flex;
             justify-content: space-between;
 
             &__fav, &__view {
