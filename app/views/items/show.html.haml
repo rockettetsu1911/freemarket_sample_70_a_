@@ -96,9 +96,19 @@
                   = @item.delivery_date.name
           .top__contents__items__footer
             %ul
-              %li.likes__btn
-                = icon('fa','star')
-                お気に入り 0
+              %li
+                - if user_signed_in? && @item.user.id != current_user.id
+                  .likes__btn{data: {itemid: @item.id, userid: current_user.id, likecheck: @like_check}}
+                    - if @like_check > 0
+                      = icon('fa','star')
+                      お気に入り #{@likes_count}
+                    - elsif @like_check == 0
+                      = icon('far','star')
+                      お気に入り #{@likes_count}
+                - else
+                  .likes
+                    = icon('far','star')
+                    お気に入り #{@likes_count}
               %li.views#view_count
                 = icon('fa','eye')
                 - if @item.view_count > 99999
