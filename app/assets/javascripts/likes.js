@@ -1,7 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   $(function(){
     function likesShowBuildHTML(data){
-      console.log(data.like_id)
       var html =`
       <i class="fa fa-star"></i>
       お気に入り ${data.likes_count}
@@ -11,7 +10,6 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     $('.likes__btn').on('click',function(){
-      console.log('!!!!!');
       if ($('.likes__btn').data('likecheck') == 0) {
         var itemId = $('.likes__btn').data('itemid');
         var userId = $('.likes__btn').data('userid');
