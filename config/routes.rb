@@ -21,6 +21,9 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
+    resources :users do
+      resources :likes, only: [:create, :destroy]
+    end
   end
 
   resources :comments, only: [:create, :update]
@@ -30,12 +33,6 @@ Rails.application.routes.draw do
     resources :addresses, only: [:edit, :update]
   end
   resources :likes, only: :index
-  resources :items do
-    resources :users do
-      resources :likes, only: [:create, :destroy]
-    end
-  end
-
   resources :cards, only: [:new, :create, :show, :destroy] 
 
   get '/tags/:name', to: 'items#tag', as: 'tag'
