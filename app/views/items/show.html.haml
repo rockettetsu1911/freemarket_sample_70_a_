@@ -210,14 +210,23 @@
                               %span 
                                 = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
           - if user_signed_in?
+            - if @item.bought_at == nil
+              .comment__box
+                = form_with class: 'new__comment',model: @comment, local: true do |f|
+                  = f.text_area :text,type: 'text', class: 'form__area'
+                  = f.hidden_field :item_id, value: @item.id
+                  .notice
+                    %p 相手のことを考え丁寧なコメントを心がけましょう。
+                    %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+                  = f.submit 'コメントする',{class: 'submit__btn'}
+            - else
+              .comment__box
+                .comment__box--text
+                  売り切れている商品のためコメント出来ません。
+          - else 
             .comment__box
-              = form_with class: 'new__comment',model: @comment, local: true do |f|
-                = f.text_area :text,type: 'text', class: 'form__area'
-                = f.hidden_field :item_id, value: @item.id
-                .notice
-                  %p 相手のことを考え丁寧なコメントを心がけましょう。
-                  %p 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-                = f.submit 'コメントする',{class: 'submit__btn'}
+              .comment__box--text
+                会員登録していないとコメント出来ません。
 %aside
   = render 'layouts/global-aside'
 %footer
