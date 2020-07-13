@@ -1,0 +1,40 @@
+.my--page__contents__box
+  .my--page__contents__box--select
+    = render 'users/my-page_side-menu'
+
+  .my--page__contents__box--allert
+    = render 'users/my-page_user-icon'
+
+    .topLikes
+      .topLikes__title
+        お気に入り一覧
+      .topLikes__contents
+        - @like_items.each do |like_item|
+          = link_to item_path(like_item.item.id), class: 'topLikes__contents__itemBox' do 
+            = image_tag like_item.item.pictures.first.image.url, class: 'topLikes__contents__itemBox--image', alt: '商品画像'
+            - unless like_item.item.bought_at == nil
+              .topLikes__contents__itemBox--triangle
+              .topLikes__contents__itemBox--soldMessage sold
+            .topLikes__contents__itemBox--summary{data: {itemid: like_item.item.id}}
+              %name 
+                = like_item.item.name
+              .itemDetails
+                .itemDetails__price 
+                  #{like_item.item.price}円
+                .itemDetails__fav
+                  .itemDetails__fav--mark
+                    = icon('fa','star')
+                  .itemDetails__fav--count 
+                    - if @likes_counts[like_item.item.id] == nil
+                      0
+                    - else
+                      = @likes_counts[like_item.item.id]
+                .itemDetails__view
+                  .itemDetails__view--mark
+                    = icon('fa','eye')
+                  .itemDetails__view--count
+                    - if like_item.item.view_count > 99999
+                      99999+
+                    - else
+                      = like_item.item.view_count
+              %p (税込)

@@ -1,0 +1,59 @@
+.topLikes {
+  height: 100%;
+  width: 100%;
+  padding: 80px 5px 10px;
+  background-color: $section_bg-color;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__contents {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+
+    &__itemBox {
+      background-color: #fff;
+      margin: 15px 5px;
+      font-size: $itemIndex_font-size;
+      position: relative;
+
+      &--image {
+        width: 220px;
+        height: 150px;
+        object-fit: cover;
+      }
+      &--triangle {
+        @include sold-triangle(50px, -7px, -32px);
+      }
+      &--soldMessage {
+        @include sold-message(24px, 9px, -1px);
+      }
+      &--summary {
+        padding: 16px 16px;
+        .itemDetails {
+          display:flex;
+          justify-content: space-between;
+
+          &__fav, &__view {
+            display: flex;
+            justify-content: end;
+
+            &--mark {
+              margin-right: 5px;
+              color: $icon_bg-color;
+            }
+          }
+        }
+        p {
+          font-size: $tax_font-size;
+        }
+      }
+    }
+  }
+}

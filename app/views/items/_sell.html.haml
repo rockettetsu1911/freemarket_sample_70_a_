@@ -1,7 +1,7 @@
 = form_with model: @item, id: "sell-form", local: true do |f|
   %section.sellFillOut.sellImage
     .sellFillOut__label
-      %label.sellFillOut__label--title 出品画像
+      %label.sellFillOut__label--title#picture-scroll 出品画像
       %span.sellFillOut__label--required 必須
     %p.sellFillOut__text 最大10枚までアップロードできます
     #image-box
@@ -29,6 +29,8 @@
                 = image_tag picture.object.image.to_s, class: 'preview'
               .picture-preview__btn
                 .picture-preview__btn--delete 削除
+    .sellFillOut__alert
+      #sell-picture-alert
 
   %section.sellFillOut.sellItem
     .sellFillOut__label
@@ -40,7 +42,7 @@
     .sellFillOut__label
       %label.sellFillOut__label--title 商品の説明
       %span.sellFillOut__label--required 必須
-    = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    = f.text_area :explanation, type: 'text', rows: 6, class: 'sellFillOut__inputArea', id: 'sell-explanation', placeholder: "商品の説明（1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。\n#〇〇でタグをつけることも可能です。\n例）#ジャニーズ"
     .sellFillOut__wordCount
       %span#sell-word-count 0
       \/1000
@@ -55,7 +57,7 @@
     .sellFillOut__selectWrapper.category-wrapper
       - if @item.category == nil
         .sellFillOut__selectWrapper__box.category-parent
-          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {class: 'select-form', id: 'category_parent'}
+          = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {class: 'select-form', id: 'category_parent'}
           = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
       - else 
         .sellFillOut__selectWrapper__box.category-parent
@@ -73,32 +75,37 @@
       %span.sellFillOut__label--required 必須
     .sellFillOut__selectWrapper
       .sellFillOut__selectWrapper__box
-        = f.select :condition, Item.conditions_i18n.invert, {prompt: '---'}, class: 'select-form'
+        = f.select :condition, Item.conditions_i18n.invert, {prompt: '選択してください'}, class: 'select-form'
         = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
   %section.sellFillOut.sellDelivery
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 配送について
-      = link_to '#' do
-        = icon('far', 'question-circle')
     .sellFillOut__label
       %label.sellFillOut__label--title 配送料の負担
       %span.sellFillOut__label--required 必須
-    = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {name: 'postage', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
     .sellFillOut__label
       %label.sellFillOut__label--title 配送元の地域
       %span.sellFillOut__label--required 必須
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {name: 'prefecture', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
     .sellFillOut__label
       %label.sellFillOut__label--title 発送までの日数
       %span.sellFillOut__label--required 必須
-    = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date', class: 'sellFillOut__inputArea', required: true, autofocus: true}
+    .sellFillOut__selectWrapper
+      .sellFillOut__selectWrapper__box
+        = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name, {prompt: "選択してください"}, {name: 'delivery-date', class: 'select-form'}
+        = embedded_svg('angle-down-solid.svg', class: 'select-arrow')
 
   %section.sellFillOut.sellPrice
     .section.sellFillOut--wrapper
       %p.sellFillOut__text 価格（¥300〜9,999,999）
-      = link_to '#' do
-        = icon('far', 'question-circle')
     .sellFillOut__label
       .sellFillOut__label--wrapper
         .title-and-required
@@ -126,4 +133,4 @@
       = link_to root_path, class: 'sellFillOut__submit__sellBtn--cansel' do
         もどる
       .sellFillOut__submit__caution
-        %p 禁止されている<a href='#'>行為</a>および<a href='#'>出品物</a>を必ずご確認ください。<a href='#'>偽ブランド品</a>や<a href='#'>盗品物</a>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<a href='#'>加盟店規約</a>に同意したことになります。
+        %p 禁止されている<strong>行為</strong>および<strong>出品物</strong>を必ずご確認ください。<strong>偽ブランド品</strong>や<strong>盗品物</strong>などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして<strong>加盟店規約</strong>に同意したことになります。

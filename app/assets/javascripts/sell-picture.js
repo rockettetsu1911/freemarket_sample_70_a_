@@ -11,6 +11,7 @@ $(document).on('turbolinks:load', function() {
     reader.onload = function(e) {
       $(preview).find('.preview').attr('src', e.target.result);
     };
+    document.getElementById('sell-picture-alert').textContent = '';
 
     $li.append(preview);
     $label.css('display', 'none');
@@ -62,7 +63,13 @@ $(document).on('turbolinks:load', function() {
     $list = $ul.find('.picture-preview');
     
     var listCnt = $list.length;
-    if(listCnt <= 4) {
+    if(listCnt == 0) {
+      $('.picturePreviews li:last-child').css({
+        'width': `100%`
+      });
+      document.getElementById('sell-picture-alert').textContent = '画像がありません';
+    }
+    else if(listCnt <= 4) {
       $('.picturePreviews li:last-child').css({
         'width': `calc(100% - (20% * ${listCnt}))`
       });
