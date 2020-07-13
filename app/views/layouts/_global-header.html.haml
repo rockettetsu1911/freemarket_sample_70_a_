@@ -8,10 +8,25 @@
 
   .wrapper__bottom
     %ul
-      %li
+      %li.category__btn
+        = icon('fas','list' )
         = link_to '#', class: 'wrapper__bottom--left', id: 'category-search-btn' do
           カテゴリー
+          .category__modal
+            .category__modal--contents
+              .category__modal--contents--header
+                .category__modal--contents--header--title
+                  カテゴリー一覧
+                .category__modal--contents--header--back
+                  戻る
+              .category__modal--contents--list
+                .category__list
+                  - @parents.each do|parent|
+                    .category__list--name
+                      = simple_format(parent.name)
+
       %li.wrapper__bottom--left
+        = icon('fas', 'tags')
         = link_to '#', id: 'brand-search-btn' do
           商品一覧
     %ul

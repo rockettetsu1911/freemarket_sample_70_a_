@@ -49,20 +49,67 @@ header {
       display: flex;
       justify-content: space-between;
       font-size: $headerList_font-size;
-      
+      position:relative;
       ul {
         display: flex;
+        li:hover{
+          color:$icon_bg-color;
+        } 
+        a:hover{
+          color:$icon_bg-color;
+        }
       }
       &--left{
         padding-right: 30px;
-        a:hover{
-          color:$highlight-color;
+        .category__modal{
+          background-color: rgba(0, 0, 0, .6);
+          bottom: 0;
+          display: none; 
+          left: 0;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: 100;
+          &--contents{
+            width: 300px;
+            height: 300px;
+            &--header{
+              display: flex;
+              justify-content: space-between;
+              margin-top: 110px;
+              margin-left: 150px;
+              width: 400px;
+              height: 50px;
+              padding: 13px 10px 0 10px;
+              color: $footer_bg-color;
+              background-color: $upload_bg-color;
+              font-size: 16px;
+            }
+            .category__list{
+              top: 120px;
+              left: 120px;
+              width: 400px;
+              margin-left: 150px;
+              border: 1px solid $icon_bg-color;
+              background-color: $upload_bg-color;
+              &--name{
+                color: $icon_bg-color;
+                border: 1px solid $icon_bg-color;
+                display: inline-block;
+                padding: 5px;
+                margin: 10px 10px;
+                p{
+                  font-size: 16px;
+                }
+              }
+            }
+          }
         }
       }
       &--right{
         padding-left: 16px;
         a:hover{
-          color:$highlight-color;
+          color: $highlight-color;
         }
       }
     }
