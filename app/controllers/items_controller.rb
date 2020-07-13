@@ -163,7 +163,14 @@ class ItemsController < ApplicationController
   
   def tag
     @tag = Tag.find_by(name: params[:name])
-    @items = @tag.items
+    @items = @tag.items.reverse
+    @current_user_id = current_user.id if user_signed_in?
+    @likes_count = Like.group(:item_id).count
+  end
+  
+  def search
+    @keyword = params[:keyword]
+    @items = Item.search(params[:keyword]).reverse
     @current_user_id = current_user.id if user_signed_in?
     @likes_count = Like.group(:item_id).count
   end
