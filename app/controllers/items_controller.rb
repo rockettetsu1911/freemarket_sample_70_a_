@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_action :move_to_login, only: [:new, :edit]
   before_action :set_item, only: [:edit, :update]
   before_action :correct_user, only: :edit
+  before_action :items_list, only: [:sell_list,:buy_list]
 
   def index
     @items = Item.all.last(3)
@@ -170,15 +171,10 @@ class ItemsController < ApplicationController
 
   def sell_list
     @items = Item.where(user_id: params[:user_id])
-    @likes_counts = Like.group(:item_id).count
-    @user_items_count = Item.where(user_id: current_user.id).count
-
   end
 
   def buy_list
     @items = Item.where(buyer: params[:user_id])
-    @likes_counts = Like.group(:item_id).count
-    @user_items_count = Item.where(user_id: current_user.id).count
   end
 
   private
@@ -220,6 +216,11 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id)
       flash[:notice] = "この商品は売り切れです。"
     end
+  end
+
+  def items_list
+    @likes_counts = Like.group(:item_id).count
+    @user_items_count = Item.where(user_id: current_user.id).count
   end
 
 end
