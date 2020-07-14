@@ -176,6 +176,12 @@ class ItemsController < ApplicationController
     @likes_count = Like.group(:item_id).count
   end
 
+  def sell_list
+    @items = Item.where(user_id: params[:user_id])
+    @likes_counts = Like.group(:item_id).count
+    @user_items_count = Item.where(user_id: current_user.id).count
+  end
+
   private
 
   def item_params

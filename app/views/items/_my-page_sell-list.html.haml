@@ -1,0 +1,40 @@
+.my--page__contents__box
+  .my--page__contents__box--select
+    = render 'users/my-page_side-menu'
+
+  .my--page__contents__box--allert
+    = render 'users/my-page_user-icon'
+
+    .topSellList
+      .topSellList__title
+        出品した商品
+      .topSellList__contents
+        - @items.each do |item|
+          = link_to item_path(item.id), class: 'topSellList__contents__itemBox' do 
+            = image_tag item.pictures.first.image.url, class: 'topSellList__contents__itemBox--image', alt: '商品画像'
+            - unless item.bought_at == nil
+              .topSellList__contents__itemBox--triangle
+              .topSellList__contents__itemBox--soldMessage sold
+            .topSellList__contents__itemBox--summary{data: {itemid: item.id}}
+              %name 
+                = item.name
+              .itemDetails
+                .itemDetails__price 
+                  #{item.price}円
+                .itemDetails__fav
+                  .itemDetails__fav--mark
+                    = icon('fa','star')
+                  .itemDetails__fav--count 
+                    - if @likes_counts[item.id] == nil
+                      0
+                    - else
+                      = @likes_counts[item.id]
+                .itemDetails__view
+                  .itemDetails__view--mark
+                    = icon('fa','eye')
+                  .itemDetails__view--count
+                    - if item.view_count > 99999
+                      99999+
+                    - else
+                      = item.view_count
+              %p (税込)
