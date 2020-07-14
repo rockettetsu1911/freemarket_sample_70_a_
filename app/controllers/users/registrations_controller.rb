@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:cancel]
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:profile_update]
 
   # GET /resource/sign_up
   def new
@@ -63,11 +64,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def profile_edit
+  end
+
+  def profile_update
+    current_user.update_attributes(account_update_params)
+    if current_user.save
+    redirect_to profile_edit_path
+    flash[:notice] = 'プロフィールを更新しました'
+    else
+      redirect_to profile_edit_path
+      flash[:notice] = 'プロフィール変更に失敗しました。'
+    end
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :telephone, :introduction])
+  end
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :introduction])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
