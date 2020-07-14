@@ -1,0 +1,99 @@
+//メインコンテンツ
+.my--page__contents{
+  width:100%;
+  height:100%;
+  background-color: #f5f5f5;
+  &__box{
+    max-width: 1020px;
+    margin: 0 auto;
+    padding-top:40px;
+    display:flex;
+    justify-content: space-between;
+    padding-bottom:40px;
+    &--select{
+      width:280px;
+      .contents__nav{
+        h1{
+          font-size:$main_title_font-size;
+          margin-top:40px;
+        }
+        li{
+          background-color: #fff;
+          margin-top:2px;
+          .list__btn{
+            display:block;
+            min-height:48px;
+            padding:16px;
+            font-size:$main_contents_font-size;
+            color:#333333;
+          }
+        }
+      }
+    }
+    &--allert{
+      width:700px;
+      .profile--title{
+        background-color: #fff;
+        padding: 8px 24px;
+        text-align: center;
+        border-bottom: 1px solid #f5f5f5;
+        h3{
+          font-size: 24px;
+        }
+      }
+      .profile__icon{
+        text-align:center;
+        display:flex;
+        justify-content: center;;
+        align-items: center;
+        font-size:$main_contents_font-size;
+        position: relative;
+          &__box{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top:25px;
+            &--smile{
+            }
+            &--name{
+              width: 220px;
+              height: 48px;
+              line-height: 1.5;
+              border-radius: 4px;
+              padding: 10px 16px 8px;
+              border:1px solid #ccc;
+              background-color: #fff;
+              margin-left: 8px;
+              text-align: left;
+              font-size: 16px;
+            }
+          }
+        }
+      .profile--page__content{
+        background-color: #fff;
+        padding: 40px 16px;
+        .profile{
+          &__form{
+          min-height: 216px;
+          display: block;
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          font-size: 16px;
+          line-height: 1.5;
+          }
+          &-edit{
+            &-btn{
+              @include action-button(350px,$action_bg-color);
+              margin-bottom:0;
+              a{
+                color:white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

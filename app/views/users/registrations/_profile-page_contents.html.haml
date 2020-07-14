@@ -1,0 +1,14 @@
+.my--page__contents__box
+  .my--page__contents__box--select
+    = render 'users/my-page_side-menu'
+  .my--page__contents__box--allert
+    = form_with model: @user, url: profile_update_path,local: true do |f|
+      .profile--title
+        %h3
+          プロフィール
+      = render 'profile-page_user-icon'
+      %section.profile--page__content
+        = f.text_area :introduction,type: 'text', value: current_user.introduction, class: 'profile__form'
+        .profile-edit
+          = link_to profile_update_path,method: :patch, class: 'profile-edit-btn' do
+            変更する

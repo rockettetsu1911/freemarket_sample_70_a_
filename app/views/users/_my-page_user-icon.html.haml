@@ -1,6 +1,5 @@
 %section.user__icon
-  = link_to '#' do
-    /プロフィールページ実装後に遷移先追加
+  = link_to edit_user_path(current_user.id) do
     = image_tag 'user__icon.jpg', width:'700',height: '180', alt: 'user-back'
   .user__icon__box
     .user__icon__smile
