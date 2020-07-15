@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
   require 'payjp'
 
-  before_action :move_to_login, only: [:new, :edit]
-  before_action :items_list, only: [:sell_list,:buy_list]
-  before_action :set_item, only: [:edit, :update, :show, :purchase, :pay, :destroy]
-  before_action :set_likes_count, only: [:index, :tag, :search]
-  before_action :set_parents, only: [:index, :show, :tag, :search]
+  before_action :move_to_login,    only: [:new, :edit]
+  before_action :items_list,       only: [:sell_list,:buy_list]
+  before_action :set_item,         only: [:edit, :update, :show, :purchase, :pay, :destroy]
+  before_action :set_likes_count,  only: [:index, :tag, :search]
+  before_action :set_parents,      only: [:index, :show, :tag, :search]
   before_action :set_current_user, only: [:tag, :search]
-  before_action :correct_user, only: :edit
-  before_action :item_look_for, only: :purchase
+  before_action :correct_user,     only: :edit
+  before_action :item_look_for,    only: :purchase
 
   def index
     @items = Item.all.last(3)
