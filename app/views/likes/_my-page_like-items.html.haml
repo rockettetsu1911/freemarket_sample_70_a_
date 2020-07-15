@@ -7,7 +7,10 @@
 
     .topLikes
       .topLikes__title
-        お気に入り一覧
+        - if @like_items.empty?
+          お気に入りに登録した商品はありません
+        - else
+          お気に入り一覧
       .topLikes__contents
         - @like_items.each do |like_item|
           = link_to item_path(like_item.item.id), class: 'topLikes__contents__itemBox' do 
