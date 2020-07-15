@@ -8,7 +8,8 @@
 
     .topBuyList
       .topBuyList__title
-        購入した商品
+        - if @items.empty?
+          購入した商品はありません
       .topBuyList__contents
         - @items.each do |item|
           = link_to item_path(item.id), class: 'topBuyList__contents__itemBox' do 

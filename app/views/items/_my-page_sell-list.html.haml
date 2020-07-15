@@ -8,7 +8,8 @@
 
     .topSellList
       .topSellList__title
-        出品した商品
+        - if @items.empty?
+          出品した商品はありません
       .topSellList__contents
         - @items.each do |item|
           = link_to item_path(item.id), class: 'topSellList__contents__itemBox' do 
