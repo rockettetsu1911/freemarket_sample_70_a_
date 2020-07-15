@@ -70,7 +70,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def profile_update
     user = current_user
-    if user.update!(update_resource)
+    binding.pry
+    if user.update(update_resources())
       redirect_to profile_edit_path
       flash[:notice] = 'プロフィールを更新しました'
     else

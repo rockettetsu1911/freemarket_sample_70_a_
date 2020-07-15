@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :update]
   
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: :show
   resources :users do
     resources :addresses, only: [:edit, :update]
     get 'sell_list'=>  'items#sell_list', as: 'sell_list'
