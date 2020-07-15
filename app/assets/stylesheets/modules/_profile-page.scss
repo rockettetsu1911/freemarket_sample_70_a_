@@ -6,10 +6,9 @@
   &__box{
     max-width: 1020px;
     margin: 0 auto;
-    padding-top:40px;
+    padding-top:40px 0 40px;
     display:flex;
     justify-content: space-between;
-    padding-bottom:40px;
     &--select{
       width:280px;
       .contents__nav{
@@ -30,7 +29,7 @@
         }
       }
     }
-    &--allert{
+    &--alert{
       width:700px;
       .profile--title{
         background-color: #fff;
@@ -44,7 +43,7 @@
       .profile__icon{
         text-align:center;
         display:flex;
-        justify-content: center;;
+        justify-content: center;
         align-items: center;
         font-size:$main_contents_font-size;
         position: relative;

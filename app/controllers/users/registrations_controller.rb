@@ -65,21 +65,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def profile_edit
+    @user = current_user
   end
 
   def profile_update
-    current_user.update_attributes(account_update_params)
-    if current_user.save
-    redirect_to profile_edit_path
-    flash[:notice] = 'プロフィールを更新しました'
+    user = current_user
+    if user.update!(update_resource)
+      redirect_to profile_edit_path
+      flash[:notice] = 'プロフィールを更新しました'
     else
       redirect_to profile_edit_path
-      flash[:notice] = 'プロフィール変更に失敗しました。'
+      flash[:alert] = 'プロフィール変更に失敗しました。'
     end
   end
 
+  private
+
+  def update_params
+    params.permit(:nickname, :introduction)
+  end
   protected
 
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
+
+  
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :telephone, :introduction])

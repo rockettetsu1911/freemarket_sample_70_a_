@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
-    get 'profile_edit', to: 'users/registrations#profile_edit', as: 'profile_edit'
-    patch 'profile_update', to: 'users/registrations#profile_update', as: 'profile_update'
+    get 'profile_edit', to: 'users/registrations#profile_edit'
+    patch 'profile_update', to: 'users/registrations#profile_update'
   end
 
   root 'items#index'
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :update]
   
-  resources :users, only: :show
+  resources :users, only: [:show, :edit, :update]
   resources :users do
     resources :addresses, only: [:edit, :update]
     get 'sell_list'=>  'items#sell_list', as: 'sell_list'

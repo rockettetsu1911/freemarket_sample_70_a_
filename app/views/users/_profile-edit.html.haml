@@ -1,7 +1,7 @@
-= form_with url: profile_update_path,  method: :patch, local: true do |f|
+= form_with model: @user,local: true do |f|
   .my--page__contents__box
     .my--page__contents__box--select
-      = render 'users/my-page_side-menu'
+      = render 'my-page_side-menu'
     .my--page__contents__box--alert
       .profile--title
         %h3
@@ -15,4 +15,4 @@
       %section.profile--page__content
         = f.text_area :introduction,type: 'text', value: @user.introduction, class: 'profile__form'
         .profile-edit
-          = f.submit '変更する', class: 'profile-edit-btn' 
+          = f.submit '変更する',class: 'profile-edit-btn' 
