@@ -1,6 +1,23 @@
 require 'rails_helper'
  
 describe Item do
+  describe 'method' do
+    describe 'search(keyword) method' do
+      it 'nameにkeywordを含むitemを検索できること' do
+        item = create(:item_valid)
+        expect(Item.search('名')).to include item
+      end
+      it 'explanationにkeywordを含むitemを検索できること' do
+        item = create(:item_valid)
+        expect(Item.search('説明')).to include item
+      end
+      it 'keywordを含むitemが存在しない場合は検索できないこと' do
+        item = create(:item_valid)
+        expect(Item.search('検索')).to eq []
+      end
+    end
+  end
+
   describe '#update' do
     let(:changed_str) {'編集'}
     let(:changed_int) {12345}

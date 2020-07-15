@@ -2,17 +2,31 @@
   .wrapper__top
     = link_to root_path, class: 'wrapper__top__icon' do 
       = image_tag 'logo.png', width: '140', alt: 'FURIMAロゴ'
-    .wrapper__top__searchBox
-      %input{ type: 'text', class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す' }
-      = link_to '#', class: 'wrapper__top__searchBox__icon' do
-        = image_tag 'icon-search 1.png', alt: '検索ボタン'
+    = form_with url: search_items_path, class: 'wrapper__top__searchBox', method: :get, local: true do |f|
+      = f.text_field :keyword, class: 'wrapper__top__searchBox__input', placeholder: 'キーワードから探す'
+      = image_submit_tag 'icon-search 1.png', class: 'wrapper__top__searchBox__icon'
 
   .wrapper__bottom
     %ul
-      %li
+      %li.category__btn
+        = icon('fas','list' )
         = link_to '#', class: 'wrapper__bottom--left', id: 'category-search-btn' do
           カテゴリー
+          .category__modal
+            .category__modal--contents
+              .category__modal--contents--header
+                .category__modal--contents--header--title
+                  カテゴリー一覧
+                .category__modal--contents--header--back
+                  戻る
+              .category__modal--contents--list
+                .category__list
+                  - @parents.each do|parent|
+                    .category__list--name
+                      = simple_format(parent.name)
+
       %li.wrapper__bottom--left
+        = icon('fas', 'tags')
         = link_to '#', id: 'brand-search-btn' do
           商品一覧
     %ul

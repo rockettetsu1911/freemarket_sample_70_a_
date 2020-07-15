@@ -62,5 +62,10 @@ class Item < ApplicationRecord
       item.tags.delete(id)
     end
   end
+
+  def self.search(keyword)
+    return Item.all unless keyword
+    Item.where(['name LIKE ? OR explanation LIKE ?', "%#{keyword}%", "%#{keyword}%"])
+  end
  
 end

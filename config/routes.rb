@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'search'
     end
     resources :users do
       resources :likes, only: [:create, :destroy]
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :users do
     resources :addresses, only: [:edit, :update]
+    get 'sell_list'=>  'items#sell_list', as: 'sell_list'
+    get 'buy_list'=>  'items#buy_list', as: 'buy_list'
   end
   resources :likes, only: :index
   resources :cards, only: [:new, :create, :show, :destroy] 
