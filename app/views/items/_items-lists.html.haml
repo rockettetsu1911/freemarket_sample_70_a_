@@ -1,0 +1,8 @@
+%section.user__tabs
+  %ul.user__tabs__header
+    %li.notice
+      = link_to user_sell_list_path(current_user.id) do
+        %h2 出品した商品
+    %li.do__list 
+      = link_to user_buy_list_path(current_user.id) do
+        %h2 購入した商品
