@@ -147,21 +147,40 @@
           display:flex;
           width:100%;
           height:74px;
-          .notice{
-            background-color:#fff;
-            border-top:2px solid red;
+          .sell-list__link{
+            background-color: $section_bg-color;
             width:50%;
             text-align:center;
             line-height:74px;
+            position: relative;
+            &:hover:after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              width: 100%;
+              height: 2px;
+              display: block;
+              background-color: red;
+            }
             h2{
               font-size:$main_title_font-size;
             }
           }
-          .do__list{
-            background-color: #EEEEEE;
+          .buy-list__link{
+            background-color: $section_bg-color;
             width:50%;
             text-align:center;
             line-height:74px;
+            position: relative;
+            &:hover:after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              width: 100%;
+              height: 2px;
+              display: block;
+              background-color: red;
+            }
             h2{
               font-size:$main_title_font-size;
             }

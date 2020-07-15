@@ -3,12 +3,8 @@
     = render 'my-page_side-menu'
   .my--page__contents__box--allert
     = render 'my-page_user-icon'
-    %section.user__tabs
-      %ul.user__tabs__header
-        %li.notice
-          %h2 出品した商品
-        %li.do__list 
-          %h2 購入した商品
+    = render 'items/items-lists'
+
     %section.tab__content
       %ul.tab__contentn__ul
         %li.tab__content__li
