@@ -1,16 +1,17 @@
 class ItemsController < ApplicationController
   require 'payjp'
 
-  before_action :item_look_for, only: :purchase
-  before_action :move_to_login, only: [:new, :edit]
-  before_action :set_item, only: [:edit, :update]
-  before_action :correct_user, only: :edit
-  before_action :items_list, only: [:sell_list,:buy_list]
+  before_action :move_to_login,    only: [:new, :edit]
+  before_action :items_list,       only: [:sell_list,:buy_list]
+  before_action :set_item,         only: [:edit, :update, :show, :purchase, :pay, :destroy]
+  before_action :set_likes_count,  only: [:index, :tag, :search]
+  before_action :set_parents,      only: [:index, :show, :tag, :search]
+  before_action :set_current_user, only: [:tag, :search]
+  before_action :correct_user,     only: :edit
+  before_action :item_look_for,    only: :purchase
 
   def index
     @items = Item.all.last(3)
-    @likes_count = Like.group(:item_id).count
-    @parents = Category.where(ancestry: nil)
 
     ctgry_ids = Category.roots.pluck(:id)
     items_by_category = {}
@@ -83,7 +84,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @comment = Comment.new
     @commentAll = @item.comments
     @likes_count = Like.where(item_id: @item.id).count
@@ -103,7 +103,6 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    @item = Item.find(params[:id])
     @card = Card.find_by(user_id: current_user.id)
     if @card == nil
       redirect_to new_card_path
@@ -134,7 +133,6 @@ class ItemsController < ApplicationController
   end
 
   def pay
-    @item = Item.find(params[:id])
     card = Card.find_by(user_id: current_user.id)
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_PRIVATE_KEY]
     Payjp::Charge.create(
@@ -153,8 +151,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.destroy
+    if @item.destroy
       redirect_to root_path
       flash[:notice] = "商品の削除が完了しました。"
     else
@@ -166,15 +163,11 @@ class ItemsController < ApplicationController
   def tag
     @tag = Tag.find_by(name: params[:name])
     @items = @tag.items.reverse
-    @current_user_id = current_user.id if user_signed_in?
-    @likes_count = Like.group(:item_id).count
   end
   
   def search
     @keyword = params[:keyword]
     @items = Item.search(params[:keyword]).reverse
-    @current_user_id = current_user.id if user_signed_in?
-    @likes_count = Like.group(:item_id).count
   end
 
   def sell_list
@@ -219,7 +212,6 @@ class ItemsController < ApplicationController
   end
   
   def item_look_for
-    @item = Item.find(params[:id])
     unless @item.bought_at == nil
       redirect_to item_path(@item.id)
       flash[:notice] = "この商品は売り切れです。"
@@ -229,6 +221,18 @@ class ItemsController < ApplicationController
   def items_list
     @likes_counts = Like.group(:item_id).count
     @user_items_count = Item.where(user_id: current_user.id).count
+  end
+
+  def set_likes_count
+    @likes_count = Like.group(:item_id).count
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def set_current_user
+    @current_user_id = current_user.id if user_signed_in?
   end
 
 end
