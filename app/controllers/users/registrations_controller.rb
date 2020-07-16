@@ -71,11 +71,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def profile_update
     user = current_user
     if update_resources(user, update_params)
-      redirect_to user_path(user.id)
-      flash[:notice] = 'プロフィールを更新しました'
+      redirect_to profile_edit_path
+      flash[:notice] = 'プロフィールを変更しました。'
     else
       redirect_to profile_edit_path
-      flash[:alert] = 'プロフィール変更に失敗しました。'
+      flash[:alert] = 'プロフィールの変更に失敗しました。'
     end
   end
 
@@ -84,11 +84,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_params
     params.permit(:nickname, :introduction)
   end
+
   protected
 
   def update_resources(resource, params)
     resource.update_without_current_password(params)
   end
+
+  
+
+  
 
   
   # If you have extra params to permit, append them to the sanitizer.
