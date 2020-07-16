@@ -1,5 +1,7 @@
-//グローバルヘッダー
-.my--page__header {
+/********************
+ * global HEADER
+********************/
+header {
   width: 100%;
   height: 100%;
 
@@ -41,54 +43,78 @@
         }
       }
     }
+  
     &__bottom {
       margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       font-size: $headerList_font-size;
-      
+      position:relative;
       ul {
         display: flex;
+        li:hover{
+          color:$icon_bg-color;
+        } 
+        a:hover{
+          color:$icon_bg-color;
+        }
       }
       &--left{
         padding-right: 30px;
-        font-weight:bold;
-        a:hover{
-          color:$highlight-color;
+        .category__modal{
+          background-color: rgba(0, 0, 0, .6);
+          bottom: 0;
+          display: none; 
+          left: 0;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: 100;
+          &--contents{
+            width: 300px;
+            height: 300px;
+            &--header{
+              display: flex;
+              justify-content: space-between;
+              margin-top: 110px;
+              margin-left: 150px;
+              width: 400px;
+              height: 50px;
+              padding: 13px 10px 0 10px;
+              color: $footer_bg-color;
+              background-color: $upload_bg-color;
+              font-size: 16px;
+            }
+            .category__list{
+              top: 120px;
+              left: 120px;
+              width: 400px;
+              margin-left: 150px;
+              border: 1px solid $icon_bg-color;
+              background-color: $upload_bg-color;
+              &--name{
+                color: $icon_bg-color;
+                border: 1px solid $icon_bg-color;
+                display: inline-block;
+                padding: 5px;
+                margin: 10px 10px;
+                p{
+                  font-size: 16px;
+                }
+              }
+            }
+          }
         }
       }
       &--right{
         padding-left: 16px;
         a:hover{
-          color:$highlight-color;
+          color: $highlight-color;
         }
       }
     }
   }
-  .my--page__nav{
-    border-top: 1px solid #eee;
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
-    &__guide{
-    max-width: 1160px;
-    padding: 0 60px;
-    margin: 0 auto;
-      &--menu{
-        padding-top: 15px;
-        padding-bottom:15px;
-        margin: 0 auto;
-        font-size: $headerList_font-size;
-        ul{
-          display:flex;
-          }
-        &__btn{
-          padding-right: 16px;
-        }
-        }
-      }
-    }
-  }
-  
-
+} 
   //メインコンテンツ
   .my--page__contents{
     width:100%;
@@ -118,10 +144,13 @@
               font-size:$main_contents_font-size;
               color:#333333;
             }
+            a:hover{
+              color:$icon_bg-color;
+            }
           }
         }
       }
-      &--allert{
+      &--alert{
         width:700px;
         .user__icon{
           height:180px;
