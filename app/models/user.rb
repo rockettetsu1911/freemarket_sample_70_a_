@@ -36,7 +36,8 @@ class User < ApplicationRecord
     params.delete(:current_password)
 
     self.attributes = params
-    if  self.nickname ==  '' || self.introduction ==  ''
+    if
+      self.valid? == false
       result = self.save(validate: true) 
     else
       result = self.save(validate: false) 
