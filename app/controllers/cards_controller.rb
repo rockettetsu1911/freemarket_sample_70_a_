@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   require "payjp"
   before_action :set_card
+  before_action :set_parents, only: [:show, :new]
 
   def show
     if @card.present?
@@ -72,4 +73,10 @@ class CardsController < ApplicationController
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+
 end

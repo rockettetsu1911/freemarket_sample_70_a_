@@ -1,7 +1,7 @@
 .my--page__contents__box
   .my--page__contents__box--select
     = render 'my-page_side-menu'
-  .my--page__contents__box--allert
+  .my--page__contents__box--alert
     = render 'my-page_user-icon'
     = render 'items/items-lists'
 
@@ -12,7 +12,7 @@
             .content__icon
               = image_tag 'icon_brand.png', width:'48', height: '48', alt: 'icon'
             .content__text
-              %p メルペイ支払いでスマートに！
+              %p クレジットカード支払いでスマートに！
               %p 〜時間前
         %li.tab__content__li
           = link_to '#',class: 'tab__content__page' do

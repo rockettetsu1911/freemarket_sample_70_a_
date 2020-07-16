@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :set_parents, only: [:index]
 
   def index
     @like_items = Like.where(user_id: current_user.id)
@@ -29,6 +30,10 @@ class LikesController < ApplicationController
   private
   def like_params
     params.permit(:user_id, :item_id)
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
 
