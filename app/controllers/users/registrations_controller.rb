@@ -70,9 +70,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def profile_update
     user = current_user
-    binding.pry
-    if user.update(update_resources())
-      redirect_to profile_edit_path
+    if update_resources(user, update_params)
+      redirect_to user_path(user.id)
       flash[:notice] = 'プロフィールを更新しました'
     else
       redirect_to profile_edit_path
@@ -87,7 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   protected
 
-  def update_resource(resource, params)
+  def update_resources(resource, params)
     resource.update_without_current_password(params)
   end
 
