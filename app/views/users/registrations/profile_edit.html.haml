@@ -1,5 +1,23 @@
-.my--page__header
-  = render 'users/my-page_header'
+%header
+  = render 'layouts/global-header'
+%section.breadcrumb
+  .my--page__nav
+    .my--page__nav__guide
+      .my--page__nav__guide--menu
+        %ul
+          %li.my--page__nav__guide--menu__btn
+            = link_to root_path, id: 'toppage-btn' do
+              FURIMA
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to user_path(current_user.id) do
+              マイページ
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to profile_edit_path do
+              プロフィール
 .my--page__contents
   = render 'profile-page_contents'
 %aside

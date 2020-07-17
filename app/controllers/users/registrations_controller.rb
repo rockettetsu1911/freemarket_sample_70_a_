@@ -5,6 +5,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :configure_account_update_params, only: [:profile_update]
+  before_action :set_parents,      only: :profile_edit
+
 
   # GET /resource/sign_up
   def new
@@ -65,6 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def profile_edit
+
   end
 
   def profile_update
@@ -81,6 +84,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_params
     params.permit(:nickname, :introduction)
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
   protected
