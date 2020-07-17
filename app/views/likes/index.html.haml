@@ -1,5 +1,23 @@
 %header
   = render 'layouts/global-header'
+%section.breadcrumb
+  .my--page__nav
+    .my--page__nav__guide
+      .my--page__nav__guide--menu
+        %ul
+          %li.my--page__nav__guide--menu__btn
+            = link_to root_path, id: 'toppage-btn' do
+              FURIMA
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to user_path(current_user.id) do
+              マイページ
+          %li.my--page__nav__guide--menu__btn
+            = icon('fa', 'angle-right')
+          %li.my--page__nav__guide--menu__btn
+            = link_to likes_path do
+              お気に入り一覧
 .my--page__contents
   = render 'my-page_like-items'
 %aside
