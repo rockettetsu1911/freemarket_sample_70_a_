@@ -65,12 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def profile_edit
-    @user = current_user
   end
 
   def profile_update
-    user = current_user
-    if update_resources(user, update_params)
+    if update_resources(current_user, update_params)
       redirect_to profile_edit_path
       flash[:notice] = 'プロフィールを変更しました。'
     else
@@ -90,6 +88,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resources(resource, params)
     resource.update_without_current_password(params)
   end
+
+  
 
   
 
