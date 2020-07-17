@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
+    get 'profile_edit', to: 'users/registrations#profile_edit'
+    patch 'profile_update', to: 'users/registrations#profile_update'
   end
 
   root 'items#index'

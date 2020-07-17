@@ -32,4 +32,22 @@ class User < ApplicationRecord
   validates :telephone,       presence: true, length: { in: 10..11 }, format: {with: VALID_TELEPHONE_REGEX}
   validates :password,        presence: true, confirmation: true, length: {minimum: 7}
 
+
+  
+
+  def update_without_current_password(params)
+    params.delete(:current_password)
+    self.attributes = params
+    self.valid?
+    self.errors.delete(:password)
+
+    if self.errors.empty?
+      result = self.save(validate: false)
+      clean_up_passwords
+      result
+    else
+      false
+    end
+  end
+
 end

@@ -1,0 +1,18 @@
+= form_with url: profile_update_path,  method: :patch, local: true do |f|
+  .my--page__contents__box
+    .my--page__contents__box--select
+      = render 'users/my-page_side-menu'
+    .my--page__contents__box--alert
+      .profile--title
+        %h3
+          プロフィール
+      %section.profile__icon
+        = image_tag 'user__icon.jpg', width:'700',height: '156', alt: 'profile-user-back' 
+        .profile__icon__box
+          .profile__icon__box--smile
+            = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
+          = f.text_field :nickname, value: current_user.nickname, class: 'profile__icon__box--name'
+      %section.profile--page__content
+        = f.text_area :introduction,type: 'text', value: current_user.introduction, class: 'profile__form'
+        .profile-edit
+          = f.submit '変更する', class: 'profile-edit-btn' 
