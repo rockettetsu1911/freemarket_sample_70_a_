@@ -4,7 +4,6 @@
   justify-content:center;
   text-align:center;
   .link__btn{
-    @include required(16px,60px);
-    width:360px;
+    @include action-button(350px,$action_bg-color);
   }
 }
