@@ -11,8 +11,8 @@
         .profile__icon__box
           .profile__icon__box--smile
             = image_tag 'member_photo_noimage_thumb.png', width: '60',height: '60', alt: 'user-icon'
-          = f.text_field :nickname, value: @user.nickname, class: 'profile__icon__box--name'
+          = f.text_field :nickname, value: current_user.nickname, class: 'profile__icon__box--name'
       %section.profile--page__content
-        = f.text_area :introduction,type: 'text', value: @user.introduction, class: 'profile__form'
+        = f.text_area :introduction,type: 'text', value: current_user.introduction, class: 'profile__form'
         .profile-edit
           = f.submit '変更する', class: 'profile-edit-btn' 
