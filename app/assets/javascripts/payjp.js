@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $('#token_submit').on('click', function(e) {
-    Payjp.setPublicKey("pk_test_0df3d3eb150a3f3dd0f2fc3e");
     e.preventDefault();　//ボタンを一旦無効化
+    Payjp.setPublicKey("pk_test_f9cac3ab3691a28cad77e1dc");
     //カード情報生成
     const card = {
       number: document.getElementById("card_number").value,
