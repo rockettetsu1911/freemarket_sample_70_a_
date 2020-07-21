@@ -142,5 +142,3 @@ has_ancestry
 ### Asociation
 - belongs_to :user
 
-# Fork
-fork form rockettetsu1911
